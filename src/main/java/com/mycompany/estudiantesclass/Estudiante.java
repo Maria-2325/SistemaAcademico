@@ -1,7 +1,7 @@
 
 package com.mycompany.estudiantesclass;
 
-import com.mycompany.ClasesSistema.PersonaInstitucional;
+import com.mycompany.clasessistema.PersonaInstitucional;
 
 public class Estudiante extends PersonaInstitucional{
     

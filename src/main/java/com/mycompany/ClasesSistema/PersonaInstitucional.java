@@ -1,5 +1,5 @@
 
-package com.mycompany.ClasesSistema;
+package com.mycompany.clasessistema;
 
 import com.mycompany.persona.Persona;
 

@@ -1,7 +1,7 @@
 
 package com.mycompany.decanos;
 
-import com.mycompany.ClasesSistema.PersonalAcademico;
+import com.mycompany.clasessistema.PersonalAcademico;
 public class Decano extends PersonalAcademico{
 
     private String nivel;

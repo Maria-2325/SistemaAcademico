@@ -1,7 +1,7 @@
 
 package com.mycompany.iprofesores;
 
-import com.mycompany.ClasesSistema.PersonalAcademico;
+import com.mycompany.clasessistema.PersonalAcademico;
 
 public class Profesor extends PersonalAcademico{
     // Atributos

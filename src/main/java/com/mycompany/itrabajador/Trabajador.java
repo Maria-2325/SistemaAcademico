@@ -1,7 +1,7 @@
 
 package com.mycompany.itrabajador;
 
-import com.mycompany.ClasesSistema.Empleado;
+import com.mycompany.clasessistema.Empleado;
 
 public class Trabajador extends Empleado{
     
