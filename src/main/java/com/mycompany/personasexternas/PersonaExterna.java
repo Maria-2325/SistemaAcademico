@@ -25,6 +25,6 @@ public class PersonaExterna extends Persona {
     //Metodos
     @Override
     public String toString() {
-        return "PersonaInvitada{" + '}' + super.toString();
+        return super.toString();
     }
 }
