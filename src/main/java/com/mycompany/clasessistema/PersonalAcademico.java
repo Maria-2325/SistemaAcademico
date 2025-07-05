@@ -1,5 +1,5 @@
-
 package com.mycompany.clasessistema;
+
 public class PersonalAcademico  extends Empleado{
 
    // Atributos

@@ -1,6 +1,7 @@
+//  @author: William
+
 package com.mycompany.iprofesores;
 
-import com.mycompany.estudiantesclass.Estudiante;
 
 public class Profesores implements IProfesores {
 

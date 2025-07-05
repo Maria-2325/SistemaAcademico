@@ -1,3 +1,5 @@
+//  @author: Licet
+
 package com.mycompany.itrabajador;
 
 public class Trabajadores {

@@ -1,5 +1,6 @@
+//  @author: William
 
-package com.mycompany.decanos;
+package com.mycompany.idecanos;
         
 public class Decanos {
     Decano[] decano;

@@ -1,4 +1,6 @@
-package com.mycompany.personasexternas;
+//  @author: Licet
+
+package com.mycompany.ipersonasexternas;
 
 public class PersonasExternas implements IPersonasExternas {
 

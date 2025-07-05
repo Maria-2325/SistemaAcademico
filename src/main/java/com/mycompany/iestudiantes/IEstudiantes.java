@@ -1,6 +1,6 @@
-package com.mycompany.estudiantesclass;
+//  @author: Licet
 
-import com.mycompany.personasexternas.PersonaExterna;
+package com.mycompany.iestudiantes;
 
 public interface IEstudiantes {
 

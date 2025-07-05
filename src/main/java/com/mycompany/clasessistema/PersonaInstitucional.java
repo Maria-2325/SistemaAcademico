@@ -1,4 +1,3 @@
-
 package com.mycompany.clasessistema;
 
 import com.mycompany.persona.Persona;

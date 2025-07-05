@@ -1,6 +1,4 @@
-
 package com.mycompany.clasessistema;
-
 
 public class Empleado extends PersonaInstitucional{
     

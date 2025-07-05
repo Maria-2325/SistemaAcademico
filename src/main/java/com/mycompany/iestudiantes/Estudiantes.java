@@ -1,5 +1,6 @@
+//  @author: Licet
 
-package com.mycompany.estudiantesclass;
+package com.mycompany.iestudiantes;
 
 public class Estudiantes implements IEstudiantes {
 

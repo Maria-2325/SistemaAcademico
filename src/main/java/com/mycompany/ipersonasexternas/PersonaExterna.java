@@ -1,4 +1,6 @@
-package com.mycompany.personasexternas;
+//  @author: Licet
+
+package com.mycompany.ipersonasexternas;
 
 import com.mycompany.persona.Persona;
 
