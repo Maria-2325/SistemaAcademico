@@ -3,20 +3,20 @@ package com.mycompany.persona;
 public  class Persona {
 
     // Atributos
-    private int id;
+    protected int id;
     private String nombre;
-    private String correroPersonal;
+    private String correoPersonal;
     private String cedula;
     
     // Constructor
 
-    public Persona(int id, String nombre, String correroPersonal, String cedula) {
+    public Persona(int id, String nombre, String correoPersonal, String cedula) {
         this.id = id;
         this.nombre = nombre;
-        this.correroPersonal = correroPersonal;
+        this.correoPersonal = correoPersonal;
         this.cedula = cedula;
     }
-
+  
     // Getters y Setters
     public int getId() {
         return id;
@@ -25,10 +25,8 @@ public  class Persona {
         this.id = id;
     }
     
-
-
     @Override
     public String toString() {
-        return "Persona{" + "id = " + id + ", nombre = " + nombre + ", correroPersonal = " + correroPersonal + ", cedula = " + cedula + '}';
+        return "Id: " + id + "\nNombre: " + nombre + "\nCorreo Personal: " + correoPersonal + "\nCedula: " + cedula ;
     }
 }
