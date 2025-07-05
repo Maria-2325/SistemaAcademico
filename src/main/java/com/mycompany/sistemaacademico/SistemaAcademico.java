@@ -5,6 +5,7 @@ import com.mycompany.clasessistema.PersonaInstitucional;
 import com.mycompany.clasessistema.PersonalAcademico;
 import com.mycompany.ipersonasexternas.*;
 import com.mycompany.persona.*;
+import com.mycompany.vistas.*;
 
 public class SistemaAcademico {
 
@@ -45,5 +46,9 @@ public class SistemaAcademico {
         // Crear una instancia de Estudiante
        
         // Crear una instancia de Estudiantes con una capacidad de 10*/
+        
+        MainWindow vista = new MainWindow();
+        vista.setVisible(true);
+        
     }
 }
