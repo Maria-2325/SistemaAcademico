@@ -16,11 +16,15 @@ public  class Persona {
         this.correoPersonal = correoPersonal;
         this.cedula = cedula;
     }
+  
+    // Getters y Setters
     public int getId() {
         return id;
     }
-
-
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     @Override
     public String toString() {
         return "Id: " + id + "\nNombre: " + nombre + "\nCorreo Personal: " + correoPersonal + "\nCedula: " + cedula ;
