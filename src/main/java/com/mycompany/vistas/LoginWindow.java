@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+// @author William
+
 package com.mycompany.vistas;
 
-/**
- *
- * @author wsx
- */
 public class LoginWindow extends javax.swing.JFrame {
 
     /**
@@ -26,38 +20,82 @@ public class LoginWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        bgJPanel = new javax.swing.JPanel();
+        portadaSAJPanel = new javax.swing.JPanel();
+        contenidoLoginJPanel = new javax.swing.JPanel();
+        sistemaAcademicoJLabel = new javax.swing.JLabel();
+        usuarioJLabel = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        bgJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setPreferredSize(new java.awt.Dimension(300, 550));
+        portadaSAJPanel.setBackground(new java.awt.Color(18, 63, 90));
+        portadaSAJPanel.setPreferredSize(new java.awt.Dimension(300, 550));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout portadaSAJPanelLayout = new javax.swing.GroupLayout(portadaSAJPanel);
+        portadaSAJPanel.setLayout(portadaSAJPanelLayout);
+        portadaSAJPanelLayout.setHorizontalGroup(
+            portadaSAJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        portadaSAJPanelLayout.setVerticalGroup(
+            portadaSAJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 550, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, -1, -1));
+        bgJPanel.add(portadaSAJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, -1, -1));
+
+        sistemaAcademicoJLabel.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        sistemaAcademicoJLabel.setText("SISTEMA ACADÉMICO");
+
+        usuarioJLabel.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        usuarioJLabel.setText("USUARIO");
+
+        jTextField1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
+        jTextField1.setText("Ingrese su usuario");
+
+        javax.swing.GroupLayout contenidoLoginJPanelLayout = new javax.swing.GroupLayout(contenidoLoginJPanel);
+        contenidoLoginJPanel.setLayout(contenidoLoginJPanelLayout);
+        contenidoLoginJPanelLayout.setHorizontalGroup(
+            contenidoLoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenidoLoginJPanelLayout.createSequentialGroup()
+                .addGroup(contenidoLoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contenidoLoginJPanelLayout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(sistemaAcademicoJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(contenidoLoginJPanelLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(contenidoLoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usuarioJLabel)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(180, Short.MAX_VALUE))
+        );
+        contenidoLoginJPanelLayout.setVerticalGroup(
+            contenidoLoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenidoLoginJPanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(sistemaAcademicoJLabel)
+                .addGap(34, 34, 34)
+                .addComponent(usuarioJLabel)
+                .addGap(35, 35, 35)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(348, Short.MAX_VALUE))
+        );
+
+        bgJPanel.add(contenidoLoginJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 550));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bgJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bgJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -99,7 +137,11 @@ public class LoginWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel bgJPanel;
+    private javax.swing.JPanel contenidoLoginJPanel;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel portadaSAJPanel;
+    private javax.swing.JLabel sistemaAcademicoJLabel;
+    private javax.swing.JLabel usuarioJLabel;
     // End of variables declaration//GEN-END:variables
 }
