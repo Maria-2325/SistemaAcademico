@@ -2,13 +2,20 @@
 
 package com.mycompany.vistas;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 public class LoginWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginWindow
      */
+
+    private MainWindow mainWindow = new MainWindow();
+
     public LoginWindow() {
         initComponents();
+        // mainWindow = new MainWindow();
     }
 
     /**
@@ -22,10 +29,21 @@ public class LoginWindow extends javax.swing.JFrame {
 
         bgJPanel = new javax.swing.JPanel();
         portadaSAJPanel = new javax.swing.JPanel();
+        logoSAJLabel = new javax.swing.JLabel();
+        universidadSanWilliamJLabel = new javax.swing.JLabel();
         contenidoLoginJPanel = new javax.swing.JPanel();
+        logoJLabel = new javax.swing.JLabel();
         sistemaAcademicoJLabel = new javax.swing.JLabel();
+        iniciarSesionJLabel = new javax.swing.JLabel();
         usuarioJLabel = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        entradaUsuarioJTextField1 = new javax.swing.JTextField();
+        contraseniaJLabel = new javax.swing.JLabel();
+        entradaContraseniaJPasswordField = new javax.swing.JPasswordField();
+        lineaUsuarioJSeparator = new javax.swing.JSeparator();
+        lineaContraseniaJSeparator = new javax.swing.JSeparator();
+        olvidasteTuContraseniaJLabel = new javax.swing.JLabel();
+        btnIngresarJPanel = new javax.swing.JPanel();
+        btnIngresar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -34,55 +52,160 @@ public class LoginWindow extends javax.swing.JFrame {
         portadaSAJPanel.setBackground(new java.awt.Color(18, 63, 90));
         portadaSAJPanel.setPreferredSize(new java.awt.Dimension(300, 550));
 
+        logoSAJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoSAJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/png/login/logoSACircleBG200x200.png"))); // NOI18N
+        logoSAJLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        universidadSanWilliamJLabel.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        universidadSanWilliamJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        universidadSanWilliamJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        universidadSanWilliamJLabel.setText("UNIVERSIDAD SAN WILLIAM");
+        universidadSanWilliamJLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout portadaSAJPanelLayout = new javax.swing.GroupLayout(portadaSAJPanel);
         portadaSAJPanel.setLayout(portadaSAJPanelLayout);
         portadaSAJPanelLayout.setHorizontalGroup(
             portadaSAJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(universidadSanWilliamJLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(logoSAJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         portadaSAJPanelLayout.setVerticalGroup(
             portadaSAJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(portadaSAJPanelLayout.createSequentialGroup()
+                .addComponent(logoSAJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(universidadSanWilliamJLabel)
+                .addContainerGap(285, Short.MAX_VALUE))
         );
 
         bgJPanel.add(portadaSAJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, -1, -1));
 
+        contenidoLoginJPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        logoJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/png/login/logoSACircleBG50x50.png"))); // NOI18N
+
         sistemaAcademicoJLabel.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         sistemaAcademicoJLabel.setText("SISTEMA ACADÉMICO");
+
+        iniciarSesionJLabel.setFont(new java.awt.Font("Roboto", 0, 25)); // NOI18N
+        iniciarSesionJLabel.setText("INICIAR SESIÓN");
 
         usuarioJLabel.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         usuarioJLabel.setText("USUARIO");
 
-        jTextField1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField1.setText("Ingrese su usuario");
+        entradaUsuarioJTextField1.setFont(new java.awt.Font("Roboto Th", 0, 14)); // NOI18N
+        entradaUsuarioJTextField1.setText("Ingrese su usuario");
+        entradaUsuarioJTextField1.setBorder(null);
+        entradaUsuarioJTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                entradaUsuarioJTextField1MousePressed(evt);
+            }
+        });
+
+        contraseniaJLabel.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        contraseniaJLabel.setText("CONTRASEÑA");
+
+        entradaContraseniaJPasswordField.setFont(new java.awt.Font("Roboto Th", 0, 14)); // NOI18N
+        entradaContraseniaJPasswordField.setText("********");
+        entradaContraseniaJPasswordField.setBorder(null);
+        entradaContraseniaJPasswordField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                entradaContraseniaJPasswordFieldMousePressed(evt);
+            }
+        });
+
+        lineaUsuarioJSeparator.setBackground(new java.awt.Color(9, 34, 48));
+        lineaUsuarioJSeparator.setForeground(new java.awt.Color(18, 63, 90));
+        lineaUsuarioJSeparator.setPreferredSize(new java.awt.Dimension(50, 5));
+
+        lineaContraseniaJSeparator.setBackground(new java.awt.Color(9, 34, 48));
+        lineaContraseniaJSeparator.setForeground(new java.awt.Color(18, 63, 90));
+
+        olvidasteTuContraseniaJLabel.setFont(new java.awt.Font("Roboto Lt", 0, 10)); // NOI18N
+        olvidasteTuContraseniaJLabel.setText("¿Olvidaste tu contraseña?");
+
+        btnIngresarJPanel.setBackground(new java.awt.Color(41, 160, 197));
+        btnIngresarJPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnIngresarJPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnIngresarJPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnIngresarJPanelMouseExited(evt);
+            }
+        });
+
+        btnIngresar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnIngresar.setText("INGRESAR");
+        btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout btnIngresarJPanelLayout = new javax.swing.GroupLayout(btnIngresarJPanel);
+        btnIngresarJPanel.setLayout(btnIngresarJPanelLayout);
+        btnIngresarJPanelLayout.setHorizontalGroup(
+            btnIngresarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        btnIngresarJPanelLayout.setVerticalGroup(
+            btnIngresarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout contenidoLoginJPanelLayout = new javax.swing.GroupLayout(contenidoLoginJPanel);
         contenidoLoginJPanel.setLayout(contenidoLoginJPanelLayout);
         contenidoLoginJPanelLayout.setHorizontalGroup(
             contenidoLoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenidoLoginJPanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(contenidoLoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(olvidasteTuContraseniaJLabel)
+                    .addComponent(iniciarSesionJLabel)
                     .addGroup(contenidoLoginJPanelLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
+                        .addComponent(logoJLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sistemaAcademicoJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(contenidoLoginJPanelLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(contenidoLoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usuarioJLabel)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(180, Short.MAX_VALUE))
+                    .addComponent(usuarioJLabel)
+                    .addComponent(contraseniaJLabel)
+                    .addGroup(contenidoLoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(entradaContraseniaJPasswordField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lineaUsuarioJSeparator, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(entradaUsuarioJTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                        .addComponent(lineaContraseniaJSeparator))
+                    .addComponent(btnIngresarJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
         contenidoLoginJPanelLayout.setVerticalGroup(
             contenidoLoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenidoLoginJPanelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(sistemaAcademicoJLabel)
-                .addGap(34, 34, 34)
+                .addGap(47, 47, 47)
+                .addGroup(contenidoLoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contenidoLoginJPanelLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(sistemaAcademicoJLabel)
+                        .addGap(20, 20, 20))
+                    .addComponent(logoJLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(iniciarSesionJLabel)
+                .addGap(45, 45, 45)
                 .addComponent(usuarioJLabel)
-                .addGap(35, 35, 35)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(entradaUsuarioJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lineaUsuarioJSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(contraseniaJLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(entradaContraseniaJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lineaContraseniaJSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(olvidasteTuContraseniaJLabel)
+                .addGap(29, 29, 29)
+                .addComponent(btnIngresarJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         bgJPanel.add(contenidoLoginJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 550));
@@ -100,6 +223,71 @@ public class LoginWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    // PARA CAMBIAR EL COLOR DEL PANEL AL QUITAR EL MOUSE DE ENCIMA
+    private void btnIngresarJPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarJPanelMouseExited
+        // TODO add your handling code here:
+        btnIngresarJPanel.setBackground(new java.awt.Color(41, 160, 197));
+    }//GEN-LAST:event_btnIngresarJPanelMouseExited
+
+    // PARA CAMBIAR EL COLOR DEL PANEL AL PASAR EL MOUSE POR ENCIMA
+    private void btnIngresarJPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarJPanelMouseEntered
+        // TODO add your handling code here:
+        btnIngresarJPanel.setBackground(new java.awt.Color(43, 200, 200));
+    }//GEN-LAST:event_btnIngresarJPanelMouseEntered
+
+    // EVENTO DEL BOTÓN INGRESAR EN EL PANEL
+    private void btnIngresarJPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarJPanelMouseClicked
+        // TODO add your handling code here:
+
+        String usuarioAdministrador = "admin";
+        String contraseniaAdministrador = "12345kl";
+
+        String usuario = entradaUsuarioJTextField1.getText();
+        String contrasenia = String.valueOf(entradaContraseniaJPasswordField.getPassword());
+
+        if (usuario.equals(usuarioAdministrador) && contrasenia.equals(contraseniaAdministrador)) {
+            // Credenciales correctas
+            mainWindow.setVisible(true);
+            this.dispose();
+            // System.exit(0);
+        } else {
+            // Credenciales incorrectas
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+        }
+    }//GEN-LAST:event_btnIngresarJPanelMouseClicked
+
+    // PARA QUE NO SE MUESTRE EL TEXTO POR DEFECTO AL HACER CLICK EN EL CAMPO DE CONTRASEÑA
+    private void entradaContraseniaJPasswordFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaContraseniaJPasswordFieldMousePressed
+        // TODO add your handling code here:
+
+        if (String.valueOf(entradaContraseniaJPasswordField.getPassword()).equals("********")) {
+            entradaContraseniaJPasswordField.setText("");
+            entradaContraseniaJPasswordField.setForeground(Color.BLACK);
+        }
+
+        if (entradaUsuarioJTextField1.getText().isEmpty()) {
+            entradaUsuarioJTextField1.setText("Ingrese su usuario");
+            entradaUsuarioJTextField1.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_entradaContraseniaJPasswordFieldMousePressed
+
+    // PARA QUE NO SE MUESTRE EL TEXTO POR DEFECTO AL HACER CLICK EN EL CAMPO DE TEXTO
+    private void entradaUsuarioJTextField1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaUsuarioJTextField1MousePressed
+        // TODO add your handling code here:
+
+        if (entradaUsuarioJTextField1.getText().equals("Ingrese su usuario")) {
+            entradaUsuarioJTextField1.setText("");
+            entradaUsuarioJTextField1.setForeground(Color.BLACK);
+        }
+
+        if (String.valueOf(entradaContraseniaJPasswordField.getPassword()).isEmpty()) {
+            entradaContraseniaJPasswordField.setText("********");
+            entradaContraseniaJPasswordField.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_entradaUsuarioJTextField1MousePressed
+
+
 
     /**
      * @param args the command line arguments
@@ -138,10 +326,21 @@ public class LoginWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgJPanel;
+    private javax.swing.JLabel btnIngresar;
+    private javax.swing.JPanel btnIngresarJPanel;
     private javax.swing.JPanel contenidoLoginJPanel;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel contraseniaJLabel;
+    private javax.swing.JPasswordField entradaContraseniaJPasswordField;
+    private javax.swing.JTextField entradaUsuarioJTextField1;
+    private javax.swing.JLabel iniciarSesionJLabel;
+    private javax.swing.JSeparator lineaContraseniaJSeparator;
+    private javax.swing.JSeparator lineaUsuarioJSeparator;
+    private javax.swing.JLabel logoJLabel;
+    private javax.swing.JLabel logoSAJLabel;
+    private javax.swing.JLabel olvidasteTuContraseniaJLabel;
     private javax.swing.JPanel portadaSAJPanel;
     private javax.swing.JLabel sistemaAcademicoJLabel;
+    private javax.swing.JLabel universidadSanWilliamJLabel;
     private javax.swing.JLabel usuarioJLabel;
     // End of variables declaration//GEN-END:variables
 }
