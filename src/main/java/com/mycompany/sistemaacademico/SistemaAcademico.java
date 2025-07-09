@@ -47,8 +47,11 @@ public class SistemaAcademico {
        
         // Crear una instancia de Estudiantes con una capacidad de 10*/
         
-        MainWindow vista = new MainWindow();
-        vista.setVisible(true);
+        // MainWindow vista = new MainWindow();
+        // vista.setVisible(true);
+        
+        LoginWindow login = new LoginWindow();
+        login.setVisible(true);
         
     }
 }
