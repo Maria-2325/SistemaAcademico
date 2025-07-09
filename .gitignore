@@ -12,3 +12,9 @@
 .log
 .temp
 .cache/
+
+# Otros archivos
+*.bak
+*.swp
+*.tmp
+*.exe
