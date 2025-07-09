@@ -2,7 +2,7 @@
 
 package com.mycompany.idecanos;
         
-public class Decanos {
+public class Decanos implements IDecanos {
     Decano[] decano;
     int contador = 0;
 
