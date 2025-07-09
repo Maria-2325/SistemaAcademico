@@ -1,5 +1,9 @@
 package com.mycompany.vistas;
 
+import javax.swing.JFrame;
+
+import com.mycompany.vistas.sistema.*;
+
 public class MainWindow extends javax.swing.JFrame {
 
     /**
@@ -7,6 +11,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+        // setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -129,6 +134,11 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Registrar");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Persona Externa", "Estudiante", "Trabajador", "Profesor", "Decano" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -285,6 +295,34 @@ public class MainWindow extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    // PARA MANEJAR EL EVENTO DE CLIC EN EL LABEL "Registrar"
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        String itemSeleccionado = (String) jComboBox1.getSelectedItem();
+
+        // SE LLAMA A LA VENTANA DE REGISTRO SEGÚN EL ITEM SELECCIONADO
+        switch (itemSeleccionado) {
+            case "Persona Externa":
+                new PersonaExternaVista().setVisible(true);
+                break;
+            case "Estudiante":
+                new EstudianteVista().setVisible(true);
+                break;
+            case "Trabajador":
+                new TrabajadorVista().setVisible(true);
+                break;
+            case "Profesor":
+                new ProfesorVista().setVisible(true);
+                break;
+            case "Decano":
+                new DecanoVista().setVisible(true);
+                break;
+            default:    
+                // Manejar el caso por defecto si es necesario
+                break;
+        }
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments

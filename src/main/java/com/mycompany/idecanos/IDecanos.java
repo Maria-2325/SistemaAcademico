@@ -2,12 +2,11 @@
 
 package com.mycompany.idecanos;
 
-import com.mycompany.iprofesores.Profesor;
-
 public interface IDecanos {
-   public boolean agregarDecanos(Profesor profesor);
-    public boolean actualizarDecanos(int i, Profesor profesor);
-    public void buscarDecanos(int id);
-    public boolean eliminarDecanos(int id);
+
+    public boolean agregarDecanos(Decano decano);
+    public boolean actualizarDecano(int i, Decano decano);
+    public void buscarDecano(int id);
+    public boolean eliminarDecano(int id);
     public void imprimirDecanos();
 }
