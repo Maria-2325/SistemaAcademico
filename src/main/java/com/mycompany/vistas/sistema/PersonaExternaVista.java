@@ -202,6 +202,11 @@ public class PersonaExternaVista extends javax.swing.JFrame {
 
     private void btnCancelarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarJButtonMouseClicked
         // TODO add your handling code here:
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea cancelar?", "Confirmar Cancelación", JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            this.dispose(); // Cierra la ventana actual
+        }   
+        
     }//GEN-LAST:event_btnCancelarJButtonMouseClicked
 
     /**

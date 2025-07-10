@@ -15,7 +15,7 @@ public class ProfesorVista extends javax.swing.JFrame {
     public ProfesorVista() {
         initComponents();
         profesorControlador = new ProfesorControlador(this);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

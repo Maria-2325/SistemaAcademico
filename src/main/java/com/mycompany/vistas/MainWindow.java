@@ -1,6 +1,7 @@
 package com.mycompany.vistas;
 
 import javax.swing.JFrame;
+import com.mycompany.vistas.paneles.*;
 
 import com.mycompany.vistas.sistema.*;
 
@@ -25,26 +26,25 @@ public class MainWindow extends javax.swing.JFrame {
 
         fondoPrincipalJPanel1 = new javax.swing.JPanel();
         fondoMenuJPanel2 = new javax.swing.JPanel();
-        logoJPanel2 = new javax.swing.JPanel();
-        menuJPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        toorbarJPanel = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jPanel6 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        headerJPanel = new javax.swing.JPanel();
+        menuItemJPanel = new javax.swing.JPanel();
+        btnInicioJLabel = new javax.swing.JLabel();
+        btnConfiguracionJLabel = new javax.swing.JLabel();
+        btnAcercaDeJLabel = new javax.swing.JLabel();
+        btnSalirJLabel = new javax.swing.JLabel();
+        toolbarJPanel = new javax.swing.JPanel();
+        bienvenidoAlSistemaAcademicoJLabel = new javax.swing.JLabel();
+        buscarBarraJTextField = new javax.swing.JTextField();
+        btnRegistrarJLabel = new javax.swing.JLabel();
+        itemRolesPTEPJComboBox = new javax.swing.JComboBox<>();
+        contenidoDeBotonesJPanel = new javax.swing.JPanel();
+        personaExternaJButton = new javax.swing.JButton();
+        trabajadoresJButton = new javax.swing.JButton();
+        estudiantesJButton = new javax.swing.JButton();
+        profesoresJButton = new javax.swing.JButton();
         contenidoPrincipalJPanel = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        imgUniversidadJLabel = new javax.swing.JLabel();
+        UniversidadSanWilliamJLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,204 +53,215 @@ public class MainWindow extends javax.swing.JFrame {
         fondoMenuJPanel2.setBackground(new java.awt.Color(18, 63, 90));
         fondoMenuJPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        logoJPanel2.setBackground(new java.awt.Color(29, 107, 140));
+        headerJPanel.setBackground(new java.awt.Color(29, 107, 140));
 
-        javax.swing.GroupLayout logoJPanel2Layout = new javax.swing.GroupLayout(logoJPanel2);
-        logoJPanel2.setLayout(logoJPanel2Layout);
-        logoJPanel2Layout.setHorizontalGroup(
-            logoJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout headerJPanelLayout = new javax.swing.GroupLayout(headerJPanel);
+        headerJPanel.setLayout(headerJPanelLayout);
+        headerJPanelLayout.setHorizontalGroup(
+            headerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 170, Short.MAX_VALUE)
         );
-        logoJPanel2Layout.setVerticalGroup(
-            logoJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        headerJPanelLayout.setVerticalGroup(
+            headerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 130, Short.MAX_VALUE)
         );
 
-        fondoMenuJPanel2.add(logoJPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 130));
-        logoJPanel2.getAccessibleContext().setAccessibleName("");
+        fondoMenuJPanel2.add(headerJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 130));
+        headerJPanel.getAccessibleContext().setAccessibleName("");
 
-        menuJPanel5.setBackground(new java.awt.Color(18, 63, 90));
+        menuItemJPanel.setBackground(new java.awt.Color(18, 63, 90));
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Salir");
+        btnInicioJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        btnInicioJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        btnInicioJLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnInicioJLabel.setText("Inicio");
 
-        jLabel2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Inicio");
+        btnConfiguracionJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        btnConfiguracionJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfiguracionJLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnConfiguracionJLabel.setText("Configuración");
 
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Configuración");
+        btnAcercaDeJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        btnAcercaDeJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        btnAcercaDeJLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnAcercaDeJLabel.setText("Acerca de");
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Acerca de");
+        btnSalirJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        btnSalirJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalirJLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnSalirJLabel.setText("Salir");
 
-        javax.swing.GroupLayout menuJPanel5Layout = new javax.swing.GroupLayout(menuJPanel5);
-        menuJPanel5.setLayout(menuJPanel5Layout);
-        menuJPanel5Layout.setHorizontalGroup(
-            menuJPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuJPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout menuItemJPanelLayout = new javax.swing.GroupLayout(menuItemJPanel);
+        menuItemJPanel.setLayout(menuItemJPanelLayout);
+        menuItemJPanelLayout.setHorizontalGroup(
+            menuItemJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuItemJPanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(menuJPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(menuItemJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSalirJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAcercaDeJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConfiguracionJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInicioJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
-        menuJPanel5Layout.setVerticalGroup(
-            menuJPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuJPanel5Layout.createSequentialGroup()
+        menuItemJPanelLayout.setVerticalGroup(
+            menuItemJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuItemJPanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnInicioJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addComponent(btnConfiguracionJLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
+                .addComponent(btnAcercaDeJLabel)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(btnSalirJLabel)
                 .addContainerGap(236, Short.MAX_VALUE))
         );
 
-        fondoMenuJPanel2.add(menuJPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 170, 420));
+        fondoMenuJPanel2.add(menuItemJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 170, 420));
 
         fondoPrincipalJPanel1.add(fondoMenuJPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 550));
 
-        toorbarJPanel.setBackground(new java.awt.Color(29, 107, 140));
+        toolbarJPanel.setBackground(new java.awt.Color(29, 107, 140));
 
-        jLabel8.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("BIENVENIDO AL SISTEMA ACADÉMICO");
+        bienvenidoAlSistemaAcademicoJLabel.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        bienvenidoAlSistemaAcademicoJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        bienvenidoAlSistemaAcademicoJLabel.setText("BIENVENIDO AL SISTEMA ACADÉMICO");
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Buscar.....");
+        buscarBarraJTextField.setBackground(new java.awt.Color(204, 204, 204));
+        buscarBarraJTextField.setText("Buscar.....");
 
-        jLabel7.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Registrar");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRegistrarJLabel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnRegistrarJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarJLabel.setText("Registrar");
+        btnRegistrarJLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
+                btnRegistrarJLabelMouseClicked(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Persona Externa", "Estudiante", "Trabajador", "Profesor", "Decano" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        itemRolesPTEPJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Persona Externa", "Estudiante", "Trabajador", "Profesor", "Decano" }));
+        itemRolesPTEPJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                itemRolesPTEPJComboBoxActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout toorbarJPanelLayout = new javax.swing.GroupLayout(toorbarJPanel);
-        toorbarJPanel.setLayout(toorbarJPanelLayout);
-        toorbarJPanelLayout.setHorizontalGroup(
-            toorbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(toorbarJPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout toolbarJPanelLayout = new javax.swing.GroupLayout(toolbarJPanel);
+        toolbarJPanel.setLayout(toolbarJPanelLayout);
+        toolbarJPanelLayout.setHorizontalGroup(
+            toolbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(toolbarJPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel8)
+                .addComponent(bienvenidoAlSistemaAcademicoJLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(toorbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toorbarJPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                .addGroup(toolbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buscarBarraJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toolbarJPanelLayout.createSequentialGroup()
+                        .addComponent(btnRegistrarJLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(itemRolesPTEPJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        toorbarJPanelLayout.setVerticalGroup(
-            toorbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(toorbarJPanelLayout.createSequentialGroup()
+        toolbarJPanelLayout.setVerticalGroup(
+            toolbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(toolbarJPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(toorbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addGroup(toorbarJPanelLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(toolbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bienvenidoAlSistemaAcademicoJLabel)
+                    .addGroup(toolbarJPanelLayout.createSequentialGroup()
+                        .addComponent(buscarBarraJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(toorbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))))
+                        .addGroup(toolbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(itemRolesPTEPJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegistrarJLabel))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        fondoPrincipalJPanel1.add(toorbarJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 730, 80));
+        fondoPrincipalJPanel1.add(toolbarJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 730, 80));
 
-        jPanel6.setPreferredSize(new java.awt.Dimension(100, 50));
+        contenidoDeBotonesJPanel.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        jButton2.setBackground(new java.awt.Color(41, 160, 197));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Persona Externa");
-        jButton2.setBorder(null);
-        jButton2.setPreferredSize(new java.awt.Dimension(83, 30));
+        personaExternaJButton.setBackground(new java.awt.Color(41, 160, 197));
+        personaExternaJButton.setForeground(new java.awt.Color(255, 255, 255));
+        personaExternaJButton.setText("Persona Externa");
+        personaExternaJButton.setBorder(null);
+        personaExternaJButton.setPreferredSize(new java.awt.Dimension(83, 30));
+        personaExternaJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                personaExternaJButtonMouseClicked(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(41, 160, 197));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Decanos");
-        jButton3.setBorder(null);
-        jButton3.setPreferredSize(new java.awt.Dimension(83, 30));
+        trabajadoresJButton.setBackground(new java.awt.Color(41, 160, 197));
+        trabajadoresJButton.setForeground(new java.awt.Color(255, 255, 255));
+        trabajadoresJButton.setText("Trabajadores");
+        trabajadoresJButton.setBorder(null);
+        trabajadoresJButton.setPreferredSize(new java.awt.Dimension(83, 30));
+        trabajadoresJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                trabajadoresJButtonMouseClicked(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(41, 160, 197));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Estudiantes");
-        jButton4.setBorder(null);
-        jButton4.setPreferredSize(new java.awt.Dimension(83, 30));
+        estudiantesJButton.setBackground(new java.awt.Color(41, 160, 197));
+        estudiantesJButton.setForeground(new java.awt.Color(255, 255, 255));
+        estudiantesJButton.setText("Estudiantes");
+        estudiantesJButton.setBorder(null);
+        estudiantesJButton.setPreferredSize(new java.awt.Dimension(83, 30));
+        estudiantesJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                estudiantesJButtonMouseClicked(evt);
+            }
+        });
 
-        jButton5.setBackground(new java.awt.Color(41, 160, 197));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Trabajadores");
-        jButton5.setBorder(null);
-        jButton5.setPreferredSize(new java.awt.Dimension(83, 30));
+        profesoresJButton.setBackground(new java.awt.Color(41, 160, 197));
+        profesoresJButton.setForeground(new java.awt.Color(255, 255, 255));
+        profesoresJButton.setText("Profesores");
+        profesoresJButton.setBorder(null);
+        profesoresJButton.setPreferredSize(new java.awt.Dimension(83, 30));
+        profesoresJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profesoresJButtonMouseClicked(evt);
+            }
+        });
 
-        jButton6.setBackground(new java.awt.Color(41, 160, 197));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Profesores");
-        jButton6.setBorder(null);
-        jButton6.setPreferredSize(new java.awt.Dimension(83, 30));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout contenidoDeBotonesJPanelLayout = new javax.swing.GroupLayout(contenidoDeBotonesJPanel);
+        contenidoDeBotonesJPanel.setLayout(contenidoDeBotonesJPanelLayout);
+        contenidoDeBotonesJPanelLayout.setHorizontalGroup(
+            contenidoDeBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenidoDeBotonesJPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(personaExternaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(trabajadoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(estudiantesJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(profesoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(357, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        contenidoDeBotonesJPanelLayout.setVerticalGroup(
+            contenidoDeBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenidoDeBotonesJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(contenidoDeBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(estudiantesJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(personaExternaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(trabajadoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profesoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        fondoPrincipalJPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 730, -1));
+        fondoPrincipalJPanel1.add(contenidoDeBotonesJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 730, -1));
 
         contenidoPrincipalJPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/png/imagesU.jpeg"))); // NOI18N
+        imgUniversidadJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgUniversidadJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/png/imagesU.jpeg"))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel1.setText("UNIVERSIDAD DE SAN WILLIAM");
+        UniversidadSanWilliamJLabel.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        UniversidadSanWilliamJLabel.setText("UNIVERSIDAD DE SAN WILLIAM");
 
         javax.swing.GroupLayout contenidoPrincipalJPanelLayout = new javax.swing.GroupLayout(contenidoPrincipalJPanel);
         contenidoPrincipalJPanel.setLayout(contenidoPrincipalJPanelLayout);
@@ -260,19 +271,19 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(contenidoPrincipalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenidoPrincipalJPanelLayout.createSequentialGroup()
                         .addGap(186, 186, 186)
-                        .addComponent(jLabel1))
+                        .addComponent(UniversidadSanWilliamJLabel))
                     .addGroup(contenidoPrincipalJPanelLayout.createSequentialGroup()
                         .addGap(212, 212, 212)
-                        .addComponent(jLabel9)))
+                        .addComponent(imgUniversidadJLabel)))
                 .addContainerGap(201, Short.MAX_VALUE))
         );
         contenidoPrincipalJPanelLayout.setVerticalGroup(
             contenidoPrincipalJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoPrincipalJPanelLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(jLabel1)
+                .addComponent(UniversidadSanWilliamJLabel)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel9)
+                .addComponent(imgUniversidadJLabel)
                 .addContainerGap(134, Short.MAX_VALUE))
         );
 
@@ -292,14 +303,14 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void itemRolesPTEPJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRolesPTEPJComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_itemRolesPTEPJComboBoxActionPerformed
 
     // PARA MANEJAR EL EVENTO DE CLIC EN EL LABEL "Registrar"
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+    private void btnRegistrarJLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarJLabelMouseClicked
         // TODO add your handling code here:
-        String itemSeleccionado = (String) jComboBox1.getSelectedItem();
+        String itemSeleccionado = (String) itemRolesPTEPJComboBox.getSelectedItem();
 
         // SE LLAMA A LA VENTANA DE REGISTRO SEGÚN EL ITEM SELECCIONADO
         switch (itemSeleccionado) {
@@ -322,7 +333,36 @@ public class MainWindow extends javax.swing.JFrame {
                 // Manejar el caso por defecto si es necesario
                 break;
         }
-    }//GEN-LAST:event_jLabel7MouseClicked
+    }//GEN-LAST:event_btnRegistrarJLabelMouseClicked
+
+    public javax.swing.JPanel getContenidoPrincipalJPanel() {
+        return contenidoPrincipalJPanel;
+    }
+
+    public void mostrarPanel(javax.swing.JPanel panel) {
+        contenidoPrincipalJPanel.removeAll();
+        contenidoPrincipalJPanel.add(panel);
+        contenidoPrincipalJPanel.revalidate();
+        contenidoPrincipalJPanel.repaint();
+    }
+    private void personaExternaJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_personaExternaJButtonMouseClicked
+        // TODO add your handling code here:
+        PersonaExternaPanel personaExternaPanel = new PersonaExternaPanel();
+        mostrarPanel(personaExternaPanel);
+
+    }//GEN-LAST:event_personaExternaJButtonMouseClicked
+
+    private void trabajadoresJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trabajadoresJButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_trabajadoresJButtonMouseClicked
+
+    private void estudiantesJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estudiantesJButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estudiantesJButtonMouseClicked
+
+    private void profesoresJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profesoresJButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profesoresJButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -361,27 +401,26 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel UniversidadSanWilliamJLabel;
+    private javax.swing.JLabel bienvenidoAlSistemaAcademicoJLabel;
+    private javax.swing.JLabel btnAcercaDeJLabel;
+    private javax.swing.JLabel btnConfiguracionJLabel;
+    private javax.swing.JLabel btnInicioJLabel;
+    private javax.swing.JLabel btnRegistrarJLabel;
+    private javax.swing.JLabel btnSalirJLabel;
+    private javax.swing.JTextField buscarBarraJTextField;
+    private javax.swing.JPanel contenidoDeBotonesJPanel;
     private javax.swing.JPanel contenidoPrincipalJPanel;
+    private javax.swing.JButton estudiantesJButton;
     private javax.swing.JPanel fondoMenuJPanel2;
     private javax.swing.JPanel fondoPrincipalJPanel1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JPanel logoJPanel2;
-    private javax.swing.JPanel menuJPanel5;
-    private javax.swing.JPanel toorbarJPanel;
+    private javax.swing.JPanel headerJPanel;
+    private javax.swing.JLabel imgUniversidadJLabel;
+    private javax.swing.JComboBox<String> itemRolesPTEPJComboBox;
+    private javax.swing.JPanel menuItemJPanel;
+    private javax.swing.JButton personaExternaJButton;
+    private javax.swing.JButton profesoresJButton;
+    private javax.swing.JPanel toolbarJPanel;
+    private javax.swing.JButton trabajadoresJButton;
     // End of variables declaration//GEN-END:variables
 }
