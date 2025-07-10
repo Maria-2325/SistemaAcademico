@@ -55,9 +55,16 @@ public class PersonasExternas implements IPersonasExternas {
     }
 
     public boolean eliminarPersonaExterna(int id) {
-        if (id >= 0 && id < contador && personasExternas[id] != null) {
-            personasExternas[id] = null;
-            return true;
+        for (int i = 0; i < contador; i++) {
+            if (personasExternas[i] != null && personasExternas[i].getId() == id) {
+                // Mover todos los elementos hacia la izquierda
+                for (int j = i; j < contador - 1; j++) {
+                    personasExternas[j] = personasExternas[j + 1];
+                }
+                personasExternas[contador - 1] = null; // Limpiar última posición
+                contador--; // Decrementar contador
+                return true;
+            }
         }
         return false;
     }
@@ -76,7 +83,16 @@ public class PersonasExternas implements IPersonasExternas {
     }
 
     public PersonaExterna[] obtenerPersonasExternas() {
-        return this.personasExternas;
+        // PARA CREAR UN NUEVO ARREGLO DE PERSONAS EXTERNAS 
+        
+        PersonaExterna[] resultado = new PersonaExterna[contador];
+        int indice = 0;
+        for (int i = 0; i < contador; i++) {
+            if (personasExternas[i] != null) {
+                resultado[indice++] = personasExternas[i];
+            }
+        }
+        return resultado;
     }
 
 

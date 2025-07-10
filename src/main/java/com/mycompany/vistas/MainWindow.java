@@ -15,11 +15,12 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindows
      */
     private PersonaExternaPanel personaExternaPanel;
+    private PersonaExternaControlador personaExternaControlador; // Agregar referencia al controlador
 
     public MainWindow() {
         initComponents();
         PersonaExternaVista personaExternaVista = new PersonaExternaVista(this);
-        PersonaExternaControlador personaExternaControlador = new PersonaExternaControlador(personaExternaVista);
+        personaExternaControlador = new PersonaExternaControlador(personaExternaVista);
         personaExternaPanel = new PersonaExternaPanel(personaExternaControlador);
         // setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         // btnPersonaExternaJButton.putClientProperty( "JButton.buttonType", "roundRect" );
@@ -446,6 +447,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnPersonaExternaJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPersonaExternaJButtonMouseClicked
         // TODO add your handling code here:
         mostrarPanel(personaExternaPanel);
+        // Actualizar la tabla con los datos actuales usando el controlador existente
+        personaExternaPanel.actualizarTabla(personaExternaControlador.obtenerPersonasExternas());
 
     }//GEN-LAST:event_btnPersonaExternaJButtonMouseClicked
 

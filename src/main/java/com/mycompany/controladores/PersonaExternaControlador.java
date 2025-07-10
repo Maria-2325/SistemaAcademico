@@ -7,12 +7,16 @@ import com.mycompany.vistas.sistema.*;
 public class PersonaExternaControlador {
     private PersonaExternaVista personaExternaVista;
     private PersonaExternaPanel personaExternaPanel;
-    private IPersonasExternas iPersonasExternas;
+    private static IPersonasExternas iPersonasExternas; // Instancia compartida
+
+    static {
+        // Inicializar la instancia compartida solo una vez
+        iPersonasExternas = new PersonasExternas(15);
+    }
 
 
     public PersonaExternaControlador(PersonaExternaVista personaExternaVista) {
         this.personaExternaVista = personaExternaVista;
-        this.iPersonasExternas = new PersonasExternas(15);
         this.personaExternaPanel = new PersonaExternaPanel(this);
     }
     public PersonaExterna[] procesoControladorPersonaExterna() {
