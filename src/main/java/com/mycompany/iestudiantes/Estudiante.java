@@ -10,8 +10,8 @@ public class Estudiante extends PersonaInstitucional{
     private int codigo;
     
     // Constructor 
-     public Estudiante(int codigo, String correroInstitucional, int id, String nombre, String correroPersonal, String cedula) {
-        super(correroInstitucional, id, nombre, correroPersonal, cedula);
+     public Estudiante(int codigo, String correoInstitucional, int id, String nombre, String correoPersonal, String cedula) {
+        super(correoInstitucional, id, nombre, correoPersonal, cedula);
         this.codigo = codigo;
     }
     

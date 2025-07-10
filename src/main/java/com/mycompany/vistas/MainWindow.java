@@ -5,7 +5,9 @@ import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.mycompany.controladores.PersonaExternaControlador;
+import com.mycompany.controladores.EstudianteControlador; // IMPORT AGREGADO PARA ESTUDIANTES
 import com.mycompany.ipersonasexternas.PersonaExterna; // IMPORT AGREGADO PARA FUNCIONALIDAD DE BÚSQUEDA
+import com.mycompany.iestudiantes.Estudiante; // IMPORT AGREGADO PARA ESTUDIANTES
 import com.mycompany.vistas.paneles.*;
 
 import com.mycompany.vistas.sistema.*;
@@ -17,12 +19,22 @@ public class MainWindow extends javax.swing.JFrame {
      */
     private PersonaExternaPanel personaExternaPanel;
     private PersonaExternaControlador personaExternaControlador; // Agregar referencia al controlador
+    
+    // AGREGAR VARIABLES PARA ESTUDIANTES
+    private EstudiantePanel estudiantePanel;
+    private EstudianteControlador estudianteControlador;
 
     public MainWindow() {
         initComponents();
         PersonaExternaVista personaExternaVista = new PersonaExternaVista(this);
         personaExternaControlador = new PersonaExternaControlador(personaExternaVista);
         personaExternaPanel = new PersonaExternaPanel(personaExternaControlador);
+        
+        // INICIALIZAR COMPONENTES DE ESTUDIANTES
+        EstudianteVista estudianteVista = new EstudianteVista(this); // PASAR REFERENCIA DE MAINWINDOW
+        estudianteControlador = new EstudianteControlador(estudianteVista);
+        estudiantePanel = new EstudiantePanel(estudianteControlador);
+        
         // setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         // btnPersonaExternaJButton.putClientProperty( "JButton.buttonType", "roundRect" );
         btnPersonaExternaJButton.putClientProperty("JButton.arc", 999);
@@ -432,7 +444,8 @@ public class MainWindow extends javax.swing.JFrame {
                 personaExternaVista.setVisible(true);
                 break;
             case "Estudiante":
-                new EstudianteVista().setVisible(true);
+                EstudianteVista estudianteVista = new EstudianteVista(this); // PASAR REFERENCIA DE MAINWINDOW
+                estudianteVista.setVisible(true);
                 break;
             case "Trabajador":
                 new TrabajadorVista().setVisible(true);
@@ -484,7 +497,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     // EVENTO PARA MANEJAR EL CLIC EN EL BOTÓN "Estudiantes"
     private void btnEstudiantesJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstudiantesJButtonMouseClicked
-        // TODO add your handling code here:
+        // MOSTRAR EL PANEL DE ESTUDIANTES Y ACTUALIZAR LA TABLA
+        mostrarPanel(estudiantePanel);
+        // ACTUALIZAR LA TABLA CON LOS DATOS ACTUALES USANDO EL CONTROLADOR EXISTENTE
+        estudiantePanel.actualizarTabla(estudianteControlador.obtenerEstudiantes());
     }//GEN-LAST:event_btnEstudiantesJButtonMouseClicked
 
     // EVENTO PARA MANEJAR EL CLIC EN EL BOTÓN "Profesores"
@@ -492,7 +508,7 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProfesoresJButtonMouseClicked
 
-    // MÉTODO PARA BUSCAR PERSONA EXTERNA POR ID
+    // MÉTODO PARA BUSCAR PERSONA EXTERNA O ESTUDIANTE POR ID
     private void buscarPersonaExterna() {
         String textoBusqueda = buscarBarraJTextField.getText().trim();
         
@@ -509,7 +525,7 @@ public class MainWindow extends javax.swing.JFrame {
             // CONVERTIR EL TEXTO A NÚMERO
             int id = Integer.parseInt(textoBusqueda);
             
-            // BUSCAR LA PERSONA EXTERNA
+            // BUSCAR PRIMERO EN PERSONAS EXTERNAS
             PersonaExterna personaEncontrada = personaExternaControlador.buscarPersonaExternaPorId(id);
             
             if (personaEncontrada != null) {
@@ -520,13 +536,30 @@ public class MainWindow extends javax.swing.JFrame {
                 personaExternaPanel.buscarYMostrarPersona(personaEncontrada);
                 
                 javax.swing.JOptionPane.showMessageDialog(this, 
-                    "Persona encontrada: " + personaEncontrada.getNombre(), 
+                    "Persona Externa encontrada: " + personaEncontrada.getNombre(), 
+                    "Búsqueda exitosa", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
+            // SI NO SE ENCUENTRA EN PERSONAS EXTERNAS, BUSCAR EN ESTUDIANTES
+            Estudiante estudianteEncontrado = estudianteControlador.obtenerEstudiantePorId(id);
+            
+            if (estudianteEncontrado != null) {
+                // MOSTRAR EL PANEL DE ESTUDIANTES SI NO ESTÁ VISIBLE
+                mostrarPanel(estudiantePanel);
+                
+                // MOSTRAR SOLO EL ESTUDIANTE ENCONTRADO EN LA TABLA
+                estudiantePanel.buscarEstudiante(id);
+                
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Estudiante encontrado: " + estudianteEncontrado.getNombre(), 
                     "Búsqueda exitosa", 
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, 
-                    "No se encontró ninguna persona con el ID: " + id, 
-                    "Persona no encontrada", 
+                    "No se encontró ninguna persona o estudiante con el ID: " + id, 
+                    "No encontrado", 
                     javax.swing.JOptionPane.WARNING_MESSAGE);
             }
             
@@ -540,6 +573,11 @@ public class MainWindow extends javax.swing.JFrame {
 
     public PersonaExternaPanel getPersonaExternaPanel() {
         return personaExternaPanel;
+    }
+
+    // MÉTODO PARA OBTENER EL PANEL DE ESTUDIANTES
+    public EstudiantePanel getEstudiantePanel() {
+        return estudiantePanel;
     }
 
     /**

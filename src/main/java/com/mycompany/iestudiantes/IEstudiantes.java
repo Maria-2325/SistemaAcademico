@@ -9,5 +9,8 @@ public interface IEstudiantes {
     public void buscarEstudiante(int id);
     public boolean eliminarEstudiante(int id);
     public void imprimirEstudiante();
+    // MÉTODOS AGREGADOS PARA FUNCIONALIDAD COMPLETA
+    public Estudiante[] obtenerEstudiantes();
+    public Estudiante buscarEstudiantePorId(int id);
 
 }

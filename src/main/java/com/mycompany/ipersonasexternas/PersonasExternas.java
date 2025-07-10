@@ -25,20 +25,17 @@ public class PersonasExternas implements IPersonasExternas {
         }
     }
 
-    public boolean actualizarPersonaExterna(int i, PersonaExterna personaExterna) {
+    /* public boolean actualizarPersonaExterna(int i, PersonaExterna personaExterna) {
         if (i >= 0 && i < contador) {
             this.personasExternas[i] = personaExterna;
             return true;
         } else {
             return false;
         }
-    }
+    } */
 
     public void buscarPersonaExterna(int id) {
         boolean encontrado = false;
-        // String idPersona = personasExternas.toString();
-        // int idPersonaInt = Integer.parseInt(idPersona.subString(idPersona.indexOf("id
-        // = ") + 5, idPersona.indexOf("\nNombre: ")));
 
         for (int i = 0; i < contador; i++) {
             if (personasExternas[i] != null && personasExternas[i].getId() == id) {

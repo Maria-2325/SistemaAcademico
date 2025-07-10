@@ -1,22 +1,35 @@
-
 package com.mycompany.vistas.sistema;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.mycompany.controladores.EstudianteControlador;
-import com.mycompany.iestudiantes.IEstudiantes;
+import com.mycompany.iestudiantes.Estudiante; // IMPORT AGREGADO PARA ESTUDIANTE
+import com.mycompany.vistas.MainWindow; // IMPORT AGREGADO PARA MAINWINDOW
 public class EstudianteVista extends javax.swing.JFrame {
 
     /**
      * Creates new form EstudiantesVista
      */
     private EstudianteControlador estudiantesControlador;
+    private MainWindow vistaEstudiante; // AGREGAR REFERENCIA AL MAINWINDOW
+    
+    // VARIABLES PARA MODO DE ACTUALIZACIÓN
+    private boolean modoActualizacion = false;
+    private Estudiante estudianteAActualizar = null;
 
     public EstudianteVista() {
         initComponents();
         estudiantesControlador = new EstudianteControlador(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    // CONSTRUCTOR NUEVO CON REFERENCIA AL MAINWINDOW
+    public EstudianteVista(MainWindow vistaEstudiante) {
+        initComponents();
+        estudiantesControlador = new EstudianteControlador(this);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.vistaEstudiante = vistaEstudiante;
     }
 
     /**
@@ -221,12 +234,29 @@ public class EstudianteVista extends javax.swing.JFrame {
 
     private void btnAgregarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarJButtonMouseClicked
         // TODO add your handling code here:
-        estudiantesControlador.procesoControladorEstudiante();
+        Estudiante[] estudiantesActualizados = null;
+        
+        if (modoActualizacion) {
+            // MODO ACTUALIZACIÓN
+            estudiantesActualizados = estudiantesControlador.procesoActualizarEstudiante(estudianteAActualizar);
+        } else {
+            // MODO AGREGAR
+            estudiantesActualizados = estudiantesControlador.procesoControladorEstudiante();
+        }
+        
+        if (estudiantesActualizados != null && vistaEstudiante != null) {
+            vistaEstudiante.getEstudiantePanel().actualizarTabla(estudiantesActualizados);
+            this.dispose(); // CERRAR LA VENTANA DESPUÉS DE LA OPERACIÓN EXITOSA
+        }
         
     }//GEN-LAST:event_btnAgregarJButtonMouseClicked
 
     private void btnCancelarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarJButtonMouseClicked
         // TODO add your handling code here:
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea cancelar?", "Confirmar Cancelación", JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            this.dispose(); // CERRAR LA VENTANA ACTUAL
+        }   
     }//GEN-LAST:event_btnCancelarJButtonMouseClicked
 
     /**
@@ -264,6 +294,35 @@ public class EstudianteVista extends javax.swing.JFrame {
 
     public void mostrarMensajeError(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    // MÉTODOS PARA CONFIGURAR MODO DE ACTUALIZACIÓN
+    public void configurarModoActualizacion(Estudiante estudiante) {
+        this.modoActualizacion = true;
+        this.estudianteAActualizar = estudiante;
+        
+        // CARGAR LOS DATOS DEL ESTUDIANTE EN LOS CAMPOS
+        entradaNombreJTextField.setText(estudiante.getNombre());
+        entradaIdJTextField.setText(String.valueOf(estudiante.getId()));
+        entradaCedulaJTextField.setText(estudiante.getCedula());
+        entradacorreoInstitucionalJTextField.setText(estudiante.getCorreoInstitucional());
+        entradaCorreoPersonalJTextField.setText(estudiante.getCorreoPersonal());
+        entradaCodigoJTextField.setText(String.valueOf(estudiante.getCodigo()));
+        
+        // CAMBIAR EL TEXTO DEL BOTÓN A "ACTUALIZAR"
+        btnAgregarJButton.setText("Actualizar");
+        
+        // CAMBIAR EL TÍTULO DE LA VENTANA
+        this.setTitle("Actualizar Estudiante");
+        estudiantesJLabel.setText("ACTUALIZAR ESTUDIANTE");
+    }
+
+    public boolean isModoActualizacion() {
+        return modoActualizacion;
+    }
+
+    public Estudiante getEstudianteAActualizar() {
+        return estudianteAActualizar;
     }
 
 

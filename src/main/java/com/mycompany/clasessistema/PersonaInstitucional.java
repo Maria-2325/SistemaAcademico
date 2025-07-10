@@ -5,18 +5,26 @@ import com.mycompany.persona.Persona;
 
 public class PersonaInstitucional extends Persona {
     // Atributos
-    private String correroInstitucional;
+    private String correoInstitucional;
     
     //Constructor
 
-    public PersonaInstitucional(String correroInstitucional, int id, String nombre, String correroPersonal, String cedula) {
-        super(id, nombre, correroPersonal, cedula);
-        this.correroInstitucional = correroInstitucional;
+    public PersonaInstitucional(String correoInstitucional, int id, String nombre, String correoPersonal, String cedula) {
+        super(id, nombre, correoPersonal, cedula);
+        this.correoInstitucional = correoInstitucional;
     }
 
+    public String getCorreoInstitucional() {
+        return correoInstitucional;
+    }
+
+    public void setCorreoInstitucional(String correoInstitucional) {
+        this.correoInstitucional = correoInstitucional;
+    }
+    
     @Override
     public String toString() {
-        return "PersonaInstitucional{" + super.toString() + "correroInstitucional = " + correroInstitucional + '}';
+        return "PersonaInstitucional{" + super.toString() + "correoInstitucional = " + correoInstitucional + '}';
     }
     
     

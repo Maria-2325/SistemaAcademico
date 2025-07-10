@@ -4,6 +4,13 @@
  */
 package com.mycompany.vistas.paneles;
 
+import javax.swing.table.DefaultTableModel;
+
+import com.mycompany.controladores.EstudianteControlador;
+import com.mycompany.iestudiantes.Estudiante;
+import com.mycompany.vistas.MainWindow;
+import com.mycompany.vistas.sistema.EstudianteVista;
+
 /**
  *
  * @author ibarr
@@ -13,8 +20,20 @@ public class EstudiantePanel extends javax.swing.JPanel {
     /**
      * Creates new form EstudiantePanel
      */
+    
+    // AGREGAR REFERENCIA AL CONTROLADOR
+    private EstudianteControlador controlador;
+    
     public EstudiantePanel() {
         initComponents();
+        setBackground(new java.awt.Color(255, 255, 255));
+    }
+
+    // CONSTRUCTOR CON CONTROLADOR
+    public EstudiantePanel(EstudianteControlador controlador) {
+        this.controlador = controlador;
+        initComponents();
+        setBackground(new java.awt.Color(255, 255, 255));
     }
 
     /**
@@ -26,134 +45,194 @@ public class EstudiantePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        bgMainJPanel = new javax.swing.JPanel();
+        tablaJScrollPanel = new javax.swing.JScrollPane();
+        tablaDatosPersonaExternaJTable = new javax.swing.JTable();
+        menuBotonesJPanel = new javax.swing.JPanel();
+        btnEliminarJButton = new javax.swing.JButton();
+        btnActualizarJButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 500));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel5.setBackground(new java.awt.Color(29, 107, 140));
+        bgMainJPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/png/man1.png"))); // NOI18N
+        tablaJScrollPanel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Usuario");
+        tablaDatosPersonaExternaJTable.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        tablaDatosPersonaExternaJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "ID", "Cédula", "Correo Institucional", "Correo Personal", "Còdigo"
+            }
+        ));
+        tablaJScrollPanel.setViewportView(tablaDatosPersonaExternaJTable);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        menuBotonesJPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnEliminarJButton.setText("Eliminar");
+        btnEliminarJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarJButtonMouseClicked(evt);
+            }
+        });
+
+        btnActualizarJButton.setText("Actualizar");
+        btnActualizarJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnActualizarJButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout menuBotonesJPanelLayout = new javax.swing.GroupLayout(menuBotonesJPanel);
+        menuBotonesJPanel.setLayout(menuBotonesJPanelLayout);
+        menuBotonesJPanelLayout.setHorizontalGroup(
+            menuBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBotonesJPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnActualizarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        menuBotonesJPanelLayout.setVerticalGroup(
+            menuBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuBotonesJPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(menuBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizarJButton)
+                    .addComponent(btnEliminarJButton))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout bgMainJPanelLayout = new javax.swing.GroupLayout(bgMainJPanel);
+        bgMainJPanel.setLayout(bgMainJPanelLayout);
+        bgMainJPanelLayout.setHorizontalGroup(
+            bgMainJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tablaJScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+            .addGroup(bgMainJPanelLayout.createSequentialGroup()
+                .addComponent(menuBotonesJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        bgMainJPanelLayout.setVerticalGroup(
+            bgMainJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgMainJPanelLayout.createSequentialGroup()
+                .addComponent(tablaJScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(97, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(menuBotonesJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 100));
-
-        jPanel2.setBackground(new java.awt.Color(18, 63, 90));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Inicio");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 80, 20));
-
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Cerrar sesión");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 110, -1));
-
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Configuración");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 140, -1));
-
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Horario");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 150, 230, -1));
-
-        jLabel8.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Ver calificaciones");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 190, -1));
-
-        jLabel11.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel11.setText("Registrar asistencia");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 190, -1));
-
-        jLabel12.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel12.setText("Ver matrícula");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 190, -1));
-
-        jLabel13.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel13.setText("Ver cursos");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 190, -1));
-
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 210, 400));
-
-        jLabel9.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("BIENVENIDO A LA UNIVERSIDAD DE SAN WILLIAM");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 550, -1));
-
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/png/imagesU.jpeg"))); // NOI18N
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bgMainJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bgMainJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEliminarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarJButtonMouseClicked
+        // TODO add your handling code here:
+        int fila = tablaDatosPersonaExternaJTable.getSelectedRow();
+
+        if (fila != -1) {
+            int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
+                this,
+                "¿Deseas eliminar este estudiante?",
+                "Confirmación",
+                javax.swing.JOptionPane.YES_NO_OPTION
+            );
+
+            if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
+                // OBTENER ID DESDE LA COLUMNA 1 (ÍNDICE 1)
+                int id = Integer.parseInt(tablaDatosPersonaExternaJTable.getValueAt(fila, 1).toString());
+
+                // LLAMAR AL CONTROLADOR
+                boolean eliminado = controlador.eliminarEstudiante(id);
+
+                if (eliminado) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Estudiante eliminado exitosamente.");
+                    actualizarTabla(controlador.obtenerEstudiantes());
+                }
+
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una fila primero.", "Advertencia", javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarJButtonMouseClicked
+
+    private void btnActualizarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarJButtonMouseClicked
+        // TODO add your handling code here:
+        // VERIFICAR QUE SE HAYA SELECCIONADO UNA FILA
+        int fila = tablaDatosPersonaExternaJTable.getSelectedRow();
+
+        if (fila != -1) {
+            // OBTENER EL ID DESDE LA COLUMNA 1 (ÍNDICE 1)
+            int id = Integer.parseInt(tablaDatosPersonaExternaJTable.getValueAt(fila, 1).toString());
+
+            // OBTENER EL ESTUDIANTE A ACTUALIZAR
+            Estudiante estudianteAActualizar = controlador.obtenerEstudiantePorId(id);
+
+            if (estudianteAActualizar != null) {
+                // CREAR Y MOSTRAR LA VENTANA DE ACTUALIZACIÓN
+                MainWindow mainWindow = (MainWindow) javax.swing.SwingUtilities.getWindowAncestor(this);
+                EstudianteVista vistaActualizacion = new EstudianteVista(mainWindow);
+
+                // CONFIGURAR EL MODO DE ACTUALIZACIÓN
+                vistaActualizacion.configurarModoActualizacion(estudianteAActualizar);
+
+                // MOSTRAR LA VENTANA
+                vistaActualizacion.setVisible(true);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "No se pudo obtener los datos del estudiante.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una fila primero.", "Advertencia", javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnActualizarJButtonMouseClicked
+
+    // MÉTODO PARA ACTUALIZAR LA TABLA CON DATOS DE ESTUDIANTES
+    public void actualizarTabla(Estudiante[] estudiantes) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaDatosPersonaExternaJTable.getModel();
+        modelo.setRowCount(0); // LIMPIAR FILAS
+
+        for (Estudiante e : estudiantes) {
+            if (e != null) {
+                modelo.addRow(new Object[]{
+                    e.getNombre(),
+                    e.getId(),
+                    e.getCedula(),
+                    e.getCorreoInstitucional(), // CORREGIR NOMBRE DEL MÉTODO
+                    e.getCorreoPersonal(),
+                    e.getCodigo()
+                });
+            }
+        }
+    }
+
+    // MÉTODO PARA BUSCAR ESTUDIANTE Y MOSTRAR EN TABLA
+    public void buscarEstudiante(int id) {
+        if (controlador != null) {
+            Estudiante[] estudiantesEncontrados = controlador.buscarEstudiantePorId(id);
+            actualizarTabla(estudiantesEncontrados);
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel bgMainJPanel;
+    private javax.swing.JButton btnActualizarJButton;
+    private javax.swing.JButton btnEliminarJButton;
+    private javax.swing.JPanel menuBotonesJPanel;
+    private javax.swing.JTable tablaDatosPersonaExternaJTable;
+    private javax.swing.JScrollPane tablaJScrollPanel;
     // End of variables declaration//GEN-END:variables
 }
