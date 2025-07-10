@@ -6,17 +6,20 @@ import javax.swing.JOptionPane;
 
 
 import com.mycompany.controladores.*;
+import com.mycompany.ipersonasexternas.PersonaExterna;
+import com.mycompany.vistas.MainWindow;
 public class PersonaExternaVista extends javax.swing.JFrame {
 
     /**
      * Creates new form PersonaExternaVista
      */
     private PersonaExternaControlador personaExternaControlador;
-
-    public PersonaExternaVista() {
+    private MainWindow vistaPersonaExterna;
+    public PersonaExternaVista(MainWindow vistaPersonaExterna) {
         initComponents();
         personaExternaControlador = new PersonaExternaControlador(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.vistaPersonaExterna = vistaPersonaExterna;
     }
 
     /**
@@ -197,7 +200,10 @@ public class PersonaExternaVista extends javax.swing.JFrame {
 
     private void btnAgregarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarJButtonMouseClicked
         // TODO add your handling code here:
-        personaExternaControlador.procesoControladorPersonaExterna();
+        PersonaExterna[] personasActualizadas = personaExternaControlador.procesoControladorPersonaExterna();
+        if (personasActualizadas != null && vistaPersonaExterna != null) {
+            vistaPersonaExterna.getPersonaExternaPanel().actualizarTabla(personasActualizadas);
+        }
     }//GEN-LAST:event_btnAgregarJButtonMouseClicked
 
     private void btnCancelarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarJButtonMouseClicked

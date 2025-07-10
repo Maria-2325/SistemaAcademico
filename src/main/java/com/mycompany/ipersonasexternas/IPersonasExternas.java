@@ -9,5 +9,6 @@ public interface IPersonasExternas {
     public void buscarPersonaExterna(int id);
     public boolean eliminarPersonaExterna(int id);
     public void imprimirPersonaExterna();
+    public PersonaExterna[] obtenerPersonasExternas();
     
 }

@@ -13,7 +13,7 @@ public class PersonasExternas implements IPersonasExternas {
         this.personasExternas = new PersonaExterna[dimension];
         this.contador = 0;
         
-        }
+    }
     // Metodos
     public boolean agregarPersonaExterna(PersonaExterna personaExterna) {
         if (contador == personasExternas.length) {
@@ -74,5 +74,10 @@ public class PersonasExternas implements IPersonasExternas {
         }
 
     }
+
+    public PersonaExterna[] obtenerPersonasExternas() {
+        return this.personasExternas;
+    }
+
 
 }

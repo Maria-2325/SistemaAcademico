@@ -1,18 +1,21 @@
 package com.mycompany.controladores;
 
-import com.mycompany.ipersonasexternas.IPersonasExternas;
 import com.mycompany.ipersonasexternas.*;
+import com.mycompany.vistas.paneles.PersonaExternaPanel;
 import com.mycompany.vistas.sistema.*;
 
 public class PersonaExternaControlador {
     private PersonaExternaVista personaExternaVista;
+    private PersonaExternaPanel personaExternaPanel;
     private IPersonasExternas iPersonasExternas;
+
 
     public PersonaExternaControlador(PersonaExternaVista personaExternaVista) {
         this.personaExternaVista = personaExternaVista;
         this.iPersonasExternas = new PersonasExternas(15);
+        this.personaExternaPanel = new PersonaExternaPanel(this);
     }
-    public void procesoControladorPersonaExterna() {
+    public PersonaExterna[] procesoControladorPersonaExterna() {
         try {
             String nombrePersonaExterna = personaExternaVista.getEntradaNombreJTextField();
             int idPersonaExterna = Integer.parseInt(personaExternaVista.getEntradaIdJTextField());
@@ -27,12 +30,23 @@ public class PersonaExternaControlador {
             if (agregar) {
                 personaExternaVista.mostrarMensajeExito("Persona externa agregada exitosamente.");
                 iPersonasExternas.imprimirPersonaExterna();
+                return iPersonasExternas.obtenerPersonasExternas();
             } else {
                 personaExternaVista.mostrarMensajeError("No se pudo agregar la persona externa.");
             }
         } catch (Exception e) {
-            personaExternaVista.mostrarMensajeError("Error en el controlador de la persona externa: " + e.getMessage());
+            personaExternaVista.mostrarMensajeError("Error en el controlador: " + e.getMessage());
         }
-    }
+        return null;
+        }
+    
+        public boolean eliminarPersonaExterna(int id) {
+            return iPersonasExternas.eliminarPersonaExterna(id);
+        }
+
+        public PersonaExterna[] obtenerPersonasExternas() {
+            return iPersonasExternas.obtenerPersonasExternas();
+        }
+
 
 }

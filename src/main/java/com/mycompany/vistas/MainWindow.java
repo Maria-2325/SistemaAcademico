@@ -1,6 +1,10 @@
 package com.mycompany.vistas;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+
+import com.formdev.flatlaf.FlatLightLaf;
+import com.mycompany.controladores.PersonaExternaControlador;
 import com.mycompany.vistas.paneles.*;
 
 import com.mycompany.vistas.sistema.*;
@@ -10,9 +14,24 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Creates new form MainWindows
      */
+    private PersonaExternaPanel personaExternaPanel;
+
     public MainWindow() {
         initComponents();
+        PersonaExternaVista personaExternaVista = new PersonaExternaVista(this);
+        PersonaExternaControlador personaExternaControlador = new PersonaExternaControlador(personaExternaVista);
+        personaExternaPanel = new PersonaExternaPanel(personaExternaControlador);
         // setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        // btnPersonaExternaJButton.putClientProperty( "JButton.buttonType", "roundRect" );
+        btnPersonaExternaJButton.putClientProperty("JButton.arc", 999);
+        btnTrabajadoresJButton.putClientProperty("JButton.arc", 999);
+        btnEstudiantesJButton.putClientProperty("JButton.arc", 999);
+        btnProfesoresJButton.putClientProperty("JButton.arc", 999);
+        btnPersonaExternaJButton.setBorderPainted(true);
+        btnTrabajadoresJButton.setBorderPainted(true);
+        btnEstudiantesJButton.setBorderPainted(true);
+        btnProfesoresJButton.setBorderPainted(true);
+
     }
 
     /**
@@ -28,20 +47,24 @@ public class MainWindow extends javax.swing.JFrame {
         fondoMenuJPanel2 = new javax.swing.JPanel();
         headerJPanel = new javax.swing.JPanel();
         menuItemJPanel = new javax.swing.JPanel();
-        btnInicioJLabel = new javax.swing.JLabel();
-        btnConfiguracionJLabel = new javax.swing.JLabel();
-        btnAcercaDeJLabel = new javax.swing.JLabel();
-        btnSalirJLabel = new javax.swing.JLabel();
+        btnInicioJPanel = new javax.swing.JPanel();
+        inicioJLabel = new javax.swing.JLabel();
+        btnConfiguracionJPanel = new javax.swing.JPanel();
+        configuracionJLabel = new javax.swing.JLabel();
+        btnAcercaDeJPanel = new javax.swing.JPanel();
+        acercaDeJLabel = new javax.swing.JLabel();
+        btnSalirJPanel = new javax.swing.JPanel();
+        salirJLabel = new javax.swing.JLabel();
         toolbarJPanel = new javax.swing.JPanel();
         bienvenidoAlSistemaAcademicoJLabel = new javax.swing.JLabel();
         buscarBarraJTextField = new javax.swing.JTextField();
         btnRegistrarJLabel = new javax.swing.JLabel();
         itemRolesPTEPJComboBox = new javax.swing.JComboBox<>();
         contenidoDeBotonesJPanel = new javax.swing.JPanel();
-        personaExternaJButton = new javax.swing.JButton();
-        trabajadoresJButton = new javax.swing.JButton();
-        estudiantesJButton = new javax.swing.JButton();
-        profesoresJButton = new javax.swing.JButton();
+        btnPersonaExternaJButton = new javax.swing.JButton();
+        btnTrabajadoresJButton = new javax.swing.JButton();
+        btnEstudiantesJButton = new javax.swing.JButton();
+        btnProfesoresJButton = new javax.swing.JButton();
         contenidoPrincipalJPanel = new javax.swing.JPanel();
         imgUniversidadJLabel = new javax.swing.JLabel();
         UniversidadSanWilliamJLabel = new javax.swing.JLabel();
@@ -51,7 +74,6 @@ public class MainWindow extends javax.swing.JFrame {
         fondoPrincipalJPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fondoMenuJPanel2.setBackground(new java.awt.Color(18, 63, 90));
-        fondoMenuJPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         headerJPanel.setBackground(new java.awt.Color(29, 107, 140));
 
@@ -66,61 +88,131 @@ public class MainWindow extends javax.swing.JFrame {
             .addGap(0, 130, Short.MAX_VALUE)
         );
 
-        fondoMenuJPanel2.add(headerJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 130));
+        menuItemJPanel.setBackground(new java.awt.Color(18, 63, 90));
+        menuItemJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnInicioJPanel.setBackground(new java.awt.Color(18, 63, 90));
+
+        inicioJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        inicioJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        inicioJLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        inicioJLabel.setText("Inicio");
+
+        javax.swing.GroupLayout btnInicioJPanelLayout = new javax.swing.GroupLayout(btnInicioJPanel);
+        btnInicioJPanel.setLayout(btnInicioJPanelLayout);
+        btnInicioJPanelLayout.setHorizontalGroup(
+            btnInicioJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnInicioJPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(inicioJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnInicioJPanelLayout.setVerticalGroup(
+            btnInicioJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnInicioJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(inicioJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        menuItemJPanel.add(btnInicioJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 170, 30));
+
+        btnConfiguracionJPanel.setBackground(new java.awt.Color(18, 63, 90));
+
+        configuracionJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        configuracionJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        configuracionJLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        configuracionJLabel.setText("Configuración");
+
+        javax.swing.GroupLayout btnConfiguracionJPanelLayout = new javax.swing.GroupLayout(btnConfiguracionJPanel);
+        btnConfiguracionJPanel.setLayout(btnConfiguracionJPanelLayout);
+        btnConfiguracionJPanelLayout.setHorizontalGroup(
+            btnConfiguracionJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnConfiguracionJPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(configuracionJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnConfiguracionJPanelLayout.setVerticalGroup(
+            btnConfiguracionJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnConfiguracionJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(configuracionJLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        menuItemJPanel.add(btnConfiguracionJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 170, 30));
+
+        btnAcercaDeJPanel.setBackground(new java.awt.Color(18, 63, 90));
+
+        acercaDeJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        acercaDeJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        acercaDeJLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        acercaDeJLabel.setText("Acerca de");
+
+        javax.swing.GroupLayout btnAcercaDeJPanelLayout = new javax.swing.GroupLayout(btnAcercaDeJPanel);
+        btnAcercaDeJPanel.setLayout(btnAcercaDeJPanelLayout);
+        btnAcercaDeJPanelLayout.setHorizontalGroup(
+            btnAcercaDeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAcercaDeJPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(acercaDeJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnAcercaDeJPanelLayout.setVerticalGroup(
+            btnAcercaDeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnAcercaDeJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(acercaDeJLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        menuItemJPanel.add(btnAcercaDeJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 170, 30));
+
+        btnSalirJPanel.setBackground(new java.awt.Color(18, 63, 90));
+
+        salirJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        salirJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        salirJLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        salirJLabel.setText("Salir");
+
+        javax.swing.GroupLayout btnSalirJPanelLayout = new javax.swing.GroupLayout(btnSalirJPanel);
+        btnSalirJPanel.setLayout(btnSalirJPanelLayout);
+        btnSalirJPanelLayout.setHorizontalGroup(
+            btnSalirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnSalirJPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(salirJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        btnSalirJPanelLayout.setVerticalGroup(
+            btnSalirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnSalirJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(salirJLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        menuItemJPanel.add(btnSalirJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 170, -1));
+
+        javax.swing.GroupLayout fondoMenuJPanel2Layout = new javax.swing.GroupLayout(fondoMenuJPanel2);
+        fondoMenuJPanel2.setLayout(fondoMenuJPanel2Layout);
+        fondoMenuJPanel2Layout.setHorizontalGroup(
+            fondoMenuJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(headerJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(menuItemJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        fondoMenuJPanel2Layout.setVerticalGroup(
+            fondoMenuJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fondoMenuJPanel2Layout.createSequentialGroup()
+                .addComponent(headerJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(menuItemJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         headerJPanel.getAccessibleContext().setAccessibleName("");
 
-        menuItemJPanel.setBackground(new java.awt.Color(18, 63, 90));
-
-        btnInicioJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        btnInicioJLabel.setForeground(new java.awt.Color(255, 255, 255));
-        btnInicioJLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnInicioJLabel.setText("Inicio");
-
-        btnConfiguracionJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        btnConfiguracionJLabel.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfiguracionJLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnConfiguracionJLabel.setText("Configuración");
-
-        btnAcercaDeJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        btnAcercaDeJLabel.setForeground(new java.awt.Color(255, 255, 255));
-        btnAcercaDeJLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnAcercaDeJLabel.setText("Acerca de");
-
-        btnSalirJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        btnSalirJLabel.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalirJLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnSalirJLabel.setText("Salir");
-
-        javax.swing.GroupLayout menuItemJPanelLayout = new javax.swing.GroupLayout(menuItemJPanel);
-        menuItemJPanel.setLayout(menuItemJPanelLayout);
-        menuItemJPanelLayout.setHorizontalGroup(
-            menuItemJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuItemJPanelLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(menuItemJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSalirJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAcercaDeJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConfiguracionJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInicioJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        menuItemJPanelLayout.setVerticalGroup(
-            menuItemJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuItemJPanelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(btnInicioJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnConfiguracionJLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAcercaDeJLabel)
-                .addGap(18, 18, 18)
-                .addComponent(btnSalirJLabel)
-                .addContainerGap(236, Short.MAX_VALUE))
-        );
-
-        fondoMenuJPanel2.add(menuItemJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 170, 420));
-
-        fondoPrincipalJPanel1.add(fondoMenuJPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 550));
+        fondoPrincipalJPanel1.add(fondoMenuJPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, -1));
 
         toolbarJPanel.setBackground(new java.awt.Color(29, 107, 140));
 
@@ -129,7 +221,7 @@ public class MainWindow extends javax.swing.JFrame {
         bienvenidoAlSistemaAcademicoJLabel.setText("BIENVENIDO AL SISTEMA ACADÉMICO");
 
         buscarBarraJTextField.setBackground(new java.awt.Color(204, 204, 204));
-        buscarBarraJTextField.setText("Buscar.....");
+        buscarBarraJTextField.setText("Buscar...");
 
         btnRegistrarJLabel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnRegistrarJLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -154,7 +246,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(toolbarJPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(bienvenidoAlSistemaAcademicoJLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(toolbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buscarBarraJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toolbarJPanelLayout.createSequentialGroup()
@@ -178,51 +270,51 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        fondoPrincipalJPanel1.add(toolbarJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 730, 80));
+        fondoPrincipalJPanel1.add(toolbarJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 730, -1));
 
         contenidoDeBotonesJPanel.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        personaExternaJButton.setBackground(new java.awt.Color(41, 160, 197));
-        personaExternaJButton.setForeground(new java.awt.Color(255, 255, 255));
-        personaExternaJButton.setText("Persona Externa");
-        personaExternaJButton.setBorder(null);
-        personaExternaJButton.setPreferredSize(new java.awt.Dimension(83, 30));
-        personaExternaJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPersonaExternaJButton.setBackground(new java.awt.Color(41, 160, 197));
+        btnPersonaExternaJButton.setForeground(new java.awt.Color(255, 255, 255));
+        btnPersonaExternaJButton.setText("Persona Externa");
+        btnPersonaExternaJButton.setBorder(null);
+        btnPersonaExternaJButton.setPreferredSize(new java.awt.Dimension(83, 30));
+        btnPersonaExternaJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                personaExternaJButtonMouseClicked(evt);
+                btnPersonaExternaJButtonMouseClicked(evt);
             }
         });
 
-        trabajadoresJButton.setBackground(new java.awt.Color(41, 160, 197));
-        trabajadoresJButton.setForeground(new java.awt.Color(255, 255, 255));
-        trabajadoresJButton.setText("Trabajadores");
-        trabajadoresJButton.setBorder(null);
-        trabajadoresJButton.setPreferredSize(new java.awt.Dimension(83, 30));
-        trabajadoresJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTrabajadoresJButton.setBackground(new java.awt.Color(41, 160, 197));
+        btnTrabajadoresJButton.setForeground(new java.awt.Color(255, 255, 255));
+        btnTrabajadoresJButton.setText("Trabajadores");
+        btnTrabajadoresJButton.setBorder(null);
+        btnTrabajadoresJButton.setPreferredSize(new java.awt.Dimension(83, 30));
+        btnTrabajadoresJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                trabajadoresJButtonMouseClicked(evt);
+                btnTrabajadoresJButtonMouseClicked(evt);
             }
         });
 
-        estudiantesJButton.setBackground(new java.awt.Color(41, 160, 197));
-        estudiantesJButton.setForeground(new java.awt.Color(255, 255, 255));
-        estudiantesJButton.setText("Estudiantes");
-        estudiantesJButton.setBorder(null);
-        estudiantesJButton.setPreferredSize(new java.awt.Dimension(83, 30));
-        estudiantesJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEstudiantesJButton.setBackground(new java.awt.Color(41, 160, 197));
+        btnEstudiantesJButton.setForeground(new java.awt.Color(255, 255, 255));
+        btnEstudiantesJButton.setText("Estudiantes");
+        btnEstudiantesJButton.setBorder(null);
+        btnEstudiantesJButton.setPreferredSize(new java.awt.Dimension(83, 30));
+        btnEstudiantesJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                estudiantesJButtonMouseClicked(evt);
+                btnEstudiantesJButtonMouseClicked(evt);
             }
         });
 
-        profesoresJButton.setBackground(new java.awt.Color(41, 160, 197));
-        profesoresJButton.setForeground(new java.awt.Color(255, 255, 255));
-        profesoresJButton.setText("Profesores");
-        profesoresJButton.setBorder(null);
-        profesoresJButton.setPreferredSize(new java.awt.Dimension(83, 30));
-        profesoresJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnProfesoresJButton.setBackground(new java.awt.Color(41, 160, 197));
+        btnProfesoresJButton.setForeground(new java.awt.Color(255, 255, 255));
+        btnProfesoresJButton.setText("Profesores");
+        btnProfesoresJButton.setBorder(null);
+        btnProfesoresJButton.setPreferredSize(new java.awt.Dimension(83, 30));
+        btnProfesoresJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                profesoresJButtonMouseClicked(evt);
+                btnProfesoresJButtonMouseClicked(evt);
             }
         });
 
@@ -231,26 +323,26 @@ public class MainWindow extends javax.swing.JFrame {
         contenidoDeBotonesJPanelLayout.setHorizontalGroup(
             contenidoDeBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenidoDeBotonesJPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(personaExternaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(trabajadoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(estudiantesJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(profesoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(357, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(btnPersonaExternaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnTrabajadoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEstudiantesJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnProfesoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         contenidoDeBotonesJPanelLayout.setVerticalGroup(
             contenidoDeBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenidoDeBotonesJPanelLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoDeBotonesJPanelLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(contenidoDeBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(estudiantesJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(personaExternaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(trabajadoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(profesoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(btnPersonaExternaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTrabajadoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEstudiantesJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProfesoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         fondoPrincipalJPanel1.add(contenidoDeBotonesJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 730, -1));
@@ -293,7 +385,7 @@ public class MainWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondoPrincipalJPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(fondoPrincipalJPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,7 +407,8 @@ public class MainWindow extends javax.swing.JFrame {
         // SE LLAMA A LA VENTANA DE REGISTRO SEGÚN EL ITEM SELECCIONADO
         switch (itemSeleccionado) {
             case "Persona Externa":
-                new PersonaExternaVista().setVisible(true);
+                PersonaExternaVista personaExternaVista = new PersonaExternaVista(this);
+                personaExternaVista.setVisible(true);
                 break;
             case "Estudiante":
                 new EstudianteVista().setVisible(true);
@@ -335,34 +428,45 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRegistrarJLabelMouseClicked
 
-    public javax.swing.JPanel getContenidoPrincipalJPanel() {
+    /* public javax.swing.JPanel getContenidoPrincipalJPanel() {
         return contenidoPrincipalJPanel;
-    }
+    } */
 
+    // PARA MOSTRAR EL PANEL SELECCIONADO EN EL CONTENIDO PRINCIPAL
     public void mostrarPanel(javax.swing.JPanel panel) {
+        panel.setSize(730, 420);
+        panel.setLocation(0, 0);
         contenidoPrincipalJPanel.removeAll();
         contenidoPrincipalJPanel.add(panel);
         contenidoPrincipalJPanel.revalidate();
         contenidoPrincipalJPanel.repaint();
     }
-    private void personaExternaJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_personaExternaJButtonMouseClicked
+
+    // EVENTO PARA MANEJAR EL CLIC EN EL BOTÓN "Persona Externa"
+    private void btnPersonaExternaJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPersonaExternaJButtonMouseClicked
         // TODO add your handling code here:
-        PersonaExternaPanel personaExternaPanel = new PersonaExternaPanel();
         mostrarPanel(personaExternaPanel);
 
-    }//GEN-LAST:event_personaExternaJButtonMouseClicked
+    }//GEN-LAST:event_btnPersonaExternaJButtonMouseClicked
 
-    private void trabajadoresJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trabajadoresJButtonMouseClicked
+    // EVENTO PARA MANEJAR EL CLIC EN EL BOTÓN "Trabajadores"
+    private void btnTrabajadoresJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTrabajadoresJButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_trabajadoresJButtonMouseClicked
+    }//GEN-LAST:event_btnTrabajadoresJButtonMouseClicked
 
-    private void estudiantesJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estudiantesJButtonMouseClicked
+    // EVENTO PARA MANEJAR EL CLIC EN EL BOTÓN "Estudiantes"
+    private void btnEstudiantesJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstudiantesJButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_estudiantesJButtonMouseClicked
+    }//GEN-LAST:event_btnEstudiantesJButtonMouseClicked
 
-    private void profesoresJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profesoresJButtonMouseClicked
+    // EVENTO PARA MANEJAR EL CLIC EN EL BOTÓN "Profesores"
+    private void btnProfesoresJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfesoresJButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_profesoresJButtonMouseClicked
+    }//GEN-LAST:event_btnProfesoresJButtonMouseClicked
+
+    public PersonaExternaPanel getPersonaExternaPanel() {
+        return personaExternaPanel;
+    }
 
     /**
      * @param args the command line arguments
@@ -373,6 +477,7 @@ public class MainWindow extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -392,6 +497,11 @@ public class MainWindow extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
+        FlatLightLaf.setup();
+        UIManager.put( "Button.arc", 999 );
+        UIManager.put( "Component.arc", 999 );
+        UIManager.put( "ProgressBar.arc", 999 );
+        UIManager.put( "TextComponent.arc", 999 );
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -402,25 +512,29 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UniversidadSanWilliamJLabel;
+    private javax.swing.JLabel acercaDeJLabel;
     private javax.swing.JLabel bienvenidoAlSistemaAcademicoJLabel;
-    private javax.swing.JLabel btnAcercaDeJLabel;
-    private javax.swing.JLabel btnConfiguracionJLabel;
-    private javax.swing.JLabel btnInicioJLabel;
+    private javax.swing.JPanel btnAcercaDeJPanel;
+    private javax.swing.JPanel btnConfiguracionJPanel;
+    private javax.swing.JButton btnEstudiantesJButton;
+    private javax.swing.JPanel btnInicioJPanel;
+    private javax.swing.JButton btnPersonaExternaJButton;
+    private javax.swing.JButton btnProfesoresJButton;
     private javax.swing.JLabel btnRegistrarJLabel;
-    private javax.swing.JLabel btnSalirJLabel;
+    private javax.swing.JPanel btnSalirJPanel;
+    private javax.swing.JButton btnTrabajadoresJButton;
     private javax.swing.JTextField buscarBarraJTextField;
+    private javax.swing.JLabel configuracionJLabel;
     private javax.swing.JPanel contenidoDeBotonesJPanel;
     private javax.swing.JPanel contenidoPrincipalJPanel;
-    private javax.swing.JButton estudiantesJButton;
     private javax.swing.JPanel fondoMenuJPanel2;
     private javax.swing.JPanel fondoPrincipalJPanel1;
     private javax.swing.JPanel headerJPanel;
     private javax.swing.JLabel imgUniversidadJLabel;
+    private javax.swing.JLabel inicioJLabel;
     private javax.swing.JComboBox<String> itemRolesPTEPJComboBox;
     private javax.swing.JPanel menuItemJPanel;
-    private javax.swing.JButton personaExternaJButton;
-    private javax.swing.JButton profesoresJButton;
+    private javax.swing.JLabel salirJLabel;
     private javax.swing.JPanel toolbarJPanel;
-    private javax.swing.JButton trabajadoresJButton;
     // End of variables declaration//GEN-END:variables
 }

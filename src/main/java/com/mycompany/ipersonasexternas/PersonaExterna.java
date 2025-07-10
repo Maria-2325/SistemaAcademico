@@ -16,6 +16,7 @@ public class PersonaExterna extends Persona {
         this.descripcion = descripcion;
     }
 
+    
     public String getDescripcion() {
         return descripcion;
     }

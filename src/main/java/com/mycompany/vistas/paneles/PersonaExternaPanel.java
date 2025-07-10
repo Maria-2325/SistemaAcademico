@@ -1,11 +1,21 @@
 package com.mycompany.vistas.paneles;
 
+import javax.swing.table.DefaultTableModel;
+
+import com.mycompany.controladores.PersonaExternaControlador;
+import com.mycompany.ipersonasexternas.PersonaExterna;
+import com.mycompany.persona.Persona;
+
 public class PersonaExternaPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form PersonaExternaPanel
      */
-    public PersonaExternaPanel() {
+
+    private PersonaExternaControlador controlador;
+
+    public PersonaExternaPanel(PersonaExternaControlador controlador) {
+        this.controlador = controlador;
         initComponents();
         setBackground(new java.awt.Color(255, 255, 255));
     }
@@ -20,30 +30,85 @@ public class PersonaExternaPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         bgMainJPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        tablaJScrollPanel = new javax.swing.JScrollPane();
+        tablaDatosPersonaExternaJTable = new javax.swing.JTable();
+        menuBotonesJPanel = new javax.swing.JPanel();
+        btnEliminarJButton = new javax.swing.JButton();
+        btnActualizarJButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        bgMainJPanel.setBackground(new java.awt.Color(255, 51, 51));
+        bgMainJPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel1.setText("Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        tablaJScrollPanel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+
+        tablaDatosPersonaExternaJTable.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        tablaDatosPersonaExternaJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "ID", "Cédula", "Correo Personal", "Descripción"
+            }
+        ));
+        tablaJScrollPanel.setViewportView(tablaDatosPersonaExternaJTable);
+
+        menuBotonesJPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnEliminarJButton.setText("Eliminar");
+        btnEliminarJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarJButtonMouseClicked(evt);
+            }
+        });
+
+        btnActualizarJButton.setText("Actualizar");
+        btnActualizarJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnActualizarJButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout menuBotonesJPanelLayout = new javax.swing.GroupLayout(menuBotonesJPanel);
+        menuBotonesJPanel.setLayout(menuBotonesJPanelLayout);
+        menuBotonesJPanelLayout.setHorizontalGroup(
+            menuBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBotonesJPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnActualizarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        menuBotonesJPanelLayout.setVerticalGroup(
+            menuBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuBotonesJPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(menuBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizarJButton)
+                    .addComponent(btnEliminarJButton))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout bgMainJPanelLayout = new javax.swing.GroupLayout(bgMainJPanel);
         bgMainJPanel.setLayout(bgMainJPanelLayout);
         bgMainJPanelLayout.setHorizontalGroup(
             bgMainJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgMainJPanelLayout.createSequentialGroup()
-                .addContainerGap(157, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(107, 107, 107))
+            .addComponent(tablaJScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+            .addGroup(bgMainJPanelLayout.createSequentialGroup()
+                .addComponent(menuBotonesJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         bgMainJPanelLayout.setVerticalGroup(
             bgMainJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgMainJPanelLayout.createSequentialGroup()
-                .addGap(182, 182, 182)
-                .addComponent(jLabel1)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addComponent(tablaJScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(menuBotonesJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -54,13 +119,72 @@ public class PersonaExternaPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgMainJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bgMainJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnActualizarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarJButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarJButtonMouseClicked
+
+    private void btnEliminarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarJButtonMouseClicked
+        // TODO add your handling code here:
+        int fila = tablaDatosPersonaExternaJTable.getSelectedRow();
+
+        if (fila != -1) {
+            int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
+                this,
+                "¿Deseas eliminar esta persona?",
+                "Confirmación",
+                javax.swing.JOptionPane.YES_NO_OPTION
+            );
+
+            if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
+                // Obtener ID desde la columna 1 (índice 1)
+                int id = Integer.parseInt(tablaDatosPersonaExternaJTable.getValueAt(fila, 1).toString());
+
+                // Llamar al controlador
+                boolean eliminado = controlador.eliminarPersonaExterna(id);
+
+                if (eliminado) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Persona eliminada exitosamente.");
+                    actualizarTabla(controlador.obtenerPersonasExternas());
+                }
+
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una fila primero.", "Advertencia", javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnEliminarJButtonMouseClicked
+
+    public void actualizarTabla(PersonaExterna[] personas) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaDatosPersonaExternaJTable.getModel();
+        modelo.setRowCount(0); // limpiar filas
+
+        for (PersonaExterna p : personas) {
+            if (p != null) {
+                modelo.addRow(new Object[]{
+                    p.getNombre(),
+                    p.getId(),
+                    p.getCedula(),
+                    p.getCorreoPersonal(),
+                    p.getDescripcion()
+                });
+            }
+        }
+    }
+
+
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgMainJPanel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnActualizarJButton;
+    private javax.swing.JButton btnEliminarJButton;
+    private javax.swing.JPanel menuBotonesJPanel;
+    private javax.swing.JTable tablaDatosPersonaExternaJTable;
+    private javax.swing.JScrollPane tablaJScrollPanel;
     // End of variables declaration//GEN-END:variables
 }
