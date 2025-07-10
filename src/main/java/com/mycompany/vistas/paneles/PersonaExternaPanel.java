@@ -5,6 +5,9 @@ import javax.swing.table.DefaultTableModel;
 import com.mycompany.controladores.PersonaExternaControlador;
 import com.mycompany.ipersonasexternas.PersonaExterna;
 import com.mycompany.persona.Persona;
+// IMPORTS AGREGADOS PARA FUNCIONALIDAD DE ACTUALIZACIÓN
+import com.mycompany.vistas.MainWindow;
+import com.mycompany.vistas.sistema.PersonaExternaVista;
 
 public class PersonaExternaPanel extends javax.swing.JPanel {
 
@@ -125,6 +128,32 @@ public class PersonaExternaPanel extends javax.swing.JPanel {
 
     private void btnActualizarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarJButtonMouseClicked
         // TODO add your handling code here:
+        // VERIFICAR QUE SE HAYA SELECCIONADO UNA FILA
+        int fila = tablaDatosPersonaExternaJTable.getSelectedRow();
+
+        if (fila != -1) {
+            // OBTENER EL ID DESDE LA COLUMNA 1 (ÍNDICE 1)
+            int id = Integer.parseInt(tablaDatosPersonaExternaJTable.getValueAt(fila, 1).toString());
+
+            // OBTENER LA PERSONA EXTERNA A ACTUALIZAR
+            PersonaExterna personaAActualizar = controlador.obtenerPersonaExternaPorId(id);
+
+            if (personaAActualizar != null) {
+                // CREAR Y MOSTRAR LA VENTANA DE ACTUALIZACIÓN
+                MainWindow mainWindow = (MainWindow) javax.swing.SwingUtilities.getWindowAncestor(this);
+                PersonaExternaVista vistaActualizacion = new PersonaExternaVista(mainWindow);
+                
+                // CONFIGURAR EL MODO DE ACTUALIZACIÓN
+                vistaActualizacion.configurarModoActualizacion(personaAActualizar);
+                
+                // MOSTRAR LA VENTANA
+                vistaActualizacion.setVisible(true);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "No se pudo obtener los datos de la persona.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una fila primero.", "Advertencia", javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnActualizarJButtonMouseClicked
 
     private void btnEliminarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarJButtonMouseClicked

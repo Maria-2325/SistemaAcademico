@@ -82,6 +82,27 @@ public class PersonasExternas implements IPersonasExternas {
 
     }
 
+    // MÉTODO PARA OBTENER UNA PERSONA EXTERNA POR SU ID
+    public PersonaExterna obtenerPersonaExternaPorId(int id) {
+        for (int i = 0; i < contador; i++) {
+            if (personasExternas[i] != null && personasExternas[i].getId() == id) {
+                return personasExternas[i];
+            }
+        }
+        return null; // SI NO SE ENCUENTRA
+    }
+
+    // MÉTODO PARA ACTUALIZAR PERSONA EXTERNA POR ID
+    public boolean actualizarPersonaExternaPorId(int id, PersonaExterna personaActualizada) {
+        for (int i = 0; i < contador; i++) {
+            if (personasExternas[i] != null && personasExternas[i].getId() == id) {
+                personasExternas[i] = personaActualizada;
+                return true;
+            }
+        }
+        return false; // SI NO SE ENCUENTRA
+    }
+
     public PersonaExterna[] obtenerPersonasExternas() {
         // PARA CREAR UN NUEVO ARREGLO DE PERSONAS EXTERNAS 
         

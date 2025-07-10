@@ -10,5 +10,8 @@ public interface IPersonasExternas {
     public boolean eliminarPersonaExterna(int id);
     public void imprimirPersonaExterna();
     public PersonaExterna[] obtenerPersonasExternas();
+    // MÉTODOS AGREGADOS PARA FUNCIONALIDAD DE ACTUALIZACIÓN
+    public PersonaExterna obtenerPersonaExternaPorId(int id);
+    public boolean actualizarPersonaExternaPorId(int id, PersonaExterna personaActualizada);
     
 }

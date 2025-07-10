@@ -1,4 +1,3 @@
-
 package com.mycompany.vistas.sistema;
 
 import javax.swing.JFrame;
@@ -15,6 +14,10 @@ public class PersonaExternaVista extends javax.swing.JFrame {
      */
     private PersonaExternaControlador personaExternaControlador;
     private MainWindow vistaPersonaExterna;
+    // VARIABLES PARA MANEJAR EL MODO DE ACTUALIZACIÓN
+    private boolean modoActualizacion = false;
+    private int idPersonaActualizar = -1;
+    
     public PersonaExternaVista(MainWindow vistaPersonaExterna) {
         initComponents();
         personaExternaControlador = new PersonaExternaControlador(this);
@@ -200,9 +203,20 @@ public class PersonaExternaVista extends javax.swing.JFrame {
 
     private void btnAgregarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarJButtonMouseClicked
         // TODO add your handling code here:
-        PersonaExterna[] personasActualizadas = personaExternaControlador.procesoControladorPersonaExterna();
+        // VERIFICAR SI ESTÁ EN MODO ACTUALIZACIÓN O AGREGAR
+        PersonaExterna[] personasActualizadas = null;
+        
+        if (modoActualizacion) {
+            // MODO ACTUALIZACIÓN
+            personasActualizadas = personaExternaControlador.procesoActualizarPersonaExterna();
+        } else {
+            // MODO AGREGAR
+            personasActualizadas = personaExternaControlador.procesoControladorPersonaExterna();
+        }
+        
         if (personasActualizadas != null && vistaPersonaExterna != null) {
             vistaPersonaExterna.getPersonaExternaPanel().actualizarTabla(personasActualizadas);
+            this.dispose(); // CERRAR LA VENTANA DESPUÉS DE LA OPERACIÓN EXITOSA
         }
     }//GEN-LAST:event_btnAgregarJButtonMouseClicked
 
@@ -245,6 +259,37 @@ public class PersonaExternaVista extends javax.swing.JFrame {
 
     public void mostrarMensajeError(String mensaje) {
         javax.swing.JOptionPane.showMessageDialog(this, mensaje, "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    
+    // MÉTODO PARA CONFIGURAR EL MODO DE ACTUALIZACIÓN
+    public void configurarModoActualizacion(PersonaExterna persona) {
+        this.modoActualizacion = true;
+        this.idPersonaActualizar = persona.getId();
+        
+        // CARGAR LOS DATOS EN LOS CAMPOS
+        entradaNombreJTextField.setText(persona.getNombre());
+        entradaIdJTextField.setText(String.valueOf(persona.getId()));
+        entradaIdJTextField.setEditable(false); // NO PERMITIR CAMBIAR EL ID
+        entradaCedulaJTextField.setText(persona.getCedula());
+        entradaCorreoPersonalJTextField.setText(persona.getCorreoPersonal());
+        entadaDescripcionJTextField.setText(persona.getDescripcion());
+        
+        // CAMBIAR EL TEXTO DEL BOTÓN
+        btnAgregarJButton.setText("Actualizar");
+        
+        // CAMBIAR EL TÍTULO DE LA VENTANA
+        setTitle("Actualizar Persona Externa");
+        jLabel1.setText("ACTUALIZAR PERSONA EXTERNA");
+    }
+    
+    // MÉTODO PARA VERIFICAR SI ESTÁ EN MODO ACTUALIZACIÓN
+    public boolean esModoActualizacion() {
+        return modoActualizacion;
+    }
+    
+    // MÉTODO PARA OBTENER EL ID DE LA PERSONA A ACTUALIZAR
+    public int getIdPersonaActualizar() {
+        return idPersonaActualizar;
     }
    
 
