@@ -26,11 +26,11 @@ public class DecanoControlador {
 
             Decano nuevoDecano = new Decano(dedicacionDecano, sueldoDecano, correoInstitucionalDecano, idDecano, nombreDecano, correoPersonalDecano, cedulaDecano, nivelDecano);
 
-            boolean agregar = iDecanos.agregarDecanos(nuevoDecano);
+            boolean agregar = iDecanos.agregarDecano(nuevoDecano);
 
             if (agregar) {
                 decanoVista.mostrarMensajeExito("Decano agregado exitosamente.");
-                iDecanos.imprimirDecanos();
+                iDecanos.imprimirDecano();
             } else {
                 decanoVista.mostrarMensajeError("No se pudo agregar el decano.");
             }

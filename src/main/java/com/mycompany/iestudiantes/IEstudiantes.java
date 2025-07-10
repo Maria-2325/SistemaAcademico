@@ -4,10 +4,10 @@ package com.mycompany.iestudiantes;
 
 public interface IEstudiantes {
 
-    public boolean agregarEstudiantes(Estudiante estudiante);
-    public boolean actualizarEstudiantes(int id, Estudiante estudiante);
-    public void buscarEstudiantes(int id);
-    public boolean eliminarEstudiantes(int id);
-    public void imprimirEstudiantes();
+    public boolean agregarEstudiante(Estudiante estudiante);
+    public boolean actualizarEstudiante(int id, Estudiante estudiante);
+    public void buscarEstudiante(int id);
+    public boolean eliminarEstudiante(int id);
+    public void imprimirEstudiante();
 
 }

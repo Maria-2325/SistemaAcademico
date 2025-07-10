@@ -3,8 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.vistas.sistema;
+import com.mycompany.controladores.TrabajadorControlador;
+
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,8 +18,11 @@ public class TrabajadorVista extends javax.swing.JFrame {
     /**
      * Creates new form TrabajadoresVista
      */
+    private TrabajadorControlador trabajadorControlador;
+
     public TrabajadorVista() {
         initComponents();
+        trabajadorControlador = new TrabajadorControlador(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -31,125 +37,133 @@ public class TrabajadorVista extends javax.swing.JFrame {
 
         fondoPrincipalJPanel = new javax.swing.JPanel();
         toorbarJPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        trabajadoresJLabel = new javax.swing.JLabel();
         contenidoJPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        ingreseSiguientesDatosLabel = new javax.swing.JLabel();
+        nombreJLabel = new javax.swing.JLabel();
+        idJLabel = new javax.swing.JLabel();
+        correoPersonalJLabel = new javax.swing.JLabel();
+        correoInstitucionalJLabel = new javax.swing.JLabel();
+        CedulaLabel = new javax.swing.JLabel();
+        sueldoJLabel = new javax.swing.JLabel();
+        GremioJLabel = new javax.swing.JLabel();
+        entradaNombreJTextField = new javax.swing.JTextField();
+        entradaIdJTextField = new javax.swing.JTextField();
+        entradaCorreoPersonalJTextField = new javax.swing.JTextField();
+        entradaCorreoInstitucionalJTextField = new javax.swing.JTextField();
+        entradaCedulaJTextField = new javax.swing.JTextField();
+        entradaSueldoJTextField = new javax.swing.JTextField();
+        entradaGremioJTextField = new javax.swing.JTextField();
+        btnAgregarJButton = new javax.swing.JButton();
+        btnCancelarJButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         toorbarJPanel.setBackground(new java.awt.Color(29, 107, 140));
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("TRABAJADORES");
+        trabajadoresJLabel.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        trabajadoresJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        trabajadoresJLabel.setText("TRABAJADORES");
 
         javax.swing.GroupLayout toorbarJPanelLayout = new javax.swing.GroupLayout(toorbarJPanel);
         toorbarJPanel.setLayout(toorbarJPanelLayout);
         toorbarJPanelLayout.setHorizontalGroup(
             toorbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(toorbarJPanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jLabel1)
+                .addGap(50, 50, 50)
+                .addComponent(trabajadoresJLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         toorbarJPanelLayout.setVerticalGroup(
             toorbarJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toorbarJPanelLayout.createSequentialGroup()
                 .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(trabajadoresJLabel)
                 .addGap(36, 36, 36))
         );
 
         contenidoJPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel2.setText("INGRESE LOS SIGUIENTES DATOS");
+        ingreseSiguientesDatosLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        ingreseSiguientesDatosLabel.setText("INGRESE LOS SIGUIENTES DATOS");
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel3.setText("Nombre");
+        nombreJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        nombreJLabel.setText("Nombre");
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel4.setText("ID");
+        idJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        idJLabel.setText("ID");
 
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel5.setText("Cedula");
+        correoPersonalJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        correoPersonalJLabel.setText("Correo Personal");
 
-        jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel7.setText("Correo Institucional");
+        correoInstitucionalJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        correoInstitucionalJLabel.setText("Correo Institucional");
 
-        jLabel8.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel8.setText("Correo Personal");
+        CedulaLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        CedulaLabel.setText("Cedula");
 
-        jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel9.setText("Cedula");
+        sueldoJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        sueldoJLabel.setText("Sueldo");
 
-        jLabel10.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel10.setText("Sueldo");
+        GremioJLabel.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        GremioJLabel.setText("Gremio");
 
-        jButton3.setBackground(new java.awt.Color(41, 160, 197));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Cancelar");
-        jButton3.setBorder(null);
+        btnAgregarJButton.setBackground(new java.awt.Color(41, 160, 197));
+        btnAgregarJButton.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarJButton.setText("Agregar");
+        btnAgregarJButton.setBorder(null);
+        btnAgregarJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarJButtonMouseClicked(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(41, 160, 197));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Agregar");
-        jButton4.setBorder(null);
+        btnCancelarJButton.setBackground(new java.awt.Color(41, 160, 197));
+        btnCancelarJButton.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarJButton.setText("Cancelar");
+        btnCancelarJButton.setBorder(null);
+        btnCancelarJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarJButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout contenidoJPanelLayout = new javax.swing.GroupLayout(contenidoJPanel);
         contenidoJPanel.setLayout(contenidoJPanelLayout);
         contenidoJPanelLayout.setHorizontalGroup(
             contenidoJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenidoJPanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(contenidoJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ingreseSiguientesDatosLabel)
                     .addGroup(contenidoJPanelLayout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(jLabel2))
-                    .addGroup(contenidoJPanelLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
                         .addGroup(contenidoJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(contenidoJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(contenidoJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(correoInstitucionalJLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(correoPersonalJLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CedulaLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(idJLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreJLabel, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGroup(contenidoJPanelLayout.createSequentialGroup()
                                     .addGroup(contenidoJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel10))
+                                        .addComponent(GremioJLabel)
+                                        .addComponent(sueldoJLabel))
                                     .addGap(101, 101, 101)))
                             .addGroup(contenidoJPanelLayout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAgregarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnCancelarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(contenidoJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(entradaSueldoJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(entradaCorreoPersonalJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(entradaCorreoInstitucionalJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(entradaNombreJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(entradaIdJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(entradaCedulaJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(entradaGremioJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
         contenidoJPanelLayout.setVerticalGroup(
@@ -158,43 +172,43 @@ public class TrabajadorVista extends javax.swing.JFrame {
                 .addGroup(contenidoJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenidoJPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2)
+                        .addComponent(ingreseSiguientesDatosLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entradaNombreJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entradaIdJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(entradaCorreoPersonalJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contenidoJPanelLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jLabel3)
+                        .addComponent(nombreJLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(idJLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)))
+                        .addComponent(correoPersonalJLabel)))
                 .addGroup(contenidoJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenidoJPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
+                        .addComponent(correoInstitucionalJLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9)
+                        .addComponent(CedulaLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel10)
+                        .addComponent(sueldoJLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5))
+                        .addComponent(GremioJLabel))
                     .addGroup(contenidoJPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entradaCorreoInstitucionalJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entradaCedulaJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entradaSueldoJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(entradaGremioJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(contenidoJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAgregarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -227,62 +241,76 @@ public class TrabajadorVista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarJButtonMouseClicked
+        // TODO add your handling code here:
+        trabajadorControlador.agregarTrabajador();
+    }//GEN-LAST:event_btnAgregarJButtonMouseClicked
+
+    private void btnCancelarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarJButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarJButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+   
+    public String getEntradaNombreJTextField() {
+        return entradaNombreJTextField.getText();
+    }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TrabajadorVista().setVisible(true);
-            }
-        });
+    public String getEntradaIdJTextField() {
+        return entradaIdJTextField.getText();
+    }
+
+    public String getEntradaCedulaJTextField() {
+        return entradaCedulaJTextField.getText();
+    }
+
+    public String getEntradaCorreoInstitucionalJTextField() {
+        return entradaCorreoInstitucionalJTextField.getText();
+    }
+
+    public String getEntradaCorreoPersonalJTextField() {
+        return entradaCorreoPersonalJTextField.getText();
+    }
+
+    public String getEntradaSueldoJTextField() {
+        return entradaSueldoJTextField.getText();
+    }
+
+    public String getEntradaGremioJTextField() {
+        return entradaGremioJTextField.getText();
+    }
+
+    public void mostrarMensajeExito(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, "", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void mostrarMensajeError(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, "", JOptionPane.ERROR_MESSAGE);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CedulaLabel;
+    private javax.swing.JLabel GremioJLabel;
+    private javax.swing.JButton btnAgregarJButton;
+    private javax.swing.JButton btnCancelarJButton;
     private javax.swing.JPanel contenidoJPanel;
+    private javax.swing.JLabel correoInstitucionalJLabel;
+    private javax.swing.JLabel correoPersonalJLabel;
+    private javax.swing.JTextField entradaCedulaJTextField;
+    private javax.swing.JTextField entradaCorreoInstitucionalJTextField;
+    private javax.swing.JTextField entradaCorreoPersonalJTextField;
+    private javax.swing.JTextField entradaGremioJTextField;
+    private javax.swing.JTextField entradaIdJTextField;
+    private javax.swing.JTextField entradaNombreJTextField;
+    private javax.swing.JTextField entradaSueldoJTextField;
     private javax.swing.JPanel fondoPrincipalJPanel;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel idJLabel;
+    private javax.swing.JLabel ingreseSiguientesDatosLabel;
+    private javax.swing.JLabel nombreJLabel;
+    private javax.swing.JLabel sueldoJLabel;
     private javax.swing.JPanel toorbarJPanel;
+    private javax.swing.JLabel trabajadoresJLabel;
     // End of variables declaration//GEN-END:variables
 }

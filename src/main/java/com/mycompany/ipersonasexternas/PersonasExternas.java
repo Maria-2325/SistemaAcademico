@@ -6,7 +6,7 @@ public class PersonasExternas implements IPersonasExternas {
 
     // Atributos
     PersonaExterna[] personasExternas;
-    int contador;
+    int contador = 0;
 
     // Constructor
     public PersonasExternas(int dimension) {
@@ -15,17 +15,17 @@ public class PersonasExternas implements IPersonasExternas {
         
         }
     // Metodos
-    public boolean agregarPersonasExternas(PersonaExterna personaExterna) {
+    public boolean agregarPersonaExterna(PersonaExterna personaExterna) {
         if (contador == personasExternas.length) {
             return false;
         } else {
             personasExternas[contador] = personaExterna;
             contador++;
-            return false;
+            return true;
         }
     }
 
-    public boolean actualizarPersonasExternas(int i, PersonaExterna personaExterna) {
+    public boolean actualizarPersonaExterna(int i, PersonaExterna personaExterna) {
         if (i >= 0 && i < contador) {
             this.personasExternas[i] = personaExterna;
             return true;
@@ -34,7 +34,7 @@ public class PersonasExternas implements IPersonasExternas {
         }
     }
 
-    public void buscarPersonasExternas(int id) {
+    public void buscarPersonaExterna(int id) {
         boolean encontrado = false;
         // String idPersona = personasExternas.toString();
         // int idPersonaInt = Integer.parseInt(idPersona.subString(idPersona.indexOf("id
@@ -54,7 +54,7 @@ public class PersonasExternas implements IPersonasExternas {
         }
     }
 
-    public boolean eliminarPersonasExternas(int id) {
+    public boolean eliminarPersonaExterna(int id) {
         if (id >= 0 && id < contador && personasExternas[id] != null) {
             personasExternas[id] = null;
             return true;
@@ -62,7 +62,7 @@ public class PersonasExternas implements IPersonasExternas {
         return false;
     }
 
-    public void imprimirPersonasExternas() {
+    public void imprimirPersonaExterna() {
         for (int i = 0; i < contador; i++) {
             if (i >= 0 && i < contador && personasExternas[i] != null) {
                 System.out.println("| Datos de la persona externa " + (i + 1) + " |");

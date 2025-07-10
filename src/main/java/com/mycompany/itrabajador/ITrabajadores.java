@@ -4,9 +4,9 @@ package com.mycompany.itrabajador;
 
 public interface ITrabajadores {
 
-    public boolean agregarTrabajadores(Trabajador trabajador);
-    public boolean actualizarTrabajadores(int i, Trabajador trabajador);
-    public void buscarTrabajadores(int id); 
-    public boolean eliminarTrabajadores(int id);
-    public void imprimirTrabajadores();
+    public boolean agregarTrabajador(Trabajador trabajador);
+    public boolean actualizarTrabajador(int i, Trabajador trabajador);
+    public void buscarTrabajador(int id); 
+    public boolean eliminarTrabajador(int id);
+    public void imprimirTrabajador();
 }

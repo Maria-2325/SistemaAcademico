@@ -12,7 +12,7 @@ public class Estudiantes implements IEstudiantes {
         contador = 0;
     }
 
-    public boolean agregarEstudiantes(Estudiante estudiante) {
+    public boolean agregarEstudiante(Estudiante estudiante) {
         if (contador == estudiantes.length) {
             return false;
         } else {
@@ -21,7 +21,7 @@ public class Estudiantes implements IEstudiantes {
             return true;
         }
     }
-    public boolean actualizarEstudiantes(int i, Estudiante estudiantes) {
+    public boolean actualizarEstudiante(int i, Estudiante estudiantes) {
         if (i >= 0 && i < contador) {
             this.estudiantes[i] = estudiantes;
             return true;
@@ -29,22 +29,23 @@ public class Estudiantes implements IEstudiantes {
             return false;
         }
     }
-    public void buscarEstudiantes(int id){
+    public void buscarEstudiante(int id){
 
     }
 
-    public boolean eliminarEstudiantes(int i) {
+    public boolean eliminarEstudiante(int i) {
         if (i >= 0 && i < contador && estudiantes[i] != null) {
             estudiantes[i] = null;
             return true;
         }
         return false;
     }
-    public void imprimirEstudiantes() {
+    public void imprimirEstudiante() {
         for (int i = 0; i < contador; i++) {
             if (i >= 0 && i < contador && estudiantes[i] != null) {
                 System.out.println("---Datos del Estudiante-------");
-                System.out.println();
+                System.out.println(estudiantes[i].toString());
+                System.out.println("Codigo"+ estudiantes[i].getCodigo());
             }
         }
 

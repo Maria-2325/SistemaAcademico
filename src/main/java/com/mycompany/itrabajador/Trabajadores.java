@@ -2,7 +2,7 @@
 
 package com.mycompany.itrabajador;
 
-public class Trabajadores {
+public class Trabajadores implements ITrabajadores{
  
     Trabajador[] trabajadores;
     int contador;
@@ -14,7 +14,7 @@ public class Trabajadores {
     }
 
     // Métodos
-    public boolean agregarTrabajadores(Trabajador trabajador) {
+    public boolean agregarTrabajador(Trabajador trabajador) {
         if (contador == trabajadores.length) {
             return false;
         } else {
@@ -24,7 +24,7 @@ public class Trabajadores {
         }
     }
 
-    public boolean actualizarTrabajadores(int i, Trabajador trabajador) {
+    public boolean actualizarTrabajador(int i, Trabajador trabajador) {
         if (i >= 0 && i < contador) {
             this.trabajadores[i] = trabajador;
             return true;
@@ -33,7 +33,7 @@ public class Trabajadores {
         }
     }
 
-    public void buscarTrabajadores(int id) {
+    public void buscarTrabajador(int id) {
         boolean encontrado = false;
 
         for (int i = 0; i < contador; i++) {
@@ -50,7 +50,7 @@ public class Trabajadores {
         }
     }
 
-    public boolean eliminarTrabajadores(int id) {
+    public boolean eliminarTrabajador(int id) {
         if (id >= 0 && id < contador && trabajadores[id] != null) {
             trabajadores[id] = null;
             return true;
@@ -58,7 +58,7 @@ public class Trabajadores {
         return false;
     }
 
-    public void imprimirTrabajadores() {
+    public void imprimirTrabajador() {
         for (int i = 0; i < contador; i++) {
             if (trabajadores[i] != null) {
                 System.out.println(trabajadores[i].toString());

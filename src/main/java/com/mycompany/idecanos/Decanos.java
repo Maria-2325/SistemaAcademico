@@ -10,7 +10,7 @@ public class Decanos implements IDecanos {
         decano = new Decano[dimension];
         contador = 0;
     }
-    public boolean agregarDecanos(Decano decano) {
+    public boolean agregarDecano(Decano decano) {
         if (contador == this.decano.length) {
             return false;
         } else {
@@ -19,7 +19,7 @@ public class Decanos implements IDecanos {
             return true;
         }
     }
-    public boolean actualizarDecanos(int i, Decano decano) {
+    public boolean actualizarDecano(int i, Decano decano) {
         if (i >= 0 && i < contador) {
             this.decano[i] = decano;
             return true;
@@ -27,7 +27,7 @@ public class Decanos implements IDecanos {
             return false;
         }
     }
-    public void buscarDecanos(int id) {
+    public void buscarDecano(int id) {
         for (int i = 0; i < contador; i++) {
             if (this.decano[i].getId() == id) {
                 System.out.println(this.decano[i]);
@@ -37,14 +37,14 @@ public class Decanos implements IDecanos {
         System.out.println("Decano no encontrado.");
     }
 
-    public boolean eliminarDecanos(int id) {
+    public boolean eliminarDecano(int id) {
         if (id >= 0 && id < contador && this.decano[id] != null) {
             this.decano[id] = null;
             return true;
         }
         return false;
     }
-    public void imprimirDecanos() {
+    public void imprimirDecano() {
         for (int i = 0; i < contador; i++) {
             if (i >= 0 && i < contador && this.decano[i] != null) {
                 System.out.println("---Datos del Decano-------");
