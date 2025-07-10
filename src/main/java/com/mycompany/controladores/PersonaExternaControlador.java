@@ -81,5 +81,10 @@ public class PersonaExternaControlador {
             return iPersonasExternas.obtenerPersonaExternaPorId(id);
         }
 
+        // MÉTODO PARA BUSCAR PERSONA EXTERNA POR ID (PARA FUNCIONALIDAD DE BÚSQUEDA)
+        public PersonaExterna buscarPersonaExternaPorId(int id) {
+            return iPersonasExternas.buscarPersonaExternaPorId(id);
+        }
+
 
 }

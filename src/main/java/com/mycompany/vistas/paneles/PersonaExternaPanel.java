@@ -204,6 +204,22 @@ public class PersonaExternaPanel extends javax.swing.JPanel {
         }
     }
 
+    // MÉTODO PARA BUSCAR Y MOSTRAR UNA PERSONA ESPECÍFICA EN LA TABLA
+    public void buscarYMostrarPersona(PersonaExterna persona) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaDatosPersonaExternaJTable.getModel();
+        modelo.setRowCount(0); // LIMPIAR FILAS
+
+        if (persona != null) {
+            modelo.addRow(new Object[]{
+                persona.getNombre(),
+                persona.getId(),
+                persona.getCedula(),
+                persona.getCorreoPersonal(),
+                persona.getDescripcion()
+            });
+        }
+    }
+
 
 
 

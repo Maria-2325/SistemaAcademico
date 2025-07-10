@@ -13,5 +13,7 @@ public interface IPersonasExternas {
     // MÉTODOS AGREGADOS PARA FUNCIONALIDAD DE ACTUALIZACIÓN
     public PersonaExterna obtenerPersonaExternaPorId(int id);
     public boolean actualizarPersonaExternaPorId(int id, PersonaExterna personaActualizada);
+    // MÉTODO AGREGADO PARA FUNCIONALIDAD DE BÚSQUEDA
+    public PersonaExterna buscarPersonaExternaPorId(int id);
     
 }

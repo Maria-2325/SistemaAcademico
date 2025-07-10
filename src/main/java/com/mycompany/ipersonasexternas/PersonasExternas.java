@@ -103,6 +103,16 @@ public class PersonasExternas implements IPersonasExternas {
         return false; // SI NO SE ENCUENTRA
     }
 
+    // MÉTODO PARA BUSCAR Y RETORNAR PERSONA EXTERNA POR ID (PARA FUNCIONALIDAD DE BÚSQUEDA)
+    public PersonaExterna buscarPersonaExternaPorId(int id) {
+        for (int i = 0; i < contador; i++) {
+            if (personasExternas[i] != null && personasExternas[i].getId() == id) {
+                return personasExternas[i];
+            }
+        }
+        return null; // SI NO SE ENCUENTRA
+    }
+
     public PersonaExterna[] obtenerPersonasExternas() {
         // PARA CREAR UN NUEVO ARREGLO DE PERSONAS EXTERNAS 
         

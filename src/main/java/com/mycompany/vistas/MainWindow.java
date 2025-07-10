@@ -5,6 +5,7 @@ import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.mycompany.controladores.PersonaExternaControlador;
+import com.mycompany.ipersonasexternas.PersonaExterna; // IMPORT AGREGADO PARA FUNCIONALIDAD DE BÚSQUEDA
 import com.mycompany.vistas.paneles.*;
 
 import com.mycompany.vistas.sistema.*;
@@ -223,6 +224,25 @@ public class MainWindow extends javax.swing.JFrame {
 
         buscarBarraJTextField.setBackground(new java.awt.Color(204, 204, 204));
         buscarBarraJTextField.setText("Buscar...");
+        // AGREGAR LISTENER PARA LA FUNCIONALIDAD DE BÚSQUEDA
+        buscarBarraJTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MainWindow.this.buscarPersonaExterna();
+            }
+        });
+        // AGREGAR LISTENER PARA LIMPIAR EL PLACEHOLDER AL HACER CLIC
+        buscarBarraJTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (buscarBarraJTextField.getText().equals("Buscar...")) {
+                    buscarBarraJTextField.setText("");
+                }
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (buscarBarraJTextField.getText().isEmpty()) {
+                    buscarBarraJTextField.setText("Buscar...");
+                }
+            }
+        });
 
         btnRegistrarJLabel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnRegistrarJLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -447,8 +467,13 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnPersonaExternaJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPersonaExternaJButtonMouseClicked
         // TODO add your handling code here:
         mostrarPanel(personaExternaPanel);
-        // Actualizar la tabla con los datos actuales usando el controlador existente
+        // ACTUALIZAR LA TABLA CON TODOS LOS DATOS ACTUALES USANDO EL CONTROLADOR EXISTENTE
         personaExternaPanel.actualizarTabla(personaExternaControlador.obtenerPersonasExternas());
+        
+        // LIMPIAR LA BARRA DE BÚSQUEDA AL MOSTRAR TODOS LOS DATOS
+        if (!buscarBarraJTextField.getText().equals("Buscar...")) {
+            buscarBarraJTextField.setText("Buscar...");
+        }
 
     }//GEN-LAST:event_btnPersonaExternaJButtonMouseClicked
 
@@ -466,6 +491,52 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnProfesoresJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfesoresJButtonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProfesoresJButtonMouseClicked
+
+    // MÉTODO PARA BUSCAR PERSONA EXTERNA POR ID
+    private void buscarPersonaExterna() {
+        String textoBusqueda = buscarBarraJTextField.getText().trim();
+        
+        // VERIFICAR QUE NO ESTÉ VACÍO Y NO SEA EL PLACEHOLDER
+        if (textoBusqueda.isEmpty() || textoBusqueda.equals("Buscar...")) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Por favor ingrese un ID para buscar.", 
+                "Campo vacío", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        try {
+            // CONVERTIR EL TEXTO A NÚMERO
+            int id = Integer.parseInt(textoBusqueda);
+            
+            // BUSCAR LA PERSONA EXTERNA
+            PersonaExterna personaEncontrada = personaExternaControlador.buscarPersonaExternaPorId(id);
+            
+            if (personaEncontrada != null) {
+                // MOSTRAR EL PANEL DE PERSONA EXTERNA SI NO ESTÁ VISIBLE
+                mostrarPanel(personaExternaPanel);
+                
+                // MOSTRAR SOLO LA PERSONA ENCONTRADA EN LA TABLA
+                personaExternaPanel.buscarYMostrarPersona(personaEncontrada);
+                
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Persona encontrada: " + personaEncontrada.getNombre(), 
+                    "Búsqueda exitosa", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "No se encontró ninguna persona con el ID: " + id, 
+                    "Persona no encontrada", 
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            }
+            
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Por favor ingrese un número válido para el ID.", 
+                "ID inválido", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     public PersonaExternaPanel getPersonaExternaPanel() {
         return personaExternaPanel;
