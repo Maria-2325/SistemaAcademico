@@ -4,9 +4,9 @@ package com.mycompany.iprofesores;
 
 
 public interface IProfesores {
-    public boolean agregarProfesores(Profesor profesor);
-    public boolean actualizarProfesores(int i, Profesor profesor);
-    public void buscarProfesores(int id);
-    public boolean eliminarProfesores(int id);
-    public void imprimirProfesores();
+    public boolean agregarProfesor(Profesor profesor);
+    public boolean actualizarProfesor(int i, Profesor profesor);
+    public void buscarProfesor(int id);
+    public boolean eliminarProfesor(int id);
+    public void imprimirProfesor();
 }

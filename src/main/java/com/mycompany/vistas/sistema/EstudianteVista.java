@@ -4,18 +4,18 @@ package com.mycompany.vistas.sistema;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import com.mycompany.controladores.EstudiantesControlador;
+import com.mycompany.controladores.EstudianteControlador;
 import com.mycompany.iestudiantes.IEstudiantes;
 public class EstudianteVista extends javax.swing.JFrame {
 
     /**
      * Creates new form EstudiantesVista
      */
-    private EstudiantesControlador estudiantesControlador;
+    private EstudianteControlador estudiantesControlador;
 
     public EstudianteVista() {
         initComponents();
-        estudiantesControlador = new EstudiantesControlador(this);
+        estudiantesControlador = new EstudianteControlador(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 

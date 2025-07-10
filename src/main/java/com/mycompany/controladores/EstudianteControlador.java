@@ -3,11 +3,11 @@ package com.mycompany.controladores;
 import com.mycompany.vistas.sistema.EstudianteVista;
 import com.mycompany.iestudiantes.*;
 
-public class EstudiantesControlador {
+public class EstudianteControlador {
     private IEstudiantes iEstudiantes;
     private EstudianteVista estudianteVista;
 
-    public EstudiantesControlador(EstudianteVista estudianteVista) {
+    public EstudianteControlador(EstudianteVista estudianteVista) {
         this.estudianteVista = estudianteVista;
         this.iEstudiantes = new Estudiantes(15);
 
