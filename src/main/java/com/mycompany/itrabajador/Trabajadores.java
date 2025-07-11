@@ -24,36 +24,36 @@ public class Trabajadores implements ITrabajadores{
         }
     }
 
-    public boolean actualizarTrabajador(int i, Trabajador trabajador) {
-        if (i >= 0 && i < contador) {
-            this.trabajadores[i] = trabajador;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void buscarTrabajador(int id) {
-        boolean encontrado = false;
-
+    public boolean actualizarTrabajadorPorId(int id, Trabajador trabajador) {
         for (int i = 0; i < contador; i++) {
             if (trabajadores[i] != null && trabajadores[i].getId() == id) {
-                System.out.println("\nTrabajador encontrado: " + trabajadores[i].toString());
-                System.out.println("Gremio: " + trabajadores[i].getGremio());
-                System.out.println("-----------------------------------\n");
-                encontrado = true;
-                break;
+                trabajadores[i] = trabajador;
+                return true;
             }
         }
-        if (!encontrado) {
-            System.out.println("No se encontró un trabajador con el ID: " + id);
+        return false;
+    }
+
+    public Trabajador buscarTrabajadorPorId(int id) {
+        for (int i = 0; i < contador; i++) {
+            if (trabajadores[i] != null && trabajadores[i].getId() == id) {
+                return trabajadores[i];
+            }
         }
+        return null;
     }
 
     public boolean eliminarTrabajador(int id) {
-        if (id >= 0 && id < contador && trabajadores[id] != null) {
-            trabajadores[id] = null;
-            return true;
+        for (int i = 0; i < contador; i++) {
+            if (trabajadores[i] != null && trabajadores[i].getId() == id) {
+                // Mover elementos hacia la izquierda
+                for (int j = i; j < contador - 1; j++) {
+                    trabajadores[j] = trabajadores[j + 1];
+                }
+                trabajadores[contador - 1] = null;
+                contador--;
+                return true;
+            }
         }
         return false;
     }
@@ -67,4 +67,16 @@ public class Trabajadores implements ITrabajadores{
         }
     }
 
+    public Trabajador[] obtenerTrabajadores() {
+        return trabajadores;
+    }
+
+    public Trabajador obtenerTrabajadorPorId(int id) {
+        for (int i = 0; i < contador; i++) {
+            if (trabajadores[i] != null && trabajadores[i].getId() == id) {
+                return trabajadores[i];
+            }
+        }
+        return null;
+    }
 }

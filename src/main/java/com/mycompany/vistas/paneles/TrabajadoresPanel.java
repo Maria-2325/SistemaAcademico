@@ -4,6 +4,14 @@
  */
 package com.mycompany.vistas.paneles;
 
+import javax.swing.table.DefaultTableModel;
+
+import com.mycompany.controladores.TrabajadorControlador;
+import com.mycompany.itrabajador.Trabajador;
+// IMPORTS AGREGADOS PARA FUNCIONALIDAD DE ACTUALIZACIÓN
+import com.mycompany.vistas.MainWindow;
+import com.mycompany.vistas.sistema.TrabajadorVista;
+
 /**
  *
  * @author ibarr
@@ -13,8 +21,12 @@ public class TrabajadoresPanel extends javax.swing.JPanel {
     /**
      * Creates new form TrabajadoresPanel
      */
-    public TrabajadoresPanel() {
+    private TrabajadorControlador controlador;
+
+    public TrabajadoresPanel(TrabajadorControlador controlador) {
+        this.controlador = controlador;
         initComponents();
+        setBackground(new java.awt.Color(255, 255, 255));
     }
 
     /**
@@ -137,11 +149,11 @@ public class TrabajadoresPanel extends javax.swing.JPanel {
                 int id = Integer.parseInt(tablaDatosPersonaExternaJTable.getValueAt(fila, 1).toString());
 
                 // Llamar al controlador
-                boolean eliminado = controlador.eliminarPersonaExterna(id);
+                boolean eliminado = controlador.eliminarTrabajador(id);
 
                 if (eliminado) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Persona eliminada exitosamente.");
-                    actualizarTabla(controlador.obtenerPersonasExternas());
+                    javax.swing.JOptionPane.showMessageDialog(this, "Trabajador eliminado exitosamente.");
+                    actualizarTabla(controlador.obtenerTrabajadores());
                 }
 
             }
@@ -159,26 +171,68 @@ public class TrabajadoresPanel extends javax.swing.JPanel {
             // OBTENER EL ID DESDE LA COLUMNA 1 (ÍNDICE 1)
             int id = Integer.parseInt(tablaDatosPersonaExternaJTable.getValueAt(fila, 1).toString());
 
-            // OBTENER LA PERSONA EXTERNA A ACTUALIZAR
-            PersonaExterna personaAActualizar = controlador.obtenerPersonaExternaPorId(id);
+            // OBTENER EL TRABAJADOR A ACTUALIZAR
+            Trabajador trabajadorAActualizar = controlador.obtenerTrabajadorPorId(id);
 
-            if (personaAActualizar != null) {
+            if (trabajadorAActualizar != null) {
                 // CREAR Y MOSTRAR LA VENTANA DE ACTUALIZACIÓN
                 MainWindow mainWindow = (MainWindow) javax.swing.SwingUtilities.getWindowAncestor(this);
-                PersonaExternaVista vistaActualizacion = new PersonaExternaVista(mainWindow);
+                TrabajadorVista vistaActualizacion = new TrabajadorVista(mainWindow);
 
                 // CONFIGURAR EL MODO DE ACTUALIZACIÓN
-                vistaActualizacion.configurarModoActualizacion(personaAActualizar);
+                vistaActualizacion.configurarModoActualizacion(trabajadorAActualizar);
 
                 // MOSTRAR LA VENTANA
                 vistaActualizacion.setVisible(true);
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "No se pudo obtener los datos de la persona.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "No se pudo obtener los datos del trabajador.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una fila primero.", "Advertencia", javax.swing.JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnActualizarJButtonMouseClicked
+
+    public void actualizarTabla(Trabajador[] trabajadores) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaDatosPersonaExternaJTable.getModel();
+        modelo.setRowCount(0); // limpiar filas
+
+        for (Trabajador t : trabajadores) {
+            if (t != null) {
+                modelo.addRow(new Object[]{
+                    t.getNombre(),
+                    t.getId(),
+                    t.getCedula(),
+                    t.getCorreoInstitucional(),
+                    t.getCorreoPersonal(),
+                    t.getSueldo(),
+                    t.getGremio()
+                });
+            }
+        }
+    }
+
+    // MÉTODO PARA BUSCAR Y MOSTRAR UN TRABAJADOR ESPECÍFICO EN LA TABLA
+    public void buscarYMostrarTrabajador(Trabajador trabajador) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaDatosPersonaExternaJTable.getModel();
+        modelo.setRowCount(0); // LIMPIAR FILAS
+
+        if (trabajador != null) {
+            modelo.addRow(new Object[]{
+                trabajador.getNombre(),
+                trabajador.getId(),
+                trabajador.getCedula(),
+                trabajador.getCorreoInstitucional(),
+                trabajador.getCorreoPersonal(),
+                trabajador.getSueldo(),
+                trabajador.getGremio()
+            });
+        }
+    }
+
+    // MÉTODO PARA RESTAURAR LA VISTA COMPLETA DE TRABAJADORES
+    public void mostrarTodosLosTrabajadores() {
+        actualizarTabla(controlador.obtenerTrabajadores());
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

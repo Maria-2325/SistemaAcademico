@@ -4,7 +4,8 @@
  */
 package com.mycompany.vistas.sistema;
 import com.mycompany.controladores.TrabajadorControlador;
-
+import com.mycompany.itrabajador.Trabajador;
+import com.mycompany.vistas.MainWindow;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,11 +20,16 @@ public class TrabajadorVista extends javax.swing.JFrame {
      * Creates new form TrabajadoresVista
      */
     private TrabajadorControlador trabajadorControlador;
+    private MainWindow vistaTrabajador;
+    // VARIABLES PARA MANEJAR EL MODO DE ACTUALIZACIÓN
+    private boolean modoActualizacion = false;
+    private int idTrabajadorActualizar = -1;
 
-    public TrabajadorVista() {
+    public TrabajadorVista(MainWindow vistaTrabajador) {
         initComponents();
         trabajadorControlador = new TrabajadorControlador(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.vistaTrabajador = vistaTrabajador;
     }
 
     /**
@@ -243,11 +249,28 @@ public class TrabajadorVista extends javax.swing.JFrame {
 
     private void btnAgregarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarJButtonMouseClicked
         // TODO add your handling code here:
-        trabajadorControlador.agregarTrabajador();
+        if (modoActualizacion) {
+            Trabajador[] trabajadoresActualizados = trabajadorControlador.procesoActualizarTrabajador();
+            if (trabajadoresActualizados != null) {
+                // ACTUALIZAR LA TABLA EN EL PANEL PRINCIPAL
+                vistaTrabajador.getTrabajadoresPanel().actualizarTabla(trabajadoresActualizados);
+                // CERRAR LA VENTANA DE ACTUALIZACIÓN
+                this.dispose();
+            }
+        } else {
+            Trabajador[] nuevosTrabjadores = trabajadorControlador.procesoControladorTrabajador();
+            if (nuevosTrabjadores != null) {
+                // ACTUALIZAR LA TABLA EN EL PANEL PRINCIPAL
+                vistaTrabajador.getTrabajadoresPanel().actualizarTabla(nuevosTrabjadores);
+                // CERRAR LA VENTANA DE REGISTRO
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_btnAgregarJButtonMouseClicked
 
     private void btnCancelarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarJButtonMouseClicked
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancelarJButtonMouseClicked
 
     /**
@@ -290,6 +313,34 @@ public class TrabajadorVista extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, mensaje, "", JOptionPane.ERROR_MESSAGE);
     }
 
+    // MÉTODO PARA CONFIGURAR EL MODO DE ACTUALIZACIÓN
+    public void configurarModoActualizacion(Trabajador trabajador) {
+        this.modoActualizacion = true;
+        this.idTrabajadorActualizar = trabajador.getId();
+        
+        // PRECARGAR LOS DATOS EN LOS CAMPOS
+        entradaNombreJTextField.setText(trabajador.getNombre());
+        entradaIdJTextField.setText(String.valueOf(trabajador.getId()));
+        entradaIdJTextField.setEditable(false); // NO PERMITIR EDITAR EL ID
+        entradaCedulaJTextField.setText(trabajador.getCedula());
+        entradaCorreoInstitucionalJTextField.setText(trabajador.getCorreoInstitucional());
+        entradaCorreoPersonalJTextField.setText(trabajador.getCorreoPersonal());
+        entradaSueldoJTextField.setText(String.valueOf(trabajador.getSueldo()));
+        entradaGremioJTextField.setText(trabajador.getGremio());
+        
+        // CAMBIAR EL TEXTO DEL BOTÓN
+        btnAgregarJButton.setText("Actualizar");
+    }
+    
+    // MÉTODO PARA VERIFICAR SI ESTÁ EN MODO ACTUALIZACIÓN
+    public boolean esModoActualizacion() {
+        return modoActualizacion;
+    }
+    
+    // MÉTODO PARA OBTENER EL ID DEL TRABAJADOR A ACTUALIZAR
+    public int getIdTrabajadorActualizar() {
+        return idTrabajadorActualizar;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CedulaLabel;
     private javax.swing.JLabel GremioJLabel;
