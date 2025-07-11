@@ -35,6 +35,9 @@ public class MainWindow extends javax.swing.JFrame {
         estudianteControlador = new EstudianteControlador(estudianteVista);
         estudiantePanel = new EstudiantePanel(estudianteControlador);
         
+        // CONFIGURAR LISTENERS PARA LA FUNCIONALIDAD DE BÚSQUEDA
+        configurarBusqueda();
+        
         // setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         // btnPersonaExternaJButton.putClientProperty( "JButton.buttonType", "roundRect" );
         btnPersonaExternaJButton.putClientProperty("JButton.arc", 999);
@@ -650,4 +653,44 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel salirJLabel;
     private javax.swing.JPanel toolbarJPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void configurarBusqueda() {
+        buscarBarraJTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                buscarBarraJTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                buscarBarraJTextFieldFocusLost(evt);
+            }
+        });
+        
+        buscarBarraJTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                buscarBarraJTextFieldKeyReleased(evt);
+            }
+        });
+    }
+
+    private void buscarBarraJTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_buscarBarraJTextFieldFocusGained
+        // LIMPIAR EL CAMPO DE TEXTO SI CONTIENE EL PLACEHOLDER AL GANAR FOCO
+        if (buscarBarraJTextField.getText().equals("Buscar...")) {
+            buscarBarraJTextField.setText("");
+            buscarBarraJTextField.setForeground(java.awt.Color.BLACK);
+        }
+    }//GEN-LAST:event_buscarBarraJTextFieldFocusGained
+
+    private void buscarBarraJTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_buscarBarraJTextFieldFocusLost
+        // RESTAURAR EL PLACEHOLDER SI EL CAMPO DE TEXTO ESTÁ VACÍO AL PERDER FOCO
+        if (buscarBarraJTextField.getText().isEmpty()) {
+            buscarBarraJTextField.setText("Buscar...");
+            buscarBarraJTextField.setForeground(java.awt.Color.GRAY);
+        }
+    }//GEN-LAST:event_buscarBarraJTextFieldFocusLost
+
+    private void buscarBarraJTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarBarraJTextFieldKeyReleased
+        // EJECUTAR BÚSQUEDA CUANDO SE PRESIONA ENTER
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            buscarPersonaExterna();
+        }
+    }//GEN-LAST:event_buscarBarraJTextFieldKeyReleased
 }

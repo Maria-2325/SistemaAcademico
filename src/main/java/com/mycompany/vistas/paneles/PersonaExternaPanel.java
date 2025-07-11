@@ -220,6 +220,11 @@ public class PersonaExternaPanel extends javax.swing.JPanel {
         }
     }
 
+    // MÉTODO PARA RESTAURAR LA VISTA COMPLETA DE PERSONAS EXTERNAS
+    public void mostrarTodasLasPersonas() {
+        actualizarTabla(controlador.obtenerPersonasExternas());
+    }
+
 
 
 
