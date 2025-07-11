@@ -7,9 +7,11 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.mycompany.controladores.PersonaExternaControlador;
 import com.mycompany.controladores.EstudianteControlador; // IMPORT AGREGADO PARA ESTUDIANTES
 import com.mycompany.controladores.TrabajadorControlador; // IMPORT AGREGADO PARA TRABAJADORES
+import com.mycompany.controladores.ProfesorControlador; // IMPORT AGREGADO PARA PROFESORES
 import com.mycompany.ipersonasexternas.PersonaExterna; // IMPORT AGREGADO PARA FUNCIONALIDAD DE BÚSQUEDA
 import com.mycompany.iestudiantes.Estudiante; // IMPORT AGREGADO PARA ESTUDIANTES
 import com.mycompany.itrabajador.Trabajador; // IMPORT AGREGADO PARA TRABAJADORES
+import com.mycompany.iprofesores.Profesor; // IMPORT AGREGADO PARA PROFESORES
 import com.mycompany.vistas.paneles.*;
 
 import com.mycompany.vistas.sistema.*;
@@ -30,6 +32,10 @@ public class MainWindow extends javax.swing.JFrame {
     private TrabajadoresPanel trabajadoresPanel;
     private TrabajadorControlador trabajadorControlador;
 
+    // AGREGAR VARIABLES PARA PROFESORES
+    private ProfesoresPanel profesoresPanel;
+    private ProfesorControlador profesorControlador;
+
     public MainWindow() {
         initComponents();
         PersonaExternaVista personaExternaVista = new PersonaExternaVista(this);
@@ -45,6 +51,11 @@ public class MainWindow extends javax.swing.JFrame {
         TrabajadorVista trabajadorVista = new TrabajadorVista(this); // PASAR REFERENCIA DE MAINWINDOW
         trabajadorControlador = new TrabajadorControlador(trabajadorVista);
         trabajadoresPanel = new TrabajadoresPanel(trabajadorControlador);
+        
+        // INICIALIZAR COMPONENTES DE PROFESORES
+        ProfesorVista profesorVista = new ProfesorVista(this); // PASAR REFERENCIA DE MAINWINDOW
+        profesorControlador = new ProfesorControlador(profesorVista);
+        profesoresPanel = new ProfesoresPanel(profesorControlador);
         
         // CONFIGURAR LISTENERS PARA LA FUNCIONALIDAD DE BÚSQUEDA
         configurarBusqueda();
@@ -462,7 +473,8 @@ public class MainWindow extends javax.swing.JFrame {
                 trabajadorVistaRegistro.setVisible(true);
                 break;
             case "Profesor":
-                new ProfesorVista().setVisible(true);
+                ProfesorVista profesorVista = new ProfesorVista(this); // PASAR REFERENCIA DE MAINWINDOW
+                profesorVista.setVisible(true);
                 break;
             case "Decano":
                 new DecanoVista().setVisible(true);
@@ -519,7 +531,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     // EVENTO PARA MANEJAR EL CLIC EN EL BOTÓN "Profesores"
     private void btnProfesoresJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfesoresJButtonMouseClicked
-        // TODO add your handling code here:
+        // MOSTRAR EL PANEL DE PROFESORES Y ACTUALIZAR LA TABLA
+        mostrarPanel(profesoresPanel);
+        // ACTUALIZAR LA TABLA CON LOS DATOS ACTUALES USANDO EL CONTROLADOR EXISTENTE
+        profesoresPanel.actualizarTabla(profesorControlador.obtenerProfesores());
     }//GEN-LAST:event_btnProfesoresJButtonMouseClicked
 
     private void btnDecanosJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDecanosJButtonMouseClicked
@@ -591,9 +606,26 @@ public class MainWindow extends javax.swing.JFrame {
                     "Trabajador encontrado: " + trabajadorEncontrado.getNombre(), 
                     "Búsqueda exitosa", 
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
+            // SI NO SE ENCUENTRA EN TRABAJADORES, BUSCAR EN PROFESORES
+            Profesor profesorEncontrado = profesorControlador.buscarProfesorPorId(id);
+            
+            if (profesorEncontrado != null) {
+                // MOSTRAR EL PANEL DE PROFESORES SI NO ESTÁ VISIBLE
+                mostrarPanel(profesoresPanel);
+                
+                // MOSTRAR SOLO EL PROFESOR ENCONTRADO EN LA TABLA
+                profesoresPanel.buscarYMostrarProfesor(profesorEncontrado);
+                
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Profesor encontrado: " + profesorEncontrado.getNombre(), 
+                    "Búsqueda exitosa", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, 
-                    "No se encontró ninguna persona, estudiante o trabajador con el ID: " + id, 
+                    "No se encontró ninguna persona, estudiante, trabajador o profesor con el ID: " + id, 
                     "No encontrado", 
                     javax.swing.JOptionPane.WARNING_MESSAGE);
             }
@@ -618,6 +650,11 @@ public class MainWindow extends javax.swing.JFrame {
     // MÉTODO PARA OBTENER EL PANEL DE TRABAJADORES
     public TrabajadoresPanel getTrabajadoresPanel() {
         return trabajadoresPanel;
+    }
+
+    // MÉTODO PARA OBTENER EL PANEL DE PROFESORES
+    public ProfesoresPanel getProfesoresPanel() {
+        return profesoresPanel;
     }
 
     /**

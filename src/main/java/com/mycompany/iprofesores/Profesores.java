@@ -24,28 +24,36 @@ public class Profesores implements IProfesores {
         }
     }
 
-    public boolean actualizarProfesor(int i, Profesor profesor){
-        if (i >= 0 && i < contador) {
-            this.profesor[i] = profesor;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public void buscarProfesor(int id) {
+    public boolean actualizarProfesorPorId(int id, Profesor profesor) {
         for (int i = 0; i < contador; i++) {
-            if (this.profesor[i].getId() == id) {
-                System.out.println(this.profesor[i]);
-                return;
+            if (this.profesor[i] != null && this.profesor[i].getId() == id) {
+                this.profesor[i] = profesor;
+                return true;
             }
         }
-        System.out.println("Profesor no encontrado.");
-
+        return false;
     }
+
+    public Profesor buscarProfesorPorId(int id) {
+        for (int i = 0; i < contador; i++) {
+            if (this.profesor[i] != null && this.profesor[i].getId() == id) {
+                return this.profesor[i];
+            }
+        }
+        return null;
+    }
+
     public boolean eliminarProfesor(int id) {
-        if (id >= 0 && id < contador && this.profesor[id] != null) {
-            this.profesor[id] = null;
-            return true;
+        for (int i = 0; i < contador; i++) {
+            if (this.profesor[i] != null && this.profesor[i].getId() == id) {
+                // MOVER ELEMENTOS HACIA LA IZQUIERDA
+                for (int j = i; j < contador - 1; j++) {
+                    this.profesor[j] = this.profesor[j + 1];
+                }
+                this.profesor[contador - 1] = null;
+                contador--;
+                return true;
+            }
         }
         return false;
     }
@@ -58,5 +66,18 @@ public class Profesores implements IProfesores {
                 System.out.println("----------------------------");
             }
         }
+    }
+
+    public Profesor[] obtenerProfesores() {
+        return profesor;
+    }
+
+    public Profesor obtenerProfesorPorId(int id) {
+        for (int i = 0; i < contador; i++) {
+            if (this.profesor[i] != null && this.profesor[i].getId() == id) {
+                return this.profesor[i];
+            }
+        }
+        return null;
     }
 }

@@ -4,6 +4,14 @@
  */
 package com.mycompany.vistas.paneles;
 
+import javax.swing.table.DefaultTableModel;
+
+import com.mycompany.controladores.ProfesorControlador;
+import com.mycompany.iprofesores.Profesor;
+// IMPORTS AGREGADOS PARA FUNCIONALIDAD DE ACTUALIZACIÓN
+import com.mycompany.vistas.MainWindow;
+import com.mycompany.vistas.sistema.ProfesorVista;
+
 /**
  *
  * @author ibarr
@@ -13,8 +21,12 @@ public class ProfesoresPanel extends javax.swing.JPanel {
     /**
      * Creates new form NewJPanel
      */
-    public ProfesoresPanel() {
+    private ProfesorControlador controlador;
+
+    public ProfesoresPanel(ProfesorControlador controlador) {
+        this.controlador = controlador;
         initComponents();
+        setBackground(new java.awt.Color(255, 255, 255));
     }
 
     /**
@@ -120,26 +132,26 @@ public class ProfesoresPanel extends javax.swing.JPanel {
 
     private void btnEliminarJButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarJButton12MouseClicked
         // TODO add your handling code here:
-        int fila = tablaDatosPersonaExternaJTable.getSelectedRow();
+        int fila = tablaDatosPersonaExternaJTable12.getSelectedRow();
 
         if (fila != -1) {
             int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
                 this,
-                "¿Deseas eliminar esta persona?",
+                "¿Deseas eliminar este profesor?",
                 "Confirmación",
                 javax.swing.JOptionPane.YES_NO_OPTION
             );
 
             if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
-                // Obtener ID desde la columna 1 (índice 1)
-                int id = Integer.parseInt(tablaDatosPersonaExternaJTable.getValueAt(fila, 1).toString());
+                // OBTENER ID DESDE LA COLUMNA 1 (ÍNDICE 1)
+                int id = Integer.parseInt(tablaDatosPersonaExternaJTable12.getValueAt(fila, 1).toString());
 
-                // Llamar al controlador
-                boolean eliminado = controlador.eliminarPersonaExterna(id);
+                // LLAMAR AL CONTROLADOR
+                boolean eliminado = controlador.eliminarProfesor(id);
 
                 if (eliminado) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Persona eliminada exitosamente.");
-                    actualizarTabla(controlador.obtenerPersonasExternas());
+                    javax.swing.JOptionPane.showMessageDialog(this, "Profesor eliminado exitosamente.");
+                    actualizarTabla(controlador.obtenerProfesores());
                 }
 
             }
@@ -151,33 +163,76 @@ public class ProfesoresPanel extends javax.swing.JPanel {
     private void btnActualizarJButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarJButton12MouseClicked
         // TODO add your handling code here:
         // VERIFICAR QUE SE HAYA SELECCIONADO UNA FILA
-        int fila = tablaDatosPersonaExternaJTable.getSelectedRow();
+        int fila = tablaDatosPersonaExternaJTable12.getSelectedRow();
 
         if (fila != -1) {
             // OBTENER EL ID DESDE LA COLUMNA 1 (ÍNDICE 1)
-            int id = Integer.parseInt(tablaDatosPersonaExternaJTable.getValueAt(fila, 1).toString());
+            int id = Integer.parseInt(tablaDatosPersonaExternaJTable12.getValueAt(fila, 1).toString());
 
-            // OBTENER LA PERSONA EXTERNA A ACTUALIZAR
-            PersonaExterna personaAActualizar = controlador.obtenerPersonaExternaPorId(id);
+            // OBTENER EL PROFESOR A ACTUALIZAR
+            Profesor profesorAActualizar = controlador.obtenerProfesorPorId(id);
 
-            if (personaAActualizar != null) {
+            if (profesorAActualizar != null) {
                 // CREAR Y MOSTRAR LA VENTANA DE ACTUALIZACIÓN
                 MainWindow mainWindow = (MainWindow) javax.swing.SwingUtilities.getWindowAncestor(this);
-                PersonaExternaVista vistaActualizacion = new PersonaExternaVista(mainWindow);
+                ProfesorVista vistaActualizacion = new ProfesorVista(mainWindow);
 
                 // CONFIGURAR EL MODO DE ACTUALIZACIÓN
-                vistaActualizacion.configurarModoActualizacion(personaAActualizar);
+                vistaActualizacion.configurarModoActualizacion(profesorAActualizar);
 
                 // MOSTRAR LA VENTANA
                 vistaActualizacion.setVisible(true);
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "No se pudo obtener los datos de la persona.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "No se pudo obtener los datos del profesor.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una fila primero.", "Advertencia", javax.swing.JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnActualizarJButton12MouseClicked
 
+    public void actualizarTabla(Profesor[] profesores) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaDatosPersonaExternaJTable12.getModel();
+        modelo.setRowCount(0); // LIMPIAR FILAS
+
+        for (Profesor p : profesores) {
+            if (p != null) {
+                modelo.addRow(new Object[]{
+                    p.getNombre(),
+                    p.getId(),
+                    p.getCedula(),
+                    p.getCorreoInstitucional(),
+                    p.getCorreoPersonal(),
+                    p.getSueldo(),
+                    p.getDedicacion(),
+                    p.getEscalafon()
+                });
+            }
+        }
+    }
+
+    // MÉTODO PARA BUSCAR Y MOSTRAR UN PROFESOR ESPECÍFICO EN LA TABLA
+    public void buscarYMostrarProfesor(Profesor profesor) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaDatosPersonaExternaJTable12.getModel();
+        modelo.setRowCount(0); // LIMPIAR FILAS
+
+        if (profesor != null) {
+            modelo.addRow(new Object[]{
+                profesor.getNombre(),
+                profesor.getId(),
+                profesor.getCedula(),
+                profesor.getCorreoInstitucional(),
+                profesor.getCorreoPersonal(),
+                profesor.getSueldo(),
+                profesor.getDedicacion(),
+                profesor.getEscalafon()
+            });
+        }
+    }
+
+    // MÉTODO PARA RESTAURAR LA VISTA COMPLETA DE PROFESORES
+    public void mostrarTodosLosProfesores() {
+        actualizarTabla(controlador.obtenerProfesores());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgMainJPanel12;

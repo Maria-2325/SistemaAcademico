@@ -1,9 +1,10 @@
-
 package com.mycompany.vistas.sistema;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import com.mycompany.controladores.ProfesorControlador;
+import com.mycompany.iprofesores.Profesor;
+import com.mycompany.vistas.MainWindow;
 
 public class ProfesorVista extends javax.swing.JFrame {
 
@@ -11,11 +12,16 @@ public class ProfesorVista extends javax.swing.JFrame {
      * Creates new form ProfesoresVista
      */
     private ProfesorControlador profesorControlador;
+    private MainWindow vistaProfesor;
+    // VARIABLES PARA MANEJAR EL MODO DE ACTUALIZACIÓN
+    private boolean modoActualizacion = false;
+    private int idProfesorActualizar = -1;
 
-    public ProfesorVista() {
+    public ProfesorVista(MainWindow vistaProfesor) {
         initComponents();
         profesorControlador = new ProfesorControlador(this);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.vistaProfesor = vistaProfesor;
     }
 
     /**
@@ -247,12 +253,26 @@ public class ProfesorVista extends javax.swing.JFrame {
 
     private void btnCancelarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarJButtonMouseClicked
         // TODO add your handling code here:
-        
+        this.dispose();
     }//GEN-LAST:event_btnCancelarJButtonMouseClicked
 
     private void btnAgregarJButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarJButton1MouseClicked
         // TODO add your handling code here:
-        profesorControlador.procesoControladorProfesor();
+        if (modoActualizacion) {
+            Profesor[] profesoresActualizados = profesorControlador.procesoActualizarProfesor();
+            if (profesoresActualizados != null && vistaProfesor != null) {
+                // ACTUALIZAR LA TABLA EN EL PANEL PRINCIPAL USANDO EL MÉTODO CORRECTO
+                vistaProfesor.getProfesoresPanel().actualizarTabla(profesoresActualizados);
+                this.dispose(); // CERRAR LA VENTANA DESPUÉS DE ACTUALIZAR
+            }
+        } else {
+            Profesor[] profesoresAgregados = profesorControlador.procesoControladorProfesor();
+            if (profesoresAgregados != null && vistaProfesor != null) {
+                // ACTUALIZAR LA TABLA EN EL PANEL PRINCIPAL DESPUÉS DE AGREGAR
+                vistaProfesor.getProfesoresPanel().actualizarTabla(profesoresAgregados);
+                this.dispose(); // CERRAR LA VENTANA DESPUÉS DE AGREGAR
+            }
+        }
     }//GEN-LAST:event_btnAgregarJButton1MouseClicked
 
     /**
@@ -299,7 +319,35 @@ public class ProfesorVista extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(this, mensaje, "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 
-
+    // MÉTODO PARA CONFIGURAR EL MODO DE ACTUALIZACIÓN
+    public void configurarModoActualizacion(Profesor profesor) {
+        this.modoActualizacion = true;
+        this.idProfesorActualizar = profesor.getId();
+        
+        // PRECARGAR LOS DATOS EN LOS CAMPOS
+        entradaNombreJTextField.setText(profesor.getNombre());
+        entradaIdJTextField.setText(String.valueOf(profesor.getId()));
+        entradaIdJTextField.setEditable(false); // NO PERMITIR EDITAR EL ID
+        entradaCedulaJTextField.setText(profesor.getCedula());
+        entradaCorreoInstitucionalJTextField.setText(profesor.getCorreoInstitucional());
+        entradaCorreoPersonalJTextField.setText(profesor.getCorreoPersonal());
+        entradaSueldoJTextField.setText(String.valueOf(profesor.getSueldo()));
+        entradaDedicacionJTextField.setText(profesor.getDedicacion());
+        entradaEscalafonJComboBox.setSelectedItem(profesor.getEscalafon().toString());
+        
+        // CAMBIAR EL TEXTO DEL BOTÓN
+        btnAgregarJButton1.setText("Actualizar");
+    }
+    
+    // MÉTODO PARA VERIFICAR SI ESTÁ EN MODO ACTUALIZACIÓN
+    public boolean esModoActualizacion() {
+        return modoActualizacion;
+    }
+    
+    // MÉTODO PARA OBTENER EL ID DEL PROFESOR A ACTUALIZAR
+    public int getIdProfesorActualizar() {
+        return idProfesorActualizar;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarJButton1;
