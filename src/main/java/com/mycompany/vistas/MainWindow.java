@@ -79,6 +79,7 @@ public class MainWindow extends javax.swing.JFrame {
         btnTrabajadoresJButton = new javax.swing.JButton();
         btnEstudiantesJButton = new javax.swing.JButton();
         btnProfesoresJButton = new javax.swing.JButton();
+        btnDecanosJButton = new javax.swing.JButton();
         contenidoPrincipalJPanel = new javax.swing.JPanel();
         imgUniversidadJLabel = new javax.swing.JLabel();
         UniversidadSanWilliamJLabel = new javax.swing.JLabel();
@@ -236,25 +237,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         buscarBarraJTextField.setBackground(new java.awt.Color(204, 204, 204));
         buscarBarraJTextField.setText("Buscar...");
-        // AGREGAR LISTENER PARA LA FUNCIONALIDAD DE BÚSQUEDA
-        buscarBarraJTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MainWindow.this.buscarPersonaExterna();
-            }
-        });
-        // AGREGAR LISTENER PARA LIMPIAR EL PLACEHOLDER AL HACER CLIC
-        buscarBarraJTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                if (buscarBarraJTextField.getText().equals("Buscar...")) {
-                    buscarBarraJTextField.setText("");
-                }
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                if (buscarBarraJTextField.getText().isEmpty()) {
-                    buscarBarraJTextField.setText("Buscar...");
-                }
-            }
-        });
 
         btnRegistrarJLabel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnRegistrarJLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -351,6 +333,17 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        btnDecanosJButton.setBackground(new java.awt.Color(41, 160, 197));
+        btnDecanosJButton.setForeground(new java.awt.Color(255, 255, 255));
+        btnDecanosJButton.setText("Decanos");
+        btnDecanosJButton.setBorder(null);
+        btnDecanosJButton.setPreferredSize(new java.awt.Dimension(83, 30));
+        btnDecanosJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDecanosJButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout contenidoDeBotonesJPanelLayout = new javax.swing.GroupLayout(contenidoDeBotonesJPanel);
         contenidoDeBotonesJPanel.setLayout(contenidoDeBotonesJPanelLayout);
         contenidoDeBotonesJPanelLayout.setHorizontalGroup(
@@ -364,17 +357,20 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(btnEstudiantesJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnProfesoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnDecanosJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         contenidoDeBotonesJPanelLayout.setVerticalGroup(
             contenidoDeBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoDeBotonesJPanelLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(contenidoDeBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPersonaExternaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTrabajadoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEstudiantesJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProfesoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnProfesoresJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDecanosJButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -508,6 +504,10 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProfesoresJButtonMouseClicked
 
+    private void btnDecanosJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDecanosJButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDecanosJButtonMouseClicked
+
     // MÉTODO PARA BUSCAR PERSONA EXTERNA O ESTUDIANTE POR ID
     private void buscarPersonaExterna() {
         String textoBusqueda = buscarBarraJTextField.getText().trim();
@@ -628,6 +628,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel bienvenidoAlSistemaAcademicoJLabel;
     private javax.swing.JPanel btnAcercaDeJPanel;
     private javax.swing.JPanel btnConfiguracionJPanel;
+    private javax.swing.JButton btnDecanosJButton;
     private javax.swing.JButton btnEstudiantesJButton;
     private javax.swing.JPanel btnInicioJPanel;
     private javax.swing.JButton btnPersonaExternaJButton;

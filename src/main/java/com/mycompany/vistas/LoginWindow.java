@@ -4,6 +4,10 @@ package com.mycompany.vistas;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
 
 public class LoginWindow extends javax.swing.JFrame {
 
@@ -16,6 +20,8 @@ public class LoginWindow extends javax.swing.JFrame {
     public LoginWindow() {
         initComponents();
         // mainWindow = new MainWindow();
+
+        
     }
 
     /**
@@ -316,6 +322,13 @@ public class LoginWindow extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        FlatLightLaf.setup();
+        // FlatDarkFlatIJTheme.setup();
+        UIManager.put( "Button.arc", 999 );
+        UIManager.put( "Component.arc", 999 );
+        UIManager.put( "ProgressBar.arc", 999 );
+        UIManager.put( "TextComponent.arc", 999 );
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
