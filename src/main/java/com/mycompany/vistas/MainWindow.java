@@ -8,10 +8,12 @@ import com.mycompany.controladores.PersonaExternaControlador;
 import com.mycompany.controladores.EstudianteControlador; // IMPORT AGREGADO PARA ESTUDIANTES
 import com.mycompany.controladores.TrabajadorControlador; // IMPORT AGREGADO PARA TRABAJADORES
 import com.mycompany.controladores.ProfesorControlador; // IMPORT AGREGADO PARA PROFESORES
+import com.mycompany.controladores.DecanoControlador; // IMPORT AGREGADO PARA DECANOS
 import com.mycompany.ipersonasexternas.PersonaExterna; // IMPORT AGREGADO PARA FUNCIONALIDAD DE BÚSQUEDA
 import com.mycompany.iestudiantes.Estudiante; // IMPORT AGREGADO PARA ESTUDIANTES
 import com.mycompany.itrabajador.Trabajador; // IMPORT AGREGADO PARA TRABAJADORES
 import com.mycompany.iprofesores.Profesor; // IMPORT AGREGADO PARA PROFESORES
+import com.mycompany.idecanos.Decano; // IMPORT AGREGADO PARA DECANOS
 import com.mycompany.vistas.paneles.*;
 
 import com.mycompany.vistas.sistema.*;
@@ -36,6 +38,10 @@ public class MainWindow extends javax.swing.JFrame {
     private ProfesoresPanel profesoresPanel;
     private ProfesorControlador profesorControlador;
 
+    // AGREGAR VARIABLES PARA DECANOS
+    private DecanosPanel decanosPanel;
+    private DecanoControlador decanoControlador;
+
     public MainWindow() {
         initComponents();
         PersonaExternaVista personaExternaVista = new PersonaExternaVista(this);
@@ -56,6 +62,10 @@ public class MainWindow extends javax.swing.JFrame {
         ProfesorVista profesorVista = new ProfesorVista(this); // PASAR REFERENCIA DE MAINWINDOW
         profesorControlador = new ProfesorControlador(profesorVista);
         profesoresPanel = new ProfesoresPanel(profesorControlador);
+        
+        // INICIALIZAR COMPONENTES DE DECANOS
+        decanoControlador = new DecanoControlador();
+        decanosPanel = new DecanosPanel(decanoControlador);
         
         // CONFIGURAR LISTENERS PARA LA FUNCIONALIDAD DE BÚSQUEDA
         configurarBusqueda();
@@ -477,7 +487,8 @@ public class MainWindow extends javax.swing.JFrame {
                 profesorVista.setVisible(true);
                 break;
             case "Decano":
-                new DecanoVista().setVisible(true);
+                DecanoVista decanoVista = new DecanoVista(this); // PASAR REFERENCIA DE MAINWINDOW
+                decanoVista.setVisible(true);
                 break;
             default:    
                 // Manejar el caso por defecto si es necesario
@@ -539,6 +550,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnDecanosJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDecanosJButtonMouseClicked
         // TODO add your handling code here:
+        mostrarPanel(decanosPanel);
+        // CARGAR DATOS ACTUALIZADOS EN LA TABLA
+        decanosPanel.actualizarTabla(decanoControlador.obtenerDecanos());
     }//GEN-LAST:event_btnDecanosJButtonMouseClicked
 
     // MÉTODO PARA BUSCAR PERSONA EXTERNA O ESTUDIANTE POR ID
@@ -623,9 +637,26 @@ public class MainWindow extends javax.swing.JFrame {
                     "Profesor encontrado: " + profesorEncontrado.getNombre(), 
                     "Búsqueda exitosa", 
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
+            // SI NO SE ENCUENTRA EN PROFESORES, BUSCAR EN DECANOS
+            Decano decanoEncontrado = decanoControlador.buscarDecanoPorId(id);
+            
+            if (decanoEncontrado != null) {
+                // MOSTRAR EL PANEL DE DECANOS SI NO ESTÁ VISIBLE
+                mostrarPanel(decanosPanel);
+                
+                // MOSTRAR SOLO EL DECANO ENCONTRADO EN LA TABLA
+                decanosPanel.buscarYMostrarDecano(decanoEncontrado);
+                
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Decano encontrado: " + decanoEncontrado.getNombre(), 
+                    "Búsqueda exitosa", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, 
-                    "No se encontró ninguna persona, estudiante, trabajador o profesor con el ID: " + id, 
+                    "No se encontró ninguna persona, estudiante, trabajador, profesor o decano con el ID: " + id, 
                     "No encontrado", 
                     javax.swing.JOptionPane.WARNING_MESSAGE);
             }
@@ -655,6 +686,11 @@ public class MainWindow extends javax.swing.JFrame {
     // MÉTODO PARA OBTENER EL PANEL DE PROFESORES
     public ProfesoresPanel getProfesoresPanel() {
         return profesoresPanel;
+    }
+
+    // MÉTODO PARA OBTENER EL PANEL DE DECANOS
+    public DecanosPanel getDecanosPanel() {
+        return decanosPanel;
     }
 
     /**

@@ -68,6 +68,22 @@ public class DecanosPanel extends javax.swing.JPanel {
         actualizarTabla(decanosEncontrados);
     }
 
+    // MÉTODO PARA BUSCAR Y MOSTRAR UN DECANO ESPECÍFICO EN LA TABLA
+    public void buscarYMostrarDecano(Decano decano) {
+        if (decano != null) {
+            Decano[] decanosEncontrados = {decano};
+            actualizarTabla(decanosEncontrados);
+        } else {
+            DefaultTableModel modelo = (DefaultTableModel) tablaDatosDecanosJTable.getModel();
+            modelo.setRowCount(0);
+        }
+    }
+
+    // MÉTODO PARA RESTAURAR LA VISTA COMPLETA DE DECANOS
+    public void mostrarTodosLosDecanos() {
+        actualizarTabla(controlador.obtenerDecanos());
+    }
+
     // METODO GETTER PARA EL CONTROLADOR
     public DecanoControlador getControlador() {
         return controlador;
@@ -191,11 +207,11 @@ public class DecanosPanel extends javax.swing.JPanel {
                 int id = Integer.parseInt(tablaDatosDecanosJTable.getValueAt(fila, 1).toString());
 
                 // LLAMAR AL CONTROLADOR PARA ELIMINAR
-                Decano[] decanosActualizados = controlador.eliminarDecano(id);
+                boolean eliminado = controlador.eliminarDecano(id);
 
-                if (decanosActualizados != null) {
+                if (eliminado) {
                     javax.swing.JOptionPane.showMessageDialog(this, "Decano eliminado exitosamente.");
-                    actualizarTabla(decanosActualizados);
+                    actualizarTabla(controlador.obtenerDecanos());
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(this, "Error al eliminar el decano.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                 }

@@ -8,7 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.mycompany.controladores.DecanoControlador;
-import com.mycompany.idecanos.IDecanos;
+import com.mycompany.idecanos.*;
+import com.mycompany.vistas.MainWindow;
+import com.mycompany.vistas.paneles.DecanosPanel;
 
 /**
  *
@@ -20,12 +22,24 @@ public class DecanoVista extends javax.swing.JFrame {
      * Creates new form DecanosVista
      */
     private DecanoControlador decanoControlador;
-    private IDecanos iDecano;
+    private MainWindow vistaDecano;
+    // VARIABLES PARA MANEJAR EL MODO DE ACTUALIZACIÓN
+    private boolean modoActualizacion = false;
+    private int idDecanoActualizar = -1;
+    private int filaTabla = -1;
+    private DecanosPanel panelDecanos;
 
     public DecanoVista() {
         initComponents();
         decanoControlador = new DecanoControlador(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    public DecanoVista(MainWindow vistaDecano) {
+        initComponents();
+        decanoControlador = new DecanoControlador(this);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.vistaDecano = vistaDecano;
     }
 
     /**
@@ -250,11 +264,25 @@ public class DecanoVista extends javax.swing.JFrame {
 
     private void btnAgregarDecanoJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarDecanoJButtonMouseClicked
         // TODO add your handling code here:
-        decanoControlador.procesoControladorDecano();
+        if (modoActualizacion) {
+            // PROCESAR ACTUALIZACIÓN
+            Decano[] decanosActualizados = decanoControlador.procesoActualizarDecano();
+            if (decanosActualizados != null && panelDecanos != null) {
+                panelDecanos.actualizarTabla(decanosActualizados);
+            }
+        } else {
+            // PROCESAR AGREGACIÓN
+            Decano[] decanos = decanoControlador.procesoControladorDecano();
+            if (decanos != null && vistaDecano != null) {
+                vistaDecano.getDecanosPanel().actualizarTabla(decanos);
+            }
+        }
+        this.dispose();
     }//GEN-LAST:event_btnAgregarDecanoJButtonMouseClicked
 
     private void btnCancelarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarJButtonMouseClicked
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancelarJButtonMouseClicked
 
 
@@ -296,6 +324,39 @@ public class DecanoVista extends javax.swing.JFrame {
 
     public String getEntradaNivelJTextField() {
         return entradaNivelJTextField.getText();
+    }
+
+    // MÉTODO PARA CONFIGURAR EL MODO DE ACTUALIZACIÓN
+    public void configurarModoActualizacion(Decano decano, int fila, DecanosPanel panel) {
+        this.modoActualizacion = true;
+        this.idDecanoActualizar = decano.getId();
+        this.filaTabla = fila;
+        this.panelDecanos = panel;
+        
+        // LLENAR LOS CAMPOS CON LOS DATOS DEL DECANO
+        entradaNombreJTextField.setText(decano.getNombre());
+        entradaIdJTextField.setText(String.valueOf(decano.getId()));
+        entradaIdJTextField.setEditable(false); // No permitir cambiar el ID
+        entradaCedulaJTextField.setText(decano.getCedula());
+        entradaCorreoInstitucionalJTextField.setText(decano.getCorreoInstitucional());
+        entradaCorreoPersonalJTextField.setText(decano.getCorreoPersonal());
+        entradaSueldoJTextField.setText(String.valueOf(decano.getSueldo()));
+        entradaDedicacionJTextField.setText(decano.getDedicacion());
+        entradaNivelJTextField.setText(decano.getNivel());
+        
+        // CAMBIAR EL TEXTO DEL BOTÓN Y EL TÍTULO
+        btnAgregarDecanoJButton.setText("Actualizar");
+        jLabel1.setText("ACTUALIZAR DECANO");
+    }
+    
+    // MÉTODO PARA VERIFICAR SI ESTÁ EN MODO ACTUALIZACIÓN
+    public boolean esModoActualizacion() {
+        return modoActualizacion;
+    }
+    
+    // MÉTODO PARA OBTENER EL ID DEL DECANO A ACTUALIZAR
+    public int getIdDecanoActualizar() {
+        return idDecanoActualizar;
     }
 
 
