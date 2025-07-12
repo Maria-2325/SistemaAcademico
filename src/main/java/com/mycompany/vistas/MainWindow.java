@@ -206,6 +206,12 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnInicioJPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnInicioJPanelMouseClicked(evt);
+            }
+        });
+
         menuItemJPanel.add(btnInicioJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 170, 30));
 
         btnConfiguracionJPanel.setBackground(new java.awt.Color(18, 63, 90));

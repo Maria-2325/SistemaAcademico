@@ -6,10 +6,19 @@ import com.mycompany.clasessistema.PersonalAcademico;
 import com.mycompany.ipersonasexternas.*;
 import com.mycompany.persona.*;
 import com.mycompany.vistas.*;
+import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.UIManager;
 
 public class SistemaAcademico {
 
     public static void main(String[] args) {
+        // CONFIGURAR EL LOOK AND FEEL FLATLAF
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Error al configurar FlatLaf: " + ex.getMessage());
+        }
+        
         /*System.out.println("\tBIENVENIDOS AL SISTEMA ACADEMICO\t");
         System.out.println("\n-----PERSONAS EXTERNAS-----\n");
         // Crear una instancia de PersonasExternas con una capacidad de 10
