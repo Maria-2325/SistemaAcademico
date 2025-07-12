@@ -4,17 +4,73 @@
  */
 package com.mycompany.vistas.paneles;
 
+import com.mycompany.controladores.DecanoControlador;
+import com.mycompany.idecanos.Decano;
+import com.mycompany.vistas.MainWindow;
+import com.mycompany.vistas.sistema.DecanoVista;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ibarr
  */
 public class DecanosPanel extends javax.swing.JPanel {
 
+    // CONTROLADOR PARA MANEJAR LA LOGICA DE DECANOS
+    private DecanoControlador controlador;
+
     /**
      * Creates new form DecanosPanel
      */
     public DecanosPanel() {
         initComponents();
+        // INICIALIZAR EL CONTROLADOR SIN VISTA
+        controlador = new DecanoControlador();
+        // CARGAR DATOS INICIALES EN LA TABLA
+        actualizarTabla(controlador.obtenerDecanos());
+    }
+
+    // CONSTRUCTOR ALTERNATIVO QUE ACEPTA UN CONTROLADOR
+    public DecanosPanel(DecanoControlador controlador) {
+        initComponents();
+        this.controlador = controlador;
+        // CARGAR DATOS INICIALES EN LA TABLA
+        actualizarTabla(controlador.obtenerDecanos());
+    }
+
+    // METODO PARA ACTUALIZAR LA TABLA CON DATOS DE DECANOS
+    public void actualizarTabla(Decano[] decanos) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaDatosDecanosJTable.getModel();
+        modelo.setRowCount(0); // LIMPIAR TABLA
+        
+        if (decanos != null) {
+            for (Decano decano : decanos) {
+                if (decano != null) {
+                    Object[] fila = {
+                        decano.getNombre(),
+                        decano.getId(),
+                        decano.getCedula(),
+                        decano.getCorreoInstitucional(),
+                        decano.getCorreoPersonal(),
+                        decano.getSueldo(),
+                        decano.getDedicacion(),
+                        decano.getNivel()
+                    };
+                    modelo.addRow(fila);
+                }
+            }
+        }
+    }
+
+    // METODO PARA BUSCAR DECANOS POR NOMBRE
+    public void buscarDecanosPorNombre(String nombre) {
+        Decano[] decanosEncontrados = controlador.buscarDecanosPorNombre(nombre);
+        actualizarTabla(decanosEncontrados);
+    }
+
+    // METODO GETTER PARA EL CONTROLADOR
+    public DecanoControlador getControlador() {
+        return controlador;
     }
 
     /**
@@ -26,19 +82,19 @@ public class DecanosPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bgMainJPanel12 = new javax.swing.JPanel();
-        tablaJScrollPanel12 = new javax.swing.JScrollPane();
-        tablaDatosPersonaExternaJTable12 = new javax.swing.JTable();
-        menuBotonesJPanel12 = new javax.swing.JPanel();
-        btnEliminarJButton12 = new javax.swing.JButton();
-        btnActualizarJButton12 = new javax.swing.JButton();
+        bgMainJPanel = new javax.swing.JPanel();
+        tablaJScrollPanel = new javax.swing.JScrollPane();
+        tablaDatosDecanosJTable = new javax.swing.JTable();
+        menuBotonesJPanel = new javax.swing.JPanel();
+        btnEliminarJButton = new javax.swing.JButton();
+        btnActualizarJButton = new javax.swing.JButton();
 
-        bgMainJPanel12.setBackground(new java.awt.Color(255, 255, 255));
+        bgMainJPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        tablaJScrollPanel12.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        tablaJScrollPanel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
-        tablaDatosPersonaExternaJTable12.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        tablaDatosPersonaExternaJTable12.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDatosDecanosJTable.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        tablaDatosDecanosJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -49,60 +105,60 @@ public class DecanosPanel extends javax.swing.JPanel {
                 "Nombre", "ID", "Cédula", "Correo Institucionall", "Correo Personal", "Sueldo", "Dedicaciòn", "Nivel"
             }
         ));
-        tablaJScrollPanel12.setViewportView(tablaDatosPersonaExternaJTable12);
+        tablaJScrollPanel.setViewportView(tablaDatosDecanosJTable);
 
-        menuBotonesJPanel12.setBackground(new java.awt.Color(255, 255, 255));
+        menuBotonesJPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnEliminarJButton12.setText("Eliminar");
-        btnEliminarJButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEliminarJButton.setText("Eliminar");
+        btnEliminarJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEliminarJButton12MouseClicked(evt);
+                btnEliminarJButtonMouseClicked(evt);
             }
         });
 
-        btnActualizarJButton12.setText("Actualizar");
-        btnActualizarJButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnActualizarJButton.setText("Actualizar");
+        btnActualizarJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnActualizarJButton12MouseClicked(evt);
+                btnActualizarJButtonMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout menuBotonesJPanel12Layout = new javax.swing.GroupLayout(menuBotonesJPanel12);
-        menuBotonesJPanel12.setLayout(menuBotonesJPanel12Layout);
-        menuBotonesJPanel12Layout.setHorizontalGroup(
-            menuBotonesJPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBotonesJPanel12Layout.createSequentialGroup()
+        javax.swing.GroupLayout menuBotonesJPanelLayout = new javax.swing.GroupLayout(menuBotonesJPanel);
+        menuBotonesJPanel.setLayout(menuBotonesJPanelLayout);
+        menuBotonesJPanelLayout.setHorizontalGroup(
+            menuBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBotonesJPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnActualizarJButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminarJButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        menuBotonesJPanel12Layout.setVerticalGroup(
-            menuBotonesJPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuBotonesJPanel12Layout.createSequentialGroup()
+        menuBotonesJPanelLayout.setVerticalGroup(
+            menuBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuBotonesJPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(menuBotonesJPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnActualizarJButton12)
-                    .addComponent(btnEliminarJButton12))
+                .addGroup(menuBotonesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizarJButton)
+                    .addComponent(btnEliminarJButton))
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout bgMainJPanel12Layout = new javax.swing.GroupLayout(bgMainJPanel12);
-        bgMainJPanel12.setLayout(bgMainJPanel12Layout);
-        bgMainJPanel12Layout.setHorizontalGroup(
-            bgMainJPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tablaJScrollPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
-            .addGroup(bgMainJPanel12Layout.createSequentialGroup()
-                .addComponent(menuBotonesJPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout bgMainJPanelLayout = new javax.swing.GroupLayout(bgMainJPanel);
+        bgMainJPanel.setLayout(bgMainJPanelLayout);
+        bgMainJPanelLayout.setHorizontalGroup(
+            bgMainJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tablaJScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+            .addGroup(bgMainJPanelLayout.createSequentialGroup()
+                .addComponent(menuBotonesJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        bgMainJPanel12Layout.setVerticalGroup(
-            bgMainJPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bgMainJPanel12Layout.createSequentialGroup()
-                .addComponent(tablaJScrollPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+        bgMainJPanelLayout.setVerticalGroup(
+            bgMainJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgMainJPanelLayout.createSequentialGroup()
+                .addComponent(tablaJScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuBotonesJPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuBotonesJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -110,153 +166,80 @@ public class DecanosPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgMainJPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bgMainJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgMainJPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bgMainJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEliminarJButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarJButton12MouseClicked
-        // TODO add your handling code here:
-        int fila = tablaDatosPersonaExternaJTable.getSelectedRow();
+    private void btnEliminarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarJButtonMouseClicked
+        // VERIFICAR QUE SE HAYA SELECCIONADO UNA FILA
+        int fila = tablaDatosDecanosJTable.getSelectedRow();
 
         if (fila != -1) {
             int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
                 this,
-                "¿Deseas eliminar esta persona?",
+                "¿Deseas eliminar este decano?",
                 "Confirmación",
                 javax.swing.JOptionPane.YES_NO_OPTION
             );
 
             if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
-                // Obtener ID desde la columna 1 (índice 1)
-                int id = Integer.parseInt(tablaDatosPersonaExternaJTable.getValueAt(fila, 1).toString());
+                // OBTENER ID DESDE LA COLUMNA 1 (ÍNDICE 1)
+                int id = Integer.parseInt(tablaDatosDecanosJTable.getValueAt(fila, 1).toString());
 
-                // Llamar al controlador
-                boolean eliminado = controlador.eliminarPersonaExterna(id);
+                // LLAMAR AL CONTROLADOR PARA ELIMINAR
+                Decano[] decanosActualizados = controlador.eliminarDecano(id);
 
-                if (eliminado) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Persona eliminada exitosamente.");
-                    actualizarTabla(controlador.obtenerPersonasExternas());
+                if (decanosActualizados != null) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Decano eliminado exitosamente.");
+                    actualizarTabla(decanosActualizados);
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Error al eliminar el decano.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                 }
-
             }
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una fila primero.", "Advertencia", javax.swing.JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_btnEliminarJButton12MouseClicked
+    }//GEN-LAST:event_btnEliminarJButtonMouseClicked
 
-    private void btnActualizarJButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarJButton12MouseClicked
-        // TODO add your handling code here:
+    private void btnActualizarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarJButtonMouseClicked
         // VERIFICAR QUE SE HAYA SELECCIONADO UNA FILA
-        int fila = tablaDatosPersonaExternaJTable.getSelectedRow();
+        int fila = tablaDatosDecanosJTable.getSelectedRow();
 
         if (fila != -1) {
             // OBTENER EL ID DESDE LA COLUMNA 1 (ÍNDICE 1)
-            int id = Integer.parseInt(tablaDatosPersonaExternaJTable.getValueAt(fila, 1).toString());
+            int id = Integer.parseInt(tablaDatosDecanosJTable.getValueAt(fila, 1).toString());
 
-            // OBTENER LA PERSONA EXTERNA A ACTUALIZAR
-            PersonaExterna personaAActualizar = controlador.obtenerPersonaExternaPorId(id);
+            // OBTENER EL DECANO A ACTUALIZAR
+            Decano decanoAActualizar = controlador.buscarDecano(id);
 
-            if (personaAActualizar != null) {
+            if (decanoAActualizar != null) {
                 // CREAR Y MOSTRAR LA VENTANA DE ACTUALIZACIÓN
                 MainWindow mainWindow = (MainWindow) javax.swing.SwingUtilities.getWindowAncestor(this);
-                PersonaExternaVista vistaActualizacion = new PersonaExternaVista(mainWindow);
+                DecanoVista vistaActualizacion = new DecanoVista();
 
                 // CONFIGURAR EL MODO DE ACTUALIZACIÓN
-                vistaActualizacion.configurarModoActualizacion(personaAActualizar);
+                vistaActualizacion.configurarModoActualizacion(decanoAActualizar, fila, this);
 
                 // MOSTRAR LA VENTANA
                 vistaActualizacion.setVisible(true);
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "No se pudo obtener los datos de la persona.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "No se pudo obtener los datos del decano.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una fila primero.", "Advertencia", javax.swing.JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_btnActualizarJButton12MouseClicked
-
+    }//GEN-LAST:event_btnActualizarJButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgMainJPanel;
-    private javax.swing.JPanel bgMainJPanel1;
-    private javax.swing.JPanel bgMainJPanel10;
-    private javax.swing.JPanel bgMainJPanel11;
-    private javax.swing.JPanel bgMainJPanel12;
-    private javax.swing.JPanel bgMainJPanel2;
-    private javax.swing.JPanel bgMainJPanel3;
-    private javax.swing.JPanel bgMainJPanel4;
-    private javax.swing.JPanel bgMainJPanel5;
-    private javax.swing.JPanel bgMainJPanel6;
-    private javax.swing.JPanel bgMainJPanel7;
-    private javax.swing.JPanel bgMainJPanel8;
-    private javax.swing.JPanel bgMainJPanel9;
     private javax.swing.JButton btnActualizarJButton;
-    private javax.swing.JButton btnActualizarJButton1;
-    private javax.swing.JButton btnActualizarJButton10;
-    private javax.swing.JButton btnActualizarJButton11;
-    private javax.swing.JButton btnActualizarJButton12;
-    private javax.swing.JButton btnActualizarJButton2;
-    private javax.swing.JButton btnActualizarJButton3;
-    private javax.swing.JButton btnActualizarJButton4;
-    private javax.swing.JButton btnActualizarJButton5;
-    private javax.swing.JButton btnActualizarJButton6;
-    private javax.swing.JButton btnActualizarJButton7;
-    private javax.swing.JButton btnActualizarJButton8;
-    private javax.swing.JButton btnActualizarJButton9;
     private javax.swing.JButton btnEliminarJButton;
-    private javax.swing.JButton btnEliminarJButton1;
-    private javax.swing.JButton btnEliminarJButton10;
-    private javax.swing.JButton btnEliminarJButton11;
-    private javax.swing.JButton btnEliminarJButton12;
-    private javax.swing.JButton btnEliminarJButton2;
-    private javax.swing.JButton btnEliminarJButton3;
-    private javax.swing.JButton btnEliminarJButton4;
-    private javax.swing.JButton btnEliminarJButton5;
-    private javax.swing.JButton btnEliminarJButton6;
-    private javax.swing.JButton btnEliminarJButton7;
-    private javax.swing.JButton btnEliminarJButton8;
-    private javax.swing.JButton btnEliminarJButton9;
     private javax.swing.JPanel menuBotonesJPanel;
-    private javax.swing.JPanel menuBotonesJPanel1;
-    private javax.swing.JPanel menuBotonesJPanel10;
-    private javax.swing.JPanel menuBotonesJPanel11;
-    private javax.swing.JPanel menuBotonesJPanel12;
-    private javax.swing.JPanel menuBotonesJPanel2;
-    private javax.swing.JPanel menuBotonesJPanel3;
-    private javax.swing.JPanel menuBotonesJPanel4;
-    private javax.swing.JPanel menuBotonesJPanel5;
-    private javax.swing.JPanel menuBotonesJPanel6;
-    private javax.swing.JPanel menuBotonesJPanel7;
-    private javax.swing.JPanel menuBotonesJPanel8;
-    private javax.swing.JPanel menuBotonesJPanel9;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable1;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable10;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable11;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable12;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable2;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable3;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable4;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable5;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable6;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable7;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable8;
-    private javax.swing.JTable tablaDatosPersonaExternaJTable9;
+    private javax.swing.JTable tablaDatosDecanosJTable;
     private javax.swing.JScrollPane tablaJScrollPanel;
-    private javax.swing.JScrollPane tablaJScrollPanel1;
-    private javax.swing.JScrollPane tablaJScrollPanel10;
-    private javax.swing.JScrollPane tablaJScrollPanel11;
-    private javax.swing.JScrollPane tablaJScrollPanel12;
-    private javax.swing.JScrollPane tablaJScrollPanel2;
-    private javax.swing.JScrollPane tablaJScrollPanel3;
-    private javax.swing.JScrollPane tablaJScrollPanel4;
-    private javax.swing.JScrollPane tablaJScrollPanel5;
-    private javax.swing.JScrollPane tablaJScrollPanel6;
-    private javax.swing.JScrollPane tablaJScrollPanel7;
-    private javax.swing.JScrollPane tablaJScrollPanel8;
-    private javax.swing.JScrollPane tablaJScrollPanel9;
     // End of variables declaration//GEN-END:variables
 }
