@@ -17,11 +17,15 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private MainWindow mainWindow = new MainWindow();
 
+    // USUARIOS Y CONTRASEÑAS VÁLIDOS
+    private static final String[][] USUARIOS_VALIDOS = {
+        {"admin", "admin123", "Administrador"}
+    };
+
     public LoginWindow() {
         initComponents();
-        // mainWindow = new MainWindow();
-
-        
+        configurarVentana();
+        configurarEventos();
     }
 
     /**
@@ -102,9 +106,15 @@ public class LoginWindow extends javax.swing.JFrame {
         entradaUsuarioJTextField1.setFont(new java.awt.Font("Roboto Th", 0, 14)); // NOI18N
         entradaUsuarioJTextField1.setText("Ingrese su usuario");
         entradaUsuarioJTextField1.setBorder(null);
+        entradaUsuarioJTextField1.setForeground(java.awt.Color.GRAY);
         entradaUsuarioJTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 entradaUsuarioJTextField1MousePressed(evt);
+            }
+        });
+        entradaUsuarioJTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                entradaUsuarioJTextField1KeyPressed(evt);
             }
         });
 
@@ -114,9 +124,15 @@ public class LoginWindow extends javax.swing.JFrame {
         entradaContraseniaJPasswordField.setFont(new java.awt.Font("Roboto Th", 0, 14)); // NOI18N
         entradaContraseniaJPasswordField.setText("********");
         entradaContraseniaJPasswordField.setBorder(null);
+        entradaContraseniaJPasswordField.setForeground(java.awt.Color.GRAY);
         entradaContraseniaJPasswordField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 entradaContraseniaJPasswordFieldMousePressed(evt);
+            }
+        });
+        entradaContraseniaJPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                entradaContraseniaJPasswordFieldKeyPressed(evt);
             }
         });
 
@@ -129,6 +145,11 @@ public class LoginWindow extends javax.swing.JFrame {
 
         olvidasteTuContraseniaJLabel.setFont(new java.awt.Font("Roboto Lt", 0, 10)); // NOI18N
         olvidasteTuContraseniaJLabel.setText("¿Olvidaste tu contraseña?");
+
+        usuariosValidosJLabel = new javax.swing.JLabel();
+        usuariosValidosJLabel.setFont(new java.awt.Font("Roboto Lt", 0, 9)); // NOI18N
+        usuariosValidosJLabel.setForeground(new java.awt.Color(102, 102, 102));
+        usuariosValidosJLabel.setText("<html>Usuario disponible:<br/>• admin / admin123</html>");
 
         btnIngresarJPanel.setBackground(new java.awt.Color(41, 160, 197));
         btnIngresarJPanel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,6 +189,7 @@ public class LoginWindow extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(contenidoLoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(olvidasteTuContraseniaJLabel)
+                    .addComponent(usuariosValidosJLabel)
                     .addComponent(iniciarSesionJLabel)
                     .addGroup(contenidoLoginJPanelLayout.createSequentialGroup()
                         .addComponent(logoJLabel)
@@ -209,9 +231,11 @@ public class LoginWindow extends javax.swing.JFrame {
                 .addComponent(lineaContraseniaJSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(olvidasteTuContraseniaJLabel)
-                .addGap(29, 29, 29)
+                .addGap(8, 8, 8)
+                .addComponent(usuariosValidosJLabel)
+                .addGap(15, 15, 15)
                 .addComponent(btnIngresarJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         bgJPanel.add(contenidoLoginJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 550));
@@ -244,56 +268,166 @@ public class LoginWindow extends javax.swing.JFrame {
 
     // EVENTO DEL BOTÓN INGRESAR EN EL PANEL
     private void btnIngresarJPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarJPanelMouseClicked
-        // TODO add your handling code here:
-
-        String usuarioAdministrador = "admin";
-        String contraseniaAdministrador = "12345kl";
-
-        String usuario = entradaUsuarioJTextField1.getText();
-        String contrasenia = String.valueOf(entradaContraseniaJPasswordField.getPassword());
-
-        if (usuario.equals(usuarioAdministrador) && contrasenia.equals(contraseniaAdministrador)) {
-            // Credenciales correctas
-            mainWindow.setVisible(true);
-            this.dispose();
-            // System.exit(0);
-        } else {
-            // Credenciales incorrectas
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
-        }
+        procesarLogin();
     }//GEN-LAST:event_btnIngresarJPanelMouseClicked
 
     // PARA QUE NO SE MUESTRE EL TEXTO POR DEFECTO AL HACER CLICK EN EL CAMPO DE CONTRASEÑA
     private void entradaContraseniaJPasswordFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaContraseniaJPasswordFieldMousePressed
-        // TODO add your handling code here:
-
-        if (String.valueOf(entradaContraseniaJPasswordField.getPassword()).equals("********")) {
-            entradaContraseniaJPasswordField.setText("");
-            entradaContraseniaJPasswordField.setForeground(Color.BLACK);
-        }
-
+        limpiarCampoContrasenia();
         if (entradaUsuarioJTextField1.getText().isEmpty()) {
-            entradaUsuarioJTextField1.setText("Ingrese su usuario");
-            entradaUsuarioJTextField1.setForeground(Color.GRAY);
+            restaurarPlaceholderUsuario();
         }
     }//GEN-LAST:event_entradaContraseniaJPasswordFieldMousePressed
 
     // PARA QUE NO SE MUESTRE EL TEXTO POR DEFECTO AL HACER CLICK EN EL CAMPO DE TEXTO
     private void entradaUsuarioJTextField1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaUsuarioJTextField1MousePressed
-        // TODO add your handling code here:
+        limpiarCampoUsuario();
+        if (String.valueOf(entradaContraseniaJPasswordField.getPassword()).isEmpty()) {
+            restaurarPlaceholderContrasenia();
+        }
+    }//GEN-LAST:event_entradaUsuarioJTextField1MousePressed
 
+    // EVENTO PARA MANEJAR ENTER EN EL CAMPO DE USUARIO
+    private void entradaUsuarioJTextField1KeyPressed(java.awt.event.KeyEvent evt) {
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            entradaContraseniaJPasswordField.requestFocus();
+        }
+    }
+
+    // EVENTO PARA MANEJAR ENTER EN EL CAMPO DE CONTRASEÑA
+    private void entradaContraseniaJPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            procesarLogin();
+        }
+    }
+
+
+
+    // MÉTODOS AUXILIARES PARA MEJORAR EL LOGIN
+
+    // CONFIGURAR LA VENTANA AL INICIALIZAR
+    private void configurarVentana() {
+        setLocationRelativeTo(null); // CENTRAR LA VENTANA
+        setResizable(false); // NO PERMITIR REDIMENSIONAR
+        setTitle("Sistema Académico - Login"); // TÍTULO DE LA VENTANA
+        
+        // CONFIGURAR COLORES DE PLACEHOLDERS
+        entradaUsuarioJTextField1.setForeground(Color.GRAY);
+        entradaContraseniaJPasswordField.setForeground(Color.GRAY);
+    }
+
+    // CONFIGURAR EVENTOS ADICIONALES
+    private void configurarEventos() {
+        // HACER QUE EL BOTÓN DE INGRESAR SEA EL BOTÓN POR DEFECTO
+        getRootPane().setDefaultButton(null);
+        
+        // ESTABLECER FOCO INICIAL EN EL CAMPO DE USUARIO
+        entradaUsuarioJTextField1.requestFocus();
+    }
+
+    // PROCESAR EL LOGIN CON VALIDACIONES MEJORADAS
+    private void procesarLogin() {
+        String usuario = entradaUsuarioJTextField1.getText().trim();
+        String contrasenia = String.valueOf(entradaContraseniaJPasswordField.getPassword());
+
+        // VALIDAR CAMPOS VACÍOS O CON PLACEHOLDERS
+        if (usuario.isEmpty() || usuario.equals("Ingrese su usuario")) {
+            mostrarError("Por favor ingrese un nombre de usuario válido.");
+            entradaUsuarioJTextField1.requestFocus();
+            return;
+        }
+
+        if (contrasenia.isEmpty() || contrasenia.equals("********")) {
+            mostrarError("Por favor ingrese una contraseña válida.");
+            entradaContraseniaJPasswordField.requestFocus();
+            return;
+        }
+
+        // VALIDAR CREDENCIALES
+        String tipoUsuario = validarCredenciales(usuario, contrasenia);
+        
+        if (tipoUsuario != null) {
+            // CREDENCIALES CORRECTAS
+            mostrarMensajeExito("¡Bienvenido " + tipoUsuario + "!");
+            
+            // PEQUEÑA PAUSA PARA MOSTRAR EL MENSAJE
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                // Manejar la excepción silenciosamente
+            }
+            
+            mainWindow.setVisible(true);
+            this.dispose();
+        } else {
+            // CREDENCIALES INCORRECTAS
+            mostrarError("Usuario o contraseña incorrectos.\n\nUsuario válido: admin / admin123");
+            limpiarCampos();
+            entradaUsuarioJTextField1.requestFocus();
+        }
+    }
+
+    // VALIDAR CREDENCIALES CONTRA LA LISTA DE USUARIOS
+    private String validarCredenciales(String usuario, String contrasenia) {
+        for (String[] usuarioData : USUARIOS_VALIDOS) {
+            if (usuarioData[0].equals(usuario) && usuarioData[1].equals(contrasenia)) {
+                return usuarioData[2]; // RETORNAR EL TIPO DE USUARIO
+            }
+        }
+        return null; // CREDENCIALES INVÁLIDAS
+    }
+
+    // LIMPIAR CAMPO DE USUARIO
+    private void limpiarCampoUsuario() {
         if (entradaUsuarioJTextField1.getText().equals("Ingrese su usuario")) {
             entradaUsuarioJTextField1.setText("");
             entradaUsuarioJTextField1.setForeground(Color.BLACK);
         }
+    }
 
-        if (String.valueOf(entradaContraseniaJPasswordField.getPassword()).isEmpty()) {
-            entradaContraseniaJPasswordField.setText("********");
-            entradaContraseniaJPasswordField.setForeground(Color.GRAY);
+    // LIMPIAR CAMPO DE CONTRASEÑA
+    private void limpiarCampoContrasenia() {
+        if (String.valueOf(entradaContraseniaJPasswordField.getPassword()).equals("********")) {
+            entradaContraseniaJPasswordField.setText("");
+            entradaContraseniaJPasswordField.setForeground(Color.BLACK);
         }
-    }//GEN-LAST:event_entradaUsuarioJTextField1MousePressed
+    }
 
+    // RESTAURAR PLACEHOLDER DE USUARIO
+    private void restaurarPlaceholderUsuario() {
+        entradaUsuarioJTextField1.setText("Ingrese su usuario");
+        entradaUsuarioJTextField1.setForeground(Color.GRAY);
+    }
 
+    // RESTAURAR PLACEHOLDER DE CONTRASEÑA
+    private void restaurarPlaceholderContrasenia() {
+        entradaContraseniaJPasswordField.setText("********");
+        entradaContraseniaJPasswordField.setForeground(Color.GRAY);
+    }
+
+    // LIMPIAR AMBOS CAMPOS
+    private void limpiarCampos() {
+        entradaUsuarioJTextField1.setText("");
+        entradaContraseniaJPasswordField.setText("");
+        entradaUsuarioJTextField1.setForeground(Color.BLACK);
+        entradaContraseniaJPasswordField.setForeground(Color.BLACK);
+    }
+
+    // MOSTRAR MENSAJE DE ERROR CON ESTILO PERSONALIZADO
+    private void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, 
+            mensaje,
+            "Error de Autenticación", 
+            JOptionPane.ERROR_MESSAGE);
+    }
+
+    // MOSTRAR MENSAJE DE ÉXITO
+    private void mostrarMensajeExito(String mensaje) {
+        JOptionPane.showMessageDialog(this,
+            mensaje,
+            "Login Exitoso",
+            JOptionPane.INFORMATION_MESSAGE);
+    }
 
     /**
      * @param args the command line arguments
@@ -355,5 +489,6 @@ public class LoginWindow extends javax.swing.JFrame {
     private javax.swing.JLabel sistemaAcademicoJLabel;
     private javax.swing.JLabel universidadSanWilliamJLabel;
     private javax.swing.JLabel usuarioJLabel;
+    private javax.swing.JLabel usuariosValidosJLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -42,6 +42,9 @@ public class MainWindow extends javax.swing.JFrame {
     private DecanosPanel decanosPanel;
     private DecanoControlador decanoControlador;
 
+    // AGREGAR VARIABLE PARA PANEL DE INICIO
+    private InicioPanel inicioPanel;
+
     public MainWindow() {
         initComponents();
         PersonaExternaVista personaExternaVista = new PersonaExternaVista(this);
@@ -66,6 +69,12 @@ public class MainWindow extends javax.swing.JFrame {
         // INICIALIZAR COMPONENTES DE DECANOS
         decanoControlador = new DecanoControlador();
         decanosPanel = new DecanosPanel(decanoControlador);
+        
+        // INICIALIZAR PANEL DE INICIO
+        inicioPanel = new InicioPanel();
+        
+        // MOSTRAR PANEL DE INICIO POR DEFECTO
+        mostrarPanel(inicioPanel);
         
         // CONFIGURAR LISTENERS PARA LA FUNCIONALIDAD DE BÚSQUEDA
         configurarBusqueda();
@@ -95,6 +104,8 @@ public class MainWindow extends javax.swing.JFrame {
         fondoPrincipalJPanel1 = new javax.swing.JPanel();
         fondoMenuJPanel2 = new javax.swing.JPanel();
         headerJPanel = new javax.swing.JPanel();
+        UsuarioJPanel = new javax.swing.JPanel();
+        iconUsuarioJLabel = new javax.swing.JLabel();
         menuItemJPanel = new javax.swing.JPanel();
         btnInicioJPanel = new javax.swing.JPanel();
         inicioJLabel = new javax.swing.JLabel();
@@ -127,15 +138,45 @@ public class MainWindow extends javax.swing.JFrame {
 
         headerJPanel.setBackground(new java.awt.Color(29, 107, 140));
 
+        UsuarioJPanel.setBackground(new java.awt.Color(29, 107, 140));
+
+        iconUsuarioJLabel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        iconUsuarioJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        iconUsuarioJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/png/man1.png"))); // NOI18N
+        iconUsuarioJLabel.setText("Admin");
+        iconUsuarioJLabel.setIconTextGap(15);
+
+        javax.swing.GroupLayout UsuarioJPanelLayout = new javax.swing.GroupLayout(UsuarioJPanel);
+        UsuarioJPanel.setLayout(UsuarioJPanelLayout);
+        UsuarioJPanelLayout.setHorizontalGroup(
+            UsuarioJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UsuarioJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(iconUsuarioJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        UsuarioJPanelLayout.setVerticalGroup(
+            UsuarioJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UsuarioJPanelLayout.createSequentialGroup()
+                .addComponent(iconUsuarioJLabel)
+                .addGap(0, 12, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout headerJPanelLayout = new javax.swing.GroupLayout(headerJPanel);
         headerJPanel.setLayout(headerJPanelLayout);
         headerJPanelLayout.setHorizontalGroup(
             headerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
+            .addGroup(headerJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(UsuarioJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         headerJPanelLayout.setVerticalGroup(
             headerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
+            .addGroup(headerJPanelLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(UsuarioJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         menuItemJPanel.setBackground(new java.awt.Color(18, 63, 90));
@@ -249,14 +290,16 @@ public class MainWindow extends javax.swing.JFrame {
         fondoMenuJPanel2.setLayout(fondoMenuJPanel2Layout);
         fondoMenuJPanel2Layout.setHorizontalGroup(
             fondoMenuJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(headerJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(menuItemJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(fondoMenuJPanel2Layout.createSequentialGroup()
+                .addComponent(menuItemJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(headerJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         fondoMenuJPanel2Layout.setVerticalGroup(
             fondoMenuJPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoMenuJPanel2Layout.createSequentialGroup()
-                .addComponent(headerJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addComponent(headerJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(menuItemJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -264,7 +307,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         fondoPrincipalJPanel1.add(fondoMenuJPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, -1));
 
-        toolbarJPanel.setBackground(new java.awt.Color(29, 107, 140));
+        toolbarJPanel.setBackground(new java.awt.Color(18, 63, 90));
 
         bienvenidoAlSistemaAcademicoJLabel.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         bienvenidoAlSistemaAcademicoJLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -453,7 +496,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondoPrincipalJPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(fondoPrincipalJPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -513,6 +556,7 @@ public class MainWindow extends javax.swing.JFrame {
     // EVENTO PARA MANEJAR EL CLIC EN EL BOTÓN "Persona Externa"
     private void btnPersonaExternaJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPersonaExternaJButtonMouseClicked
         // TODO add your handling code here:
+        bienvenidoAlSistemaAcademicoJLabel.setText("PERSONA EXTERNA");
         mostrarPanel(personaExternaPanel);
         // ACTUALIZAR LA TABLA CON TODOS LOS DATOS ACTUALES USANDO EL CONTROLADOR EXISTENTE
         personaExternaPanel.actualizarTabla(personaExternaControlador.obtenerPersonasExternas());
@@ -527,6 +571,7 @@ public class MainWindow extends javax.swing.JFrame {
     // EVENTO PARA MANEJAR EL CLIC EN EL BOTÓN "Trabajadores"
     private void btnTrabajadoresJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTrabajadoresJButtonMouseClicked
         // MOSTRAR EL PANEL DE TRABAJADORES Y ACTUALIZAR LA TABLA
+        bienvenidoAlSistemaAcademicoJLabel.setText("TRABAJADORES");
         mostrarPanel(trabajadoresPanel);
         // ACTUALIZAR LA TABLA CON LOS DATOS ACTUALES USANDO EL CONTROLADOR EXISTENTE
         trabajadoresPanel.actualizarTabla(trabajadorControlador.obtenerTrabajadores());
@@ -535,6 +580,7 @@ public class MainWindow extends javax.swing.JFrame {
     // EVENTO PARA MANEJAR EL CLIC EN EL BOTÓN "Estudiantes"
     private void btnEstudiantesJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstudiantesJButtonMouseClicked
         // MOSTRAR EL PANEL DE ESTUDIANTES Y ACTUALIZAR LA TABLA
+        bienvenidoAlSistemaAcademicoJLabel.setText("ESTUDIANTES");
         mostrarPanel(estudiantePanel);
         // ACTUALIZAR LA TABLA CON LOS DATOS ACTUALES USANDO EL CONTROLADOR EXISTENTE
         estudiantePanel.actualizarTabla(estudianteControlador.obtenerEstudiantes());
@@ -543,6 +589,8 @@ public class MainWindow extends javax.swing.JFrame {
     // EVENTO PARA MANEJAR EL CLIC EN EL BOTÓN "Profesores"
     private void btnProfesoresJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfesoresJButtonMouseClicked
         // MOSTRAR EL PANEL DE PROFESORES Y ACTUALIZAR LA TABLA
+        bienvenidoAlSistemaAcademicoJLabel.setText("PROFESORES");
+         // MOSTRAR EL PANEL DE PROFESORES
         mostrarPanel(profesoresPanel);
         // ACTUALIZAR LA TABLA CON LOS DATOS ACTUALES USANDO EL CONTROLADOR EXISTENTE
         profesoresPanel.actualizarTabla(profesorControlador.obtenerProfesores());
@@ -550,10 +598,18 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnDecanosJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDecanosJButtonMouseClicked
         // TODO add your handling code here:
+        bienvenidoAlSistemaAcademicoJLabel.setText("DECANOS");
         mostrarPanel(decanosPanel);
         // CARGAR DATOS ACTUALIZADOS EN LA TABLA
         decanosPanel.actualizarTabla(decanoControlador.obtenerDecanos());
     }//GEN-LAST:event_btnDecanosJButtonMouseClicked
+
+    // EVENTO PARA MANEJAR EL CLIC EN EL PANEL "Inicio"
+    private void btnInicioJPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioJPanelMouseClicked
+        // MOSTRAR EL PANEL DE INICIO
+        bienvenidoAlSistemaAcademicoJLabel.setText("INICIO");
+        mostrarPanel(inicioPanel);
+    }//GEN-LAST:event_btnInicioJPanelMouseClicked
 
     // MÉTODO PARA BUSCAR PERSONA EXTERNA O ESTUDIANTE POR ID
     private void buscarPersonaExterna() {
@@ -737,6 +793,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UniversidadSanWilliamJLabel;
+    private javax.swing.JPanel UsuarioJPanel;
     private javax.swing.JLabel acercaDeJLabel;
     private javax.swing.JLabel bienvenidoAlSistemaAcademicoJLabel;
     private javax.swing.JPanel btnAcercaDeJPanel;
@@ -756,6 +813,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel fondoMenuJPanel2;
     private javax.swing.JPanel fondoPrincipalJPanel1;
     private javax.swing.JPanel headerJPanel;
+    private javax.swing.JLabel iconUsuarioJLabel;
     private javax.swing.JLabel imgUniversidadJLabel;
     private javax.swing.JLabel inicioJLabel;
     private javax.swing.JComboBox<String> itemRolesPTEPJComboBox;
